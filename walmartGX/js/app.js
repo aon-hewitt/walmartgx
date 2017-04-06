@@ -1,6 +1,6 @@
 ﻿/// <reference path="../inc/processResults.js" />
 /// <reference path="../inc/processResults.js" />
-var myPlayer = videojs("myPlayerID");
+var myPlayer = videojs("myPlayerID_0");
 var config = {};
 var configs = [];
 //var init = 1;
@@ -42,7 +42,7 @@ Gitana.connect(config1, function (err) {
     });
 });
 
-videojs("myPlayerID").ready(function () {
+videojs("myPlayerID_0").ready(function () {
     myPlayer.on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, false);
