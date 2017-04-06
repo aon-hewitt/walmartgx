@@ -1,0 +1,228 @@
+﻿
+@media only screen and (min-device-width : 360px) and (max-device-width : 639px) {
+
+    .vjs-dock-text {
+        display: none;
+    }
+
+    .video-js .vjs-overlay-top-left {
+        position: relative;
+        width: 70%;
+        text-align: left;
+        color: black;
+        top: 20px;
+        left: 30px;
+    }
+
+    .fa-2x {
+        margin-right: 20px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    .video-js .vjs-overlay-bottom-left {
+        width: auto;
+        color: black;
+        bottom: 1em;
+    }
+
+    .video-js .vjs-overlay-background {
+        background-color: rgba(0, 0, 0, 0.0);
+        padding: 5px;
+    }
+
+    .vjs-overlay {
+        color: black;
+    }
+
+    .question {
+        font-family: 'Adobe Arabic';
+        font-size: .9em;
+        color: rgba(0,0,0,1);
+    }
+
+    .answer {
+        font-family: 'Adobe Arabic';
+        font-size: .7em;
+        color: rgba(0,0,0,1);
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+    .navDisabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .video-js .vjs-fullscreen-control {
+        display: none;
+    }
+}
+
+/*@media only screen and (min-device-width : 640px) and (max-device-width : 800px) {*/
+@media only screen and (min-device-width : 640px) {
+    .vjs-dock-text {
+        display: none;
+    }
+
+    .video-js .vjs-overlay-top-left {
+        position: relative;
+        width: 70%;
+        text-align: left;
+        color: black;
+        top: 20px;
+        left: 30px;
+    }
+
+    .fa-2x {
+        margin-right: 20px;
+        cursor: pointer;
+        font-size: 1.4em;
+    }
+
+    .video-js .vjs-overlay-bottom-left {
+        width: auto;
+        color: black;
+        bottom: 4em;
+    }
+
+    .video-js .vjs-overlay-background {
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+
+    .vjs-overlay {
+        color: black;
+    }
+
+    .question {
+        font-family: 'Adobe Arabic';
+        font-size: 1.6em;
+        color: rgba(0,0,0,1);
+    }
+
+    .answer {
+        font-family: 'Adobe Arabic';
+        font-size: 1.5em;
+        color: rgba(0,0,0,1);
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+        .answer:before {
+    content: "\f10c";
+    font-family: FontAwesome;
+    /* font-style: normal; */
+    /* font-weight: normal; */
+    /* text-decoration: inherit; */
+    /* color: #000; */
+    font-size: 18px;
+    padding-right: 0.5em;
+    /* position: absolute; */
+    /* top: 10px; */
+    /* left: 0; */
+    color:#337ab7;
+}
+
+    .navDisabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .video-js .vjs-fullscreen-control {
+        display: none;
+    }
+
+    #slideInfo {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: .95;
+        top: 0px;
+        bottom: 20px;
+        right: 0px;
+        background-color: #555;
+        display: none;
+        overflow:auto;
+    }
+
+    .container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .slideInfoContent {
+        color: white;
+    }
+
+    .well {
+        margin: 10px;
+        background-color: rgba(0,0,0,0);
+        color: white;
+    }
+    /*.bc-player-Sk6lnYJFg_default .vjs-progress-control {
+        display: none;
+    }*/
+}
+
+@media only screen and (min-device-width : 801px) {
+
+    .vjs-dock-text {
+        display: none;
+    }
+
+    .video-js .vjs-overlay-top-left {
+        position: relative;
+        width: 70%;
+        text-align: left;
+        color: black;
+        top: 20px;
+        left: 30px;
+    }
+
+    .fa-2x {
+        margin-right: 20px;
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    .video-js .vjs-overlay-bottom-left {
+        width: auto;
+        color: black;
+        bottom: 4.2em;
+    }
+
+    .video-js .vjs-overlay-background {
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+
+    .vjs-overlay {
+        color: black;
+    }
+
+    .question {
+        font-family: 'Adobe Arabic';
+        font-size: 2.4em;
+        color: rgba(0,0,0,1);
+    }
+
+    .answer {
+        font-family: 'Adobe Arabic';
+        font-size: 2em;
+        color: rgba(0,0,0,1);
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+    .navDisabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .video-js .vjs-fullscreen-control {
+        display: none;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+}
