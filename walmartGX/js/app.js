@@ -1,5 +1,4 @@
-﻿/// <reference path="../inc/processResults.js" />
-/// <reference path="../inc/processResults.js" />
+﻿
 var myPlayer = videojs("myPlayerID_0");
 var config = {};
 var configs = [];
@@ -157,17 +156,11 @@ function loadNewVideo(videoId, saveThis) {
     myPlayer.catalog.getVideo(videoId, function (error, video) {
         //deal with error
         myPlayer.catalog.load(video);
-        makeVideoOverlay(name);
-        //if (name == config.startVideoName) { //First video starting - reset voteBucket values to 0
-        //    for (var i = 0; i < config.recommendations.length; i++) {
-        //        config.recommendations[i].voteBucket = 0;
-        //    }
-        //}
-        //myPlayer.play(); Call the play method within the loadedmetadata event rather than here.
+        makeVideoOverlay(name, myPlayer);
     });
 }
 
-function makeVideoOverlay(videoId) {
+function makeVideoOverlay(videoId, playerObject) {
     //set global json properties
     var videoOverlayObject = {};
     videoOverlayObject.overlay = {};
@@ -196,7 +189,7 @@ function makeVideoOverlay(videoId) {
             navBar.start = 0;
             navBar.end = config.videos[config.currentVideoIndex].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
-            myPlayer.overlay(videoOverlayObject.overlay);
+            playerObject.overlay(videoOverlayObject.overlay);
             return;
         }
     }
