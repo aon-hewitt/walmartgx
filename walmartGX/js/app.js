@@ -1,5 +1,5 @@
 ﻿
-var myPlayer = videojs("myPlayerID_0");
+
 var config = {};
 var configs = [];
 //var init = 1;
@@ -42,27 +42,27 @@ Gitana.connect(config1, function (err) {
 });
 
 videojs("myPlayerID_0").ready(function () {
-    myPlayer.on("ended", function () {
+    videojs("myPlayerID_0").on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, false);
         } else {
-            myPlayer.pause();//pause the player if no endbehavior is specified
+            videojs("myPlayerID_0").pause();//pause the player if no endbehavior is specified
         }
     })
 
-    myPlayer.on("loadedmetadata", function () {
+    videojs("myPlayerID_0").on("loadedmetadata", function () {
 
         console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
         if (config.videos[config.currentVideoIndex].tracks != undefined) {
-            myPlayer.addRemoteTextTrack({
+            videojs("myPlayerID_0").addRemoteTextTrack({
                 kind: 'metadata',
                 src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
             }, false);
         } else {
 
         }
-        var trackIndex = myPlayer.textTracks().length - 1;
-        var tt = myPlayer.textTracks()[trackIndex];
+        var trackIndex = videojs("myPlayerID_0").textTracks().length - 1;
+        var tt = videojs("myPlayerID_0").textTracks()[trackIndex];
         tt.oncuechange = function () {
             if (tt.activeCues[0] !== undefined) {
                 console.log("Cue point begins");
@@ -79,7 +79,8 @@ videojs("myPlayerID_0").ready(function () {
                 console.log("Cue point duration over");
             }
         }
-        myPlayer.play();
+        $("body").css("display", "block");
+        videojs("myPlayerID_0").play();
     });
 });
 
@@ -106,8 +107,8 @@ function home() {
 }
 
 function skip() {
-    if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
-        myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro)
+    if (config.videos[config.currentVideoIndex].skipIntro && (videojs("myPlayerID_0").currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
+        videojs("myPlayerID_0").currentTime(config.videos[config.currentVideoIndex].skipIntro)
     } else {
         loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, true);
     }
@@ -153,10 +154,10 @@ function loadNewVideo(videoId, saveThis) {
     }
     while (iterator < config.videos.length);
 
-    myPlayer.catalog.getVideo(videoId, function (error, video) {
+    videojs("myPlayerID_0").catalog.getVideo(videoId, function (error, video) {
         //deal with error
-        myPlayer.catalog.load(video);
-        makeVideoOverlay(name, myPlayer);
+        videojs("myPlayerID_0").catalog.load(video);
+        makeVideoOverlay(name, videojs("myPlayerID_0"));
     });
 }
 

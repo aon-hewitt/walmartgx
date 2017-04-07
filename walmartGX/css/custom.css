@@ -149,6 +149,9 @@
         padding-right: 0px;
         padding-left: 0px;
     }
+    body{
+        display:none;
+    }
 
     .slideInfoContent {
         color: white;
@@ -162,6 +165,17 @@
     /*.bc-player-Sk6lnYJFg_default .vjs-progress-control {
         display: none;
     }*/
+
+    .main-header {
+            height: 75px;
+            background-color: #004c91;
+        }
+
+        #logo {
+            padding: 15px;
+        }
+
+
 }
 
 @media only screen and (min-device-width : 801px) {
