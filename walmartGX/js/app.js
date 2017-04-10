@@ -1,5 +1,6 @@
-﻿
-
+﻿/// <reference path="../inc/processResults.js" />
+/// <reference path="../inc/processResults.js" />
+var myPlayer = videojs("myPlayerID");
 var config = {};
 var configs = [];
 //var init = 1;
@@ -7,11 +8,11 @@ var configs = [];
 
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
-var nodeId = "982f532ba1f5d1a86642"; // DD3ImitiationWithEvents
+//var nodeId = "982f532ba1f5d1a86642"; // DD3ImitiationWithEvents
 //var nodeId = "6147486af3b96a3967e6"; // DD3Imitiation
 //var nodeId = "cae689d45b8c67da8da9"; // goAnimate
 //var nodeId = "eda185a511bf4cfe4c11"; // DD3ImitiationFAST
-var nodeId = "ee65143c084464c1e650"; // DD3InfoAndEvents
+//var nodeId = "ee65143c084464c1e650"; // DD3InfoAndEvents
 
 
 var config1 = {
@@ -41,28 +42,28 @@ Gitana.connect(config1, function (err) {
     });
 });
 
-videojs("myPlayerID_0").ready(function () {
-    videojs("myPlayerID_0").on("ended", function () {
+videojs("myPlayerID").ready(function () {
+    myPlayer.on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, false);
         } else {
-            videojs("myPlayerID_0").pause();//pause the player if no endbehavior is specified
+            myPlayer.pause();//pause the player if no endbehavior is specified
         }
     })
 
-    videojs("myPlayerID_0").on("loadedmetadata", function () {
+    myPlayer.on("loadedmetadata", function () {
 
         console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
         if (config.videos[config.currentVideoIndex].tracks != undefined) {
-            videojs("myPlayerID_0").addRemoteTextTrack({
+            myPlayer.addRemoteTextTrack({
                 kind: 'metadata',
                 src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
             }, false);
         } else {
 
         }
-        var trackIndex = videojs("myPlayerID_0").textTracks().length - 1;
-        var tt = videojs("myPlayerID_0").textTracks()[trackIndex];
+        var trackIndex = myPlayer.textTracks().length - 1;
+        var tt = myPlayer.textTracks()[trackIndex];
         tt.oncuechange = function () {
             if (tt.activeCues[0] !== undefined) {
                 console.log("Cue point begins");
@@ -79,25 +80,9 @@ videojs("myPlayerID_0").ready(function () {
                 console.log("Cue point duration over");
             }
         }
-        $("body").css("display", "block");
-        videojs("myPlayerID_0").play();
-        //buildPotentials();
+        myPlayer.play();
     });
 });
-videojs("myPlayerID_1").ready(function () {
-    videojs("myPlayerID_1").on("loadedmetadata", function () {
-        videojs("myPlayerID_1").play();
-    })
-})
-
-
-function buildPotentials() {
-
-    var appendable = '<div style="display: block; position: relative; max-width: 900px; margin:auto"><div style="padding-top: 56.25%;"> <video style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;" id="myPlayerID_1" data-video-id="4607539344001" data-account="90719642001" data-player="Sk6lnYJFg" data-embed="default" data-application-id class="video-js" controls></video><script src="//players.brightcove.net/90719642001/Sk6lnYJFg_default/index.min.js"></script><script src="//players.brightcove.net/videojs-overlay/1/videojs-overlay.min.js"></script>'
-
-    $("#playerContainer").append(appendable);
-    
-}
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
@@ -122,8 +107,8 @@ function home() {
 }
 
 function skip() {
-    if (config.videos[config.currentVideoIndex].skipIntro && (videojs("myPlayerID_0").currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
-        videojs("myPlayerID_0").currentTime(config.videos[config.currentVideoIndex].skipIntro)
+    if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
+        myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro)
     } else {
         loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, true);
     }
@@ -169,14 +154,20 @@ function loadNewVideo(videoId, saveThis) {
     }
     while (iterator < config.videos.length);
 
-    videojs("myPlayerID_0").catalog.getVideo(videoId, function (error, video) {
+    myPlayer.catalog.getVideo(videoId, function (error, video) {
         //deal with error
-        videojs("myPlayerID_0").catalog.load(video);
-        makeVideoOverlay(name, videojs("myPlayerID_0"));
+        myPlayer.catalog.load(video);
+        makeVideoOverlay(name);
+        //if (name == config.startVideoName) { //First video starting - reset voteBucket values to 0
+        //    for (var i = 0; i < config.recommendations.length; i++) {
+        //        config.recommendations[i].voteBucket = 0;
+        //    }
+        //}
+        //myPlayer.play(); Call the play method within the loadedmetadata event rather than here.
     });
 }
 
-function makeVideoOverlay(videoId, playerObject) {
+function makeVideoOverlay(videoId) {
     //set global json properties
     var videoOverlayObject = {};
     videoOverlayObject.overlay = {};
@@ -205,7 +196,7 @@ function makeVideoOverlay(videoId, playerObject) {
             navBar.start = 0;
             navBar.end = config.videos[config.currentVideoIndex].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
-            playerObject.overlay(videoOverlayObject.overlay);
+            myPlayer.overlay(videoOverlayObject.overlay);
             return;
         }
     }

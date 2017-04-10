@@ -10,7 +10,16 @@
     <link href="css/custom.css" rel="stylesheet" />
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
     <link href="css/autoLandscape.css" rel="stylesheet" />
+    <style>
+        .main-header {
+            height: 75px;
+            background-color: #004c91;
+        }
 
+        #logo {
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
     <div id="container">
@@ -19,12 +28,12 @@
         </div>
         <div class="container">
             <div class="row">
-                <div id="playerContainer" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
 
                     <div style="display: block; position: relative; max-width: 900px; margin:auto">
                         <div style="padding-top: 56.25%;">
                             <video style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"
-                                   id="myPlayerID_0"
+                                   id="myPlayerID"
                                    data-video-id=""
                                    data-account="90719642001"
                                    data-player="Sk6lnYJFg"
@@ -33,33 +42,11 @@
                                    class="video-js"
                                    controls></video>
 
-                            <div id="slideInfo" class="jsinc" data-pg="inc/slideInfo.html"></div>
+                            <div id="slideInfo" class="jsinc" data-pg="inc/slideInfo.html"></div>                        
                             <script src="//players.brightcove.net/90719642001/Sk6lnYJFg_default/index.min.js"></script>
                             <script src="//players.brightcove.net/videojs-overlay/1/videojs-overlay.min.js"></script>
                         </div>
                     </div>
-
-
-                    <!--<div style="display: block; position: relative; max-width: 900px; margin:auto">
-                        <div style="padding-top: 56.25%;">
-                            <video style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"
-                                   id="myPlayerID_1"
-                                   data-video-id="4607539344001"
-                                   data-account="90719642001"
-                                   data-player="Sk6lnYJFg"
-                                   data-embed="default"
-                                   data-application-id
-                                   class="video-js"
-                                   controls></video>
-
-                            <div id="slideInfo1" class="jsinc" data-pg="inc/slideInfo1.html"></div>
-                            <script src="//players.brightcove.net/90719642001/Sk6lnYJFg_default/index.min.js"></script>
-                            <script src="//players.brightcove.net/videojs-overlay/1/videojs-overlay.min.js"></script>
-                        </div>
-                    </div>-->
-
-
-
 
                 </div>
             </div>
