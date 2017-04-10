@@ -81,8 +81,23 @@ videojs("myPlayerID_0").ready(function () {
         }
         $("body").css("display", "block");
         videojs("myPlayerID_0").play();
+        //buildPotentials();
     });
 });
+videojs("myPlayerID_1").ready(function () {
+    videojs("myPlayerID_1").on("loadedmetadata", function () {
+        videojs("myPlayerID_1").play();
+    })
+})
+
+
+function buildPotentials() {
+
+    var appendable = '<div style="display: block; position: relative; max-width: 900px; margin:auto"><div style="padding-top: 56.25%;"> <video style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;" id="myPlayerID_1" data-video-id="4607539344001" data-account="90719642001" data-player="Sk6lnYJFg" data-embed="default" data-application-id class="video-js" controls></video><script src="//players.brightcove.net/90719642001/Sk6lnYJFg_default/index.min.js"></script><script src="//players.brightcove.net/videojs-overlay/1/videojs-overlay.min.js"></script>'
+
+    $("#playerContainer").append(appendable);
+    
+}
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
