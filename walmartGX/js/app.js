@@ -1,5 +1,6 @@
 ﻿
 var myPlayer = videojs("myPlayerID");
+var myPlayer2 = videojs("myPlayerID2");
 var config = {};
 var configs = [];
 
@@ -32,9 +33,22 @@ Gitana.connect(config1, function (err) {
 });
 
 videojs("myPlayerID").ready(function () {
+
+
+
+
     myPlayer.on("ended", function () {
+
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
-            loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, false);
+
+            
+
+            $("#myPlayerIDContainer").css("display", "none");
+            $("#myPlayerID2Container").css("display", "block");
+            myPlayer2.play();
+            //loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, false);
+
+
         } else {
             myPlayer.pause();//pause the player if no endbehavior is specified
         }
@@ -72,12 +86,25 @@ videojs("myPlayerID").ready(function () {
 
         
         myPlayer.play();
-        
+        myPlayer2.pause();
         $("#slideInfo").load("inc/" + config.startVideoName + ".html");
+
+        makeVideoOverlayWait("intro_wait");
 
 
     });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
@@ -102,6 +129,7 @@ function home() {
 }
 
 function skip() {
+    debugger;
     if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
         myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro)
     } else {
@@ -137,12 +165,12 @@ function loadNewVideo(videoId, saveThis) {
         }
         configs.push(JSON.stringify(config));
     }
-
+    debugger;
     //The following do/while loop translates the name passed in to the brightcove id pertaining to that video name. This allows one video to be used for many questions/answers. Name based rather than brightcoveid based
     var iterator = 0
     do {
         if (config.videos[iterator].name == videoId) {
-            videoId = config.videos[iterator].brightcoveId;
+            videoId = config.videos[iterator].brightcoveId; //at this point videoID turns back into a number
             var name = config.videos[iterator].name
         }
         iterator++;
@@ -152,6 +180,7 @@ function loadNewVideo(videoId, saveThis) {
     myPlayer.catalog.getVideo(videoId, function (error, video) {
         //deal with error
         myPlayer.catalog.load(video);
+
         makeVideoOverlay(name);
         //if (name == config.startVideoName) { //First video starting - reset voteBucket values to 0
         //    for (var i = 0; i < config.recommendations.length; i++) {
@@ -163,6 +192,7 @@ function loadNewVideo(videoId, saveThis) {
 }
 
 function makeVideoOverlay(videoId) {
+    debugger;
     //set global json properties
     var videoOverlayObject = {};
     videoOverlayObject.overlay = {};
@@ -192,6 +222,42 @@ function makeVideoOverlay(videoId) {
             navBar.end = config.videos[config.currentVideoIndex].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
             myPlayer.overlay(videoOverlayObject.overlay);
+            return;
+        }
+    }
+}
+
+
+function makeVideoOverlayWait(videoId) {
+    //set global json properties
+    var videoOverlayObject = {};
+    videoOverlayObject.overlay = {};
+    videoOverlayObject.overlay.content = "";
+    videoOverlayObject.overlay.overlays = [];
+
+    //now create the overlay properties
+    for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
+        if (config.videos[i].name == videoId) {
+            //config.currentVideoIndex = i;
+            for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
+                videoOverlayObject.overlay.overlays[j] = {};
+                videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
+                if (config.videos[i].onscreenElements[j].event != undefined) {
+                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
+                } else {
+                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='defaultEventHandler(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
+                }
+                videoOverlayObject.overlay.overlays[j].start = config.videos[i].onscreenElements[j].start;
+                videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
+            }
+            //now add the menubar overlay to every page
+            var navBar = {};
+            navBar.align = "bottom-left";
+            navBar.content = "<span onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span><span onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span><span onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.infoVideoEvent + "()'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
+            navBar.start = 0;
+            navBar.end = config.videos[config.currentVideoIndex + 1].duration;
+            videoOverlayObject.overlay.overlays.push(navBar);
+            myPlayer2.overlay(videoOverlayObject.overlay);
             return;
         }
     }
