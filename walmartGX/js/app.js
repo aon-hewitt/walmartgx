@@ -45,6 +45,7 @@ videojs("myPlayerID").ready(function () {
             $("#myPlayerID2Container").css("display", "block");
             myPlayer2.play();
             myPlayer.pause();
+            waitSequenceShowing = true;
             //loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, false);
         } else {
             myPlayer.pause();//pause the player if no endbehavior is specified
@@ -91,7 +92,8 @@ videojs("myPlayerID").ready(function () {
 
 videojs("myPlayerID2").ready(function () {
     myPlayer2.on("ended", function () {
-        myPlayer2.currentTime(0);
+myPlayer2.currentTime(0);
+myPlayer2.play();
     })
 
     myPlayer2.on("loadedmetadata", function () {
@@ -123,8 +125,8 @@ videojs("myPlayerID2").ready(function () {
         //    }
         //}
         //myPlayer.play();
-        myPlayer2.play();
-        waitSequenceShowing = true;
+        //myPlayer2.play();
+        //waitSequenceShowing = true;
         $("#slideInfo2").load("inc/" + "intro_wait" + ".html");
     });
 });
@@ -161,7 +163,7 @@ function skip() {
     if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
         myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro)
     } else {
-        if (waitSequenceShowing) {//only jump if this is not the wait sequence video showing in player 2
+        if (!waitSequenceShowing) {//only jump if this is not the wait sequence video showing in player 2
             //alert("jumping to end");
             loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, true);
         } else {
@@ -279,7 +281,7 @@ function loadWaitSequence(videoId) {
         //        config.recommendations[i].voteBucket = 0;
         //    }
         //}
-        myPlayer2.play(); //Call the play method within the loadedmetadata event rather than here.
+        //myPlayer2.play(); //Call the play method within the loadedmetadata event rather than here.
     });
 }
 
