@@ -13,6 +13,8 @@ var branchId = "e107b525b507b9d33a23";
 //var nodeId = "cae689d45b8c67da8da9"; // goAnimate
 //var nodeId = "eda185a511bf4cfe4c11"; // DD3ImitiationFAST
 //var nodeId = "ee65143c084464c1e650"; // DD3InfoAndEvents
+var nodeId = "1f89a17e1845bc71d945"; // Walmart
+
 
 
 var config1 = {

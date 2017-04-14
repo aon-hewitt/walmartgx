@@ -1,18 +1,16 @@
 ﻿
-@media only screen and (min-device-width : 360px) and (max-device-width : 639px) {
-
-
+@media only screen and (min-device-width : 360px) {
     .vjs-dock-text {
-        display: none;
+        display: none; /*This hides the text at the top of the window*/
     }
 
     .video-js .vjs-overlay-top-left {
         position: relative;
-        width: 70%;
+        width: 60%;
         text-align: left;
         color: black;
-        top: 20px;
-        left: 30px;
+        top: 25px;
+        left: 80px;
     }
 
     .fa-2x {
@@ -23,29 +21,23 @@
 
     .video-js .vjs-overlay-bottom-left {
         width: auto;
-        color: black;
         bottom: 1em;
     }
 
     .video-js .vjs-overlay-background {
         background-color: rgba(0, 0, 0, 0.0);
-        padding: 5px;
-    }
-
-    .vjs-overlay {
-        color: black;
+        padding: 4px;
     }
 
     .question {
         font-family: 'Adobe Arabic';
         font-size: .9em;
-        color: rgba(0,0,0,1);
+
     }
 
     .answer {
         font-family: 'Adobe Arabic';
         font-size: .7em;
-        color: rgba(0,0,0,1);
         cursor: pointer;
         margin-left: 20px;
     }
@@ -60,23 +52,7 @@
     }
 }
 
-/*@media only screen and (min-device-width : 640px) and (max-device-width : 800px) {*/
 @media only screen and (min-device-width : 640px) {
-
-
-    .vjs-dock-text {
-        display: none;
-    }
-
-    .video-js .vjs-overlay-top-left {
-        position: relative;
-        width: 70%;
-        text-align: left;
-        color: black;
-        top: 20px;
-        left: 30px;
-    }
-
     .fa-2x {
         margin-right: 20px;
         cursor: pointer;
@@ -85,46 +61,24 @@
 
     .video-js .vjs-overlay-bottom-left {
         width: auto;
-        color: black;
         bottom: 4em;
     }
 
-    .video-js .vjs-overlay-background {
-        background-color: rgba(0, 0, 0, 0.0);
-    }
-
-    .vjs-overlay {
-        color: black;
-    }
-
     .question {
-        font-family: 'Adobe Arabic';
         font-size: 1.6em;
-        color: rgba(0,0,0,1);
     }
 
     .answer {
-        font-family: 'Adobe Arabic';
         font-size: 1.5em;
-        color: rgba(0,0,0,1);
-        cursor: pointer;
-        margin-left: 20px;
     }
 
         .answer:before {
-    content: "\f00c";
-    font-family: FontAwesome;
-    /* font-style: normal; */
-    /* font-weight: normal; */
-    /* text-decoration: inherit; */
-    /* color: #000; */
-    font-size: 18px;
-    padding-right: 0.5em;
-    /* position: absolute; */
-    /* top: 10px; */
-    /* left: 0; */
-    color:#337ab7;
-}
+            content: "\f00c";
+            font-family: FontAwesome;
+            font-size: 18px;
+            padding-right: 0.5em;
+            color: #337ab7;
+        }
 
     .navDisabled {
         opacity: .5;
@@ -145,7 +99,7 @@
         right: 0px;
         background-color: #555;
         display: none;
-        overflow:auto;
+        overflow: auto;
     }
 
     .container {
@@ -162,56 +116,24 @@
         background-color: rgba(0,0,0,0);
         color: white;
     }
-    /*.bc-player-Sk6lnYJFg_default .vjs-progress-control {
-        display: none;
-    }*/
 }
 
 @media only screen and (min-device-width : 801px) {
 
-    .vjs-dock-text {
-        display: none;
-    }
-
-    .video-js .vjs-overlay-top-left {
-        position: relative;
-        width: 70%;
-        text-align: left;
-        color: black;
-        top: 20px;
-        left: 30px;
-    }
-
-    .fa-2x {
-        margin-right: 20px;
-        cursor: pointer;
-        font-size: 1.5em;
-    }
 
     .video-js .vjs-overlay-bottom-left {
         width: auto;
-        color: black;
         bottom: 4.2em;
-    }
-
-    .video-js .vjs-overlay-background {
-        background-color: rgba(0, 0, 0, 0.0);
-    }
-
-    .vjs-overlay {
-        color: black;
     }
 
     .question {
         font-family: 'Adobe Arabic';
         font-size: 2.4em;
-        color: rgba(0,0,0,1);
     }
 
     .answer {
         font-family: 'Adobe Arabic';
         font-size: 2em;
-        color: rgba(0,0,0,1);
         cursor: pointer;
         margin-left: 20px;
     }
@@ -219,10 +141,6 @@
     .navDisabled {
         opacity: .5;
         cursor: not-allowed;
-    }
-
-    .video-js .vjs-fullscreen-control {
-        display: none;
     }
 
     .container {
