@@ -1,21 +1,11 @@
-﻿/// <reference path="../inc/processResults.js" />
-/// <reference path="../inc/processResults.js" />
+﻿
 var myPlayer = videojs("myPlayerID");
 var config = {};
 var configs = [];
-//var init = 1;
-
 
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
-//var nodeId = "982f532ba1f5d1a86642"; // DD3ImitiationWithEvents
-//var nodeId = "6147486af3b96a3967e6"; // DD3Imitiation
-//var nodeId = "cae689d45b8c67da8da9"; // goAnimate
-//var nodeId = "eda185a511bf4cfe4c11"; // DD3ImitiationFAST
-//var nodeId = "ee65143c084464c1e650"; // DD3InfoAndEvents
 var nodeId = "1f89a17e1845bc71d945"; // Walmart
-
-
 
 var config1 = {
     "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
@@ -25,9 +15,6 @@ var config1 = {
     "baseURL": "https://api.cloudcms.com",
     "application": "4db40e414e0888fe688d"
 }
-
-
-
 
 Gitana.connect(config1, function (err) {
     if (err) {
@@ -82,7 +69,13 @@ videojs("myPlayerID").ready(function () {
                 console.log("Cue point duration over");
             }
         }
+
+        
         myPlayer.play();
+        
+        $("#slideInfo").load("inc/" + config.startVideoName + ".html");
+
+
     });
 });
 
