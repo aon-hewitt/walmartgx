@@ -7,6 +7,7 @@ var waitSequenceShowing = false;
 var waitSequenceVideoId;
 var name1;
 
+
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
 var nodeId = "1f89a17e1845bc71d945"; // Walmart
@@ -59,7 +60,11 @@ videojs("myPlayerID").ready(function () {
 
         myPlayer.play();
         myPlayer2.pause();
+
+
+
         $("#slideInfo").load("inc/" + config.startVideoName + ".html");
+
     });
 });
 
@@ -76,6 +81,7 @@ videojs("myPlayerID2").ready(function () {
         myPlayer2.pause();
         //waitSequenceShowing = true;
         $("#slideInfo2").load("inc/" + "intro_wait" + ".html");
+
     });
 });
 
@@ -86,16 +92,12 @@ videojs("myPlayerID2").ready(function () {
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
-
-    debugger;
     if (waitSequenceShowing) {
         var adjuster = 1;
     } else {
         adjuster = 0;
     }
-
     loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
-
 
     $("#myPlayerIDContainer").css("display", "block");
     $("#myPlayerID2Container").css("display", "none");
@@ -164,6 +166,7 @@ function assignWeights(array) {
 }
 
 function loadNewVideo(videoId, saveThis) {
+
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
@@ -267,6 +270,8 @@ function makeVideoOverlay(videoId) {
 }
 
 function loadWaitSequence(videoId, name) {
+
+
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
         //deal with error
         myPlayer2.catalog.load(video);
