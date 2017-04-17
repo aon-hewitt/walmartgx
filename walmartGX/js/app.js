@@ -32,7 +32,7 @@ Gitana.connect(config1, function (err) {
             this.readNode(nodeId).then(function () {
                 config = JSON.parse(JSON.stringify(this));
                 loadNewVideo(config.startVideoName, false);
-                
+
             });
         });
     });
@@ -40,9 +40,10 @@ Gitana.connect(config1, function (err) {
 
 videojs("myPlayerID").ready(function () {
     myPlayer.on("ended", function () {
-        if (config.videos[config.currentVideoIndex].endBehavior != undefined) {      
+        if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
             $("#myPlayerID2Container").css("display", "block");
+
             myPlayer2.play();
             myPlayer.pause();
             waitSequenceShowing = true;
@@ -57,7 +58,6 @@ videojs("myPlayerID").ready(function () {
 
 
         myPlayer.play();
-
         myPlayer2.pause();
         $("#slideInfo").load("inc/" + config.startVideoName + ".html");
     });
@@ -87,13 +87,19 @@ videojs("myPlayerID2").ready(function () {
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
 
+    debugger;
+    if (waitSequenceShowing) {
+        var adjuster = 1;
+    } else {
+        adjuster = 0;
+    }
 
-    loadNewVideo(config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
+    loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
 
     //loadWaitSequence(config.videos[1].brightcoveId, false);//the wait sequence to load along with the main video
 
 
-    assignWeights(config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].defaultAction.weightings);
+    assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
 
     //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
 
@@ -115,15 +121,6 @@ function home() {
 function skip() {
     if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
         myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro)
-    } else {
-
-        //if (!waitSequenceShowing) {//only jump if this is not the wait sequence video showing in player 2
-
-        //    loadNewVideo(config.videos[config.currentVideoIndex].endBehavior, true);
-        //} else {
-
-        //}
-
     }
 }
 
@@ -135,11 +132,11 @@ function back() {
 
 
 
-        $("#myPlayerIDContainer").css("display", "block");
-        $("#myPlayerID2Container").css("display", "none");
-        myPlayer2.pause();
-        myPlayer.play();
-        location.reload;
+        //$("#myPlayerIDContainer").css("display", "block");
+        //$("#myPlayerID2Container").css("display", "none");
+        //myPlayer2.pause();
+        //myPlayer.play();
+        //location.reload;
     }
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
@@ -158,6 +155,23 @@ function loadNewVideo(videoId, saveThis) {
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
+
+
+
+            $("#myPlayerIDContainer").css("display", "block");
+            $("#myPlayerID2Container").css("display", "none");
+
+            myPlayer2.pause();
+            myPlayer.play();
+            waitSequenceShowing = false;
+
+
+
+
+
+
+
+
             config.currentVideoIndex--;
         }
         configs.push(JSON.stringify(config));
@@ -197,7 +211,7 @@ function loadNewVideo(videoId, saveThis) {
         //deal with error
         makeVideoOverlay(name);
         myPlayer.catalog.load(video);
-        
+
     });
 }
 
