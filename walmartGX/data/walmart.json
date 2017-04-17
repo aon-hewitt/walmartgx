@@ -294,7 +294,7 @@
           "end": 111,
           "align": "top-left",
           "defaultAction": {
-            "jumpToName": "medical",
+            "jumpToName": "benefits",
             "weightings": [ ]
           }
         },
@@ -432,7 +432,7 @@
         },
         {
           "class": "question",
-          "content": "Paid Time Off",
+          "content": "Pai Time Off",
           "lastQuestion": false,
           "start": 0,
           "end": 38,
@@ -449,7 +449,6 @@
           "end": 38,
           "align": "top-left",
           "defaultAction": {
-            "jumpToName": "toDoList",
             "weightings": [ ]
           }
         },
@@ -485,19 +484,7 @@
       "duration": 109,
       "endBehavior": "toDoList_wait",
       "skipIntro": 103,
-      "onscreenElements": [
-        {
-          "class": "question",
-          "content": "To do list sequence item",
-          "lastQuestion": false,
-          "start": 0,
-          "end": 109,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": [ ]
-          }
-        }
-      ]
+      "onscreenElements": [ ]
     },
     {
       "name": "toDoList_wait",
@@ -508,7 +495,7 @@
       "onscreenElements": [
         {
           "class": "question",
-          "content": "To do list sequence item",
+          "content": "To do list wait sequence item",
           "lastQuestion": false,
           "start": 0,
           "end": 32,
@@ -525,11 +512,11 @@
       "brightcoveId": "5399011481001",
       "duration": 15,
       "endBehavior": "medical_wait",
-      "skipIntro": 100,
+      "skipIntro": 10,
       "onscreenElements": [
         {
           "class": "question",
-          "content": "Medical Item",
+          "content": "medical item",
           "lastQuestion": false,
           "start": 5,
           "end": 15,
