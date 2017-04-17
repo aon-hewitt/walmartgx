@@ -96,6 +96,18 @@ function defaultEventHandler(onscreenElementIndex) {
 
     loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
 
+
+    $("#myPlayerIDContainer").css("display", "block");
+    $("#myPlayerID2Container").css("display", "none");
+
+    myPlayer2.pause();
+    myPlayer.play();
+    waitSequenceShowing = false;
+
+
+
+
+
     //loadWaitSequence(config.videos[1].brightcoveId, false);//the wait sequence to load along with the main video
 
 
@@ -158,12 +170,12 @@ function loadNewVideo(videoId, saveThis) {
 
 
 
-            $("#myPlayerIDContainer").css("display", "block");
-            $("#myPlayerID2Container").css("display", "none");
+            //$("#myPlayerIDContainer").css("display", "block");
+            //$("#myPlayerID2Container").css("display", "none");
 
-            myPlayer2.pause();
-            myPlayer.play();
-            waitSequenceShowing = false;
+            //myPlayer2.pause();
+            //myPlayer.play();
+            //waitSequenceShowing = false;
 
 
 
