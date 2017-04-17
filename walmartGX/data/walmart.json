@@ -1,0 +1,579 @@
+﻿{
+  "gxName": "walmartDemo",
+  "title": "walmartDemo",
+  "startVideoName": "intro",
+  "startVideoWaitSequenceName": "intro_wait",
+  "currentVideoIndex": -1,
+  "homeVideoId": "intro",
+  "homeVideoIcon": "fa-home",
+  "homeVideoEvent": "home",
+  "skipVideoIcon": "fa-step-forward",
+  "skipVideoEvent": "skip",
+  "backVideoIcon": "fa-step-backward",
+  "backVideoEvent": "back",
+  "infoVideoIcon": "fa-question",
+  "infoVideoEvent": "showSlideInfo",
+  "videos": [
+    {
+      "name": "intro",
+      "waitSequence": false,
+      "brightcoveId": "5396106284001",
+      "duration": 111,
+      "endBehavior": "intro_wait",
+      "skipIntro": 100,
+      "onscreenElements": [
+        {
+          "class": "question",
+          "content": "Health Benefits - Medical",
+          "lastQuestion": false,
+          "start": 41,
+          "end": 52,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "HSA",
+          "lastQuestion": false,
+          "start": 41,
+          "end": 52,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "HRA Plan",
+          "lastQuestion": false,
+          "start": 41,
+          "end": 52,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "HRA High Plan",
+          "lastQuestion": false,
+          "start": 41,
+          "end": 52,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Health Benefits",
+          "lastQuestion": false,
+          "start": 52,
+          "end": 58,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Dental",
+          "lastQuestion": false,
+          "start": 52,
+          "end": 58,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Vision",
+          "lastQuestion": false,
+          "start": 52,
+          "end": 58,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Other",
+          "lastQuestion": false,
+          "start": 52,
+          "end": 58,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Insurance",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "AD&D",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Life Insurance",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Spouse Life Insurance",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Life Insurance Child",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Short Term Disability",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Long Term Disability",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Critical Illness",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer",
+          "content": "Accident",
+          "lastQuestion": false,
+          "start": 58,
+          "end": 67,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Education & Advance Your Career",
+          "lastQuestion": false,
+          "start": 67,
+          "end": 71,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Money",
+          "lastQuestion": false,
+          "start": 71,
+          "end": 73,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Paid Time off",
+          "lastQuestion": false,
+          "start": 73,
+          "end": 75,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Well Being",
+          "lastQuestion": false,
+          "start": 75,
+          "end": 80,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "To Do List",
+          "lastQuestion": false,
+          "start": 80,
+          "end": 90,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "FAQ",
+          "lastQuestion": false,
+          "start": 90,
+          "end": 95,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Take Action",
+          "lastQuestion": false,
+          "start": 95,
+          "end": 103,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Health Benefits",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "jumpToName": "benefits",
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Insurance",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Education",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Money",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Paid Time Off",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "To-Do List",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "jumpToName": "toDoList",
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "FAQ",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "event": "takeAction",
+          "content": "Take Action",
+          "lastQuestion": false,
+          "start": 103,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "intro_wait",
+      "waitSequence": true,
+      "brightcoveId": "5397231147001",
+      "duration": 38,
+      "endBehavior": "intro_wait",
+      "onscreenElements": [
+        {
+          "class": "question",
+          "content": "Health Benefits",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Insurance",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Education",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Money",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "Pai Time Off",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "To-Do List",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "content": "FAQ",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question",
+          "event": "takeAction",
+          "content": "Take Action",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 38,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "toDoList",
+      "waitSequence": false,
+      "brightcoveId": "5399011085001",
+      "duration": 109,
+      "endBehavior": "toDoList_wait",
+      "skipIntro": 103,
+      "onscreenElements": [ ]
+    },
+    {
+      "name": "toDoList_wait",
+      "waitSequence": true,
+      "brightcoveId": "5399009044001",
+      "duration": 32,
+      "endBehavior": "toDoList_wait",
+      "onscreenElements": [
+        {
+          "class": "question",
+          "content": "To do list wait sequence item",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 32,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "medical",
+      "waitSequence": false,
+      "brightcoveId": "5399011481001",
+      "duration": 15,
+      "endBehavior": "medical_wait",
+      "skipIntro": 10,
+      "onscreenElements": [
+        {
+          "class": "question",
+          "content": "medical item",
+          "lastQuestion": false,
+          "start": 5,
+          "end": 15,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "medical_wait",
+      "waitSequence": true,
+      "brightcoveId": "5398968015001",
+      "duration": 40,
+      "endBehavior": "medical_wait",
+      "onscreenElements": [ ]
+    },
+    {
+      "name": "topQuestions",
+      "waitSequence": false,
+      "brightcoveId": "5399011084001",
+      "duration": 23,
+      "endBehavior": "topQuestions_wait",
+      "skipIntro": 100,
+      "onscreenElements": [ ]
+    },
+    {
+      "name": "topQuestions_wait",
+      "waitSequence": true,
+      "brightcoveId": "5398968014001",
+      "duration": 34,
+      "endBehavior": "topQuestions_wait",
+      "onscreenElements": [ ]
+    },
+    {
+      "name": "hravsHsa",
+      "waitSequence": false,
+      "brightcoveId": "5399009043001",
+      "duration": 96,
+      "endBehavior": "hravsHsa_wait",
+      "skipIntro": 100,
+      "onscreenElements": [ ]
+    },
+    {
+      "name": "hravsHsa_wait",
+      "waitSequence": true,
+      "brightcoveId": "5399011083001",
+      "duration": 30,
+      "endBehavior": "hravsHsa_wait",
+      "onscreenElements": [ ]
+    }
+  ],
+  "recommendations": [
+    {
+      "name": "newTest",
+      "voteBucket": 0
+    }
+  ]
+}
