@@ -32,7 +32,6 @@
     .question {
         font-family: 'Adobe Arabic';
         font-size: .9em;
-
     }
 
     .answer {
@@ -66,18 +65,30 @@
 
     .question {
         font-size: 1.6em;
+        color:#004c91;
     }
 
     .answer {
         font-size: 1.5em;
+        color:#004c91 ;
     }
 
-        .answer:before {
+        /*.answer:before {
             content: "\f00c";
             font-family: FontAwesome;
             font-size: 18px;
             padding-right: 0.5em;
             color: #337ab7;
+        }*/
+        .answer:before {
+            content: url('../img/walmart star.png');
+            /*font-family: FontAwesome;
+            font-size: 18px;
+            padding-right: 0.5em;
+            color: #337ab7;*/
+            /*display: block;
+            background-image: url('../img/walmart star.png');
+            background-size: 10px;*/
         }
 
     .navDisabled {
@@ -93,11 +104,11 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        opacity: .95;
+        opacity: .90;
         top: 0px;
         bottom: 20px;
         right: 0px;
-        background-color: #555;
+        background-color: #004c91;
         display: none;
         overflow: auto;
     }
@@ -106,11 +117,11 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        opacity: .95;
+        opacity: .90;
         top: 0px;
         bottom: 20px;
         right: 0px;
-        background-color: #555;
+        background-color: #004c91;
         display: none;
         overflow: auto;
     }
