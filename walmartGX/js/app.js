@@ -92,32 +92,30 @@ videojs("myPlayerID2").ready(function () {
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
+    debugger;
     if (waitSequenceShowing) {
         var adjuster = 1;
     } else {
         adjuster = 0;
     }
-    loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
 
-    $("#myPlayerIDContainer").css("display", "block");
-    $("#myPlayerID2Container").css("display", "none");
+    if (config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName != undefined) {
+        loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
+        $("#myPlayerIDContainer").css("display", "block");
+        $("#myPlayerID2Container").css("display", "none");
+        myPlayer2.pause();
+        myPlayer.play();
+        waitSequenceShowing = false;
+        //loadWaitSequence(config.videos[1].brightcoveId, false);//the wait sequence to load along with the main video
+        assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
+        //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
+        //}
+    }
 
-    myPlayer2.pause();
-    myPlayer.play();
-    waitSequenceShowing = false;
 
 
 
 
-
-    //loadWaitSequence(config.videos[1].brightcoveId, false);//the wait sequence to load along with the main video
-
-
-    assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
-
-    //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
-
-    //}
 }
 
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.

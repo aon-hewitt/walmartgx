@@ -32,13 +32,14 @@
     .question {
         font-family: 'Adobe Arabic';
         font-size: .9em;
+        cursor: default;
     }
 
     .answer {
         font-family: 'Adobe Arabic';
         font-size: .7em;
-        cursor: pointer;
         margin-left: 20px;
+        cursor: default;
     }
 
     .navDisabled {
@@ -64,16 +65,27 @@
     }
 
     .question {
+        font-family: Arial;
         font-size: 1.6em;
-        color:#004c91;
-        cursor:pointer;
+        color: #004c91;
+        line-height: 1.1;
     }
 
+        .question.clickable {
+            cursor: pointer;
+        }
+
+
     .answer {
+        font-family: Arial;
         font-size: 1.5em;
-        color:#004c91 ;
-        cursor:pointer;
+        color: #004c91;
+        line-height: 1.2em;
     }
+
+        .answer.clickable {
+            cursor: pointer;
+        }
 
         /*.answer:before {
             content: "\f00c";
@@ -84,6 +96,7 @@
         }*/
         .answer:before {
             content: url('../img/walmart star.png');
+            padding-right: 0.5em;
             /*font-family: FontAwesome;
             font-size: 18px;
             padding-right: 0.5em;
@@ -154,14 +167,12 @@
     }
 
     .question {
-        font-family: 'Adobe Arabic';
-        font-size: 2.4em;
+        font-size: 1.9em;
+        line-height: 1.3em;
     }
 
     .answer {
-        font-family: 'Adobe Arabic';
-        font-size: 2em;
-        cursor: pointer;
+        font-size: 1.7em;
         margin-left: 20px;
     }
 
