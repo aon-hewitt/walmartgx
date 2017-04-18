@@ -66,11 +66,13 @@
     .question {
         font-size: 1.6em;
         color:#004c91;
+        cursor:pointer;
     }
 
     .answer {
         font-size: 1.5em;
         color:#004c91 ;
+        cursor:pointer;
     }
 
         /*.answer:before {
