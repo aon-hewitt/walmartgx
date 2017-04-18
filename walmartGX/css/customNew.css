@@ -156,6 +156,9 @@
         background-color: rgba(0,0,0,0);
         color: white;
     }
+    div#myPlayerID2Container {
+        display:none;
+    }
 }
 
 @media only screen and (min-device-width : 801px) {

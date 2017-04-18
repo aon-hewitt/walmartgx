@@ -1,5 +1,4 @@
-﻿
-var myPlayer = videojs("myPlayerID");
+﻿var myPlayer = videojs("myPlayerID");
 var myPlayer2 = videojs("myPlayerID2");
 var config = {};
 var configs = [];
@@ -7,12 +6,10 @@ var waitSequenceShowing = false;
 var waitSequenceVideoId;
 var name1;
 
-
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
 var nodeId = "1f89a17e1845bc71d945"; // Walmart
 //$("#myPlayerID2").attr("data-video-id", "5397231147001");
-
 
 var config1 = {
     "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
@@ -39,6 +36,19 @@ Gitana.connect(config1, function (err) {
     });
 });
 
+
+// Pulling data from local file
+//$.ajax({
+//    url: "data/walmart.json",
+//    type: "get",
+//    success: function (result) {
+//        //config = JSON.parse(result); hosting on iis does not require parsing
+//        config = result;
+//        loadNewVideo(config.startVideoName, false);
+//    }
+//});
+
+
 videojs("myPlayerID").ready(function () {
     myPlayer.on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
@@ -49,26 +59,28 @@ videojs("myPlayerID").ready(function () {
             myPlayer.pause();
             waitSequenceShowing = true;
         } else {
-            myPlayer.pause(); //pause the player if no endbehavior is specified
+
+
+            //myPlayer.pause(); //pause the player if no endbehavior is specified
+
+
         }
     })
 
     myPlayer.on("loadedmetadata", function () {
-
         loadWaitSequence(waitSequenceVideoId, name1, false);
-
-
         myPlayer.play();
         myPlayer2.pause();
 
+        $("#myPlayerIDContainer").css("display", "block");//test these
+        $("#myPlayerID2Container").css("display", "none");//test these
+        waitSequenceShowing = false;//tst this
 
 
         $("#slideInfo").load("inc/" + config.startVideoName + ".html");
 
     });
 });
-
-
 
 videojs("myPlayerID2").ready(function () {
     myPlayer2.on("ended", function () {
@@ -85,14 +97,8 @@ videojs("myPlayerID2").ready(function () {
     });
 });
 
-
-
-
-
-
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
-    debugger;
     if (waitSequenceShowing) {
         var adjuster = 1;
     } else {
@@ -103,19 +109,18 @@ function defaultEventHandler(onscreenElementIndex) {
         loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
         $("#myPlayerIDContainer").css("display", "block");
         $("#myPlayerID2Container").css("display", "none");
-        myPlayer2.pause();
-        myPlayer.play();
+
+
+        //myPlayer2.pause();
+        //myPlayer.play();
+
+
         waitSequenceShowing = false;
         //loadWaitSequence(config.videos[1].brightcoveId, false);//the wait sequence to load along with the main video
         assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
         //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
         //}
     }
-
-
-
-
-
 }
 
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.
@@ -138,17 +143,7 @@ function skip() {
 
 function back() {
     config = JSON.parse(configs.pop());
-
     if (config.videos[config.currentVideoIndex].name == config.startVideoName) { //First video starting - reset voteBucket values to 0
-
-
-
-
-        //$("#myPlayerIDContainer").css("display", "block");
-        //$("#myPlayerID2Container").css("display", "none");
-        //myPlayer2.pause();
-        //myPlayer.play();
-        //location.reload;
     }
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
@@ -164,27 +159,9 @@ function assignWeights(array) {
 }
 
 function loadNewVideo(videoId, saveThis) {
-
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
-
-
-
-            //$("#myPlayerIDContainer").css("display", "block");
-            //$("#myPlayerID2Container").css("display", "none");
-
-            //myPlayer2.pause();
-            //myPlayer.play();
-            //waitSequenceShowing = false;
-
-
-
-
-
-
-
-
             config.currentVideoIndex--;
         }
         configs.push(JSON.stringify(config));
@@ -208,13 +185,6 @@ function loadNewVideo(videoId, saveThis) {
         if (config.videos[iterator1].name == name + "_wait") {
             waitSequenceVideoId = config.videos[iterator1].brightcoveId; //at this point videoID turns back into a number
             name1 = config.videos[iterator1].name;
-
-
-
-            //loadWaitSequence(waitSequenceVideoId, name1, false);
-
-
-
         }
         iterator1++;
     }
@@ -268,23 +238,19 @@ function makeVideoOverlay(videoId) {
 }
 
 function loadWaitSequence(videoId, name) {
-
-
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
         //deal with error
-        myPlayer2.catalog.load(video);
-        makeVideoOverlayWait(name);
 
+        makeVideoOverlayWait(name);
+        myPlayer2.catalog.load(video);
+        
     });
 }
-
-
 
 function makeVideoOverlayWait(videoName) {
     var videoOverlayObject = {};
     videoOverlayObject.overlay = {};
     myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
-
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
 
