@@ -4,6 +4,15 @@
         display: none; /*This hides the text at the top of the window*/
     }
 
+    .main-header {
+            height: 75px;
+            background-color: #004c91;
+        }
+
+        #logo {
+            padding: 15px;
+        }
+
     .video-js .vjs-overlay-top-left {
         position: relative;
         width: 60%;
@@ -75,7 +84,6 @@
             cursor: pointer;
         }
 
-
     .answer {
         font-family: Arial;
         font-size: 1.5em;
@@ -97,13 +105,6 @@
         .answer:before {
             content: url('../image/walmart star.png');
             padding-right: 0.5em;
-            /*font-family: FontAwesome;
-            font-size: 18px;
-            padding-right: 0.5em;
-            color: #337ab7;*/
-            /*display: block;
-            background-image: url('../image/walmart star.png');
-            background-size: 10px;*/
         }
 
     .navDisabled {
