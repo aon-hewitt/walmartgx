@@ -19,31 +19,31 @@ var config1 = {
     "application": "4db40e414e0888fe688d"
 }
 
-//Gitana.connect(config1, function (err) {
-//    if (err) {
-//        console.log(err);
-//    }
-//}).then(function () {
-//    this.readRepository(repositoryId).then(function () {
-//        this.readBranch(branchId).then(function () {
-//            this.readNode(nodeId).then(function () {
-//                config = JSON.parse(JSON.stringify(this));
-//                loadNewVideo(config.startVideoName, false);
-//            });
-//        });
-//    });
-//});
+Gitana.connect(config1, function (err) {
+    if (err) {
+        console.log(err);
+    }
+}).then(function () {
+    this.readRepository(repositoryId).then(function () {
+        this.readBranch(branchId).then(function () {
+            this.readNode(nodeId).then(function () {
+                config = JSON.parse(JSON.stringify(this));
+                loadNewVideo(config.startVideoName, false);
+            });
+        });
+    });
+});
 
  //Pulling data from local file
-$.ajax({
-    url: "data/walmart.json",
-    type: "get",
-    success: function (result) {
-        //config = JSON.parse(result); hosting on iis does not require parsing
-        config = result;
-        loadNewVideo(config.startVideoName, false);
-    }
-});
+//$.ajax({
+//    url: "data/walmart.json",
+//    type: "get",
+//    success: function (result) {
+//        //config = JSON.parse(result); hosting on iis does not require parsing
+//        config = result;
+//        loadNewVideo(config.startVideoName, false);
+//    }
+//});
 
 videojs("myPlayerID").ready(function () {
     myPlayer.on("ended", function () {
