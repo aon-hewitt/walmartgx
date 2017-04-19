@@ -20,7 +20,7 @@
             "brightcoveId": "5396106284001",
             "duration": 111,
             "endBehavior": "intro_wait",
-            "skipIntro": 100,
+            "skipIntro": 103,
             "onscreenElements": [
                 {
                     "class": "question",
@@ -287,7 +287,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Health Benefits",
                     "lastQuestion": false,
                     "start": 103,
@@ -299,7 +299,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Insurance",
                     "lastQuestion": false,
                     "start": 103,
@@ -310,7 +310,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Education",
                     "lastQuestion": false,
                     "start": 103,
@@ -321,7 +321,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Money",
                     "lastQuestion": false,
                     "start": 103,
@@ -332,7 +332,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Paid Time Off",
                     "lastQuestion": false,
                     "start": 103,
@@ -343,7 +343,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "To-Do List",
                     "lastQuestion": false,
                     "start": 103,
@@ -355,19 +355,19 @@
                     }
                 },
                 {
-                    "class": "question",
-                    "content": "FAQ",
+                    "class": "question clickable",
+                    "content": "Frequently Asked Questions",
                     "lastQuestion": false,
                     "start": 103,
                     "end": 111,
                     "align": "top-left",
                     "defaultAction": {
+                        "jumpToName": "topQuestions",
                         "weightings": []
                     }
                 },
                 {
-                    "class": "question",
-                    "event": "takeAction",
+                    "class": "question clickable",
                     "content": "Take Action",
                     "lastQuestion": false,
                     "start": 103,
@@ -387,18 +387,19 @@
             "endBehavior": "intro_wait",
             "onscreenElements": [
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Health Benefits",
                     "lastQuestion": false,
                     "start": 0,
                     "end": 38,
                     "align": "top-left",
                     "defaultAction": {
+                        "jumpToName": "medical",
                         "weightings": []
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Insurance",
                     "lastQuestion": false,
                     "start": 0,
@@ -409,7 +410,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Education",
                     "lastQuestion": false,
                     "start": 0,
@@ -420,7 +421,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Money",
                     "lastQuestion": false,
                     "start": 0,
@@ -431,7 +432,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "Paid Time Off",
                     "lastQuestion": false,
                     "start": 0,
@@ -442,7 +443,7 @@
                     }
                 },
                 {
-                    "class": "question",
+                    "class": "question clickable",
                     "content": "To-Do List",
                     "lastQuestion": false,
                     "start": 0,
@@ -454,19 +455,19 @@
                     }
                 },
                 {
-                    "class": "question",
-                    "content": "FAQ",
+                    "class": "question clickable",
+                    "content": "Frequently Asked Questions",
                     "lastQuestion": false,
                     "start": 0,
                     "end": 38,
                     "align": "top-left",
                     "defaultAction": {
+                        "jumpToName": "topQuestions",
                         "weightings": []
                     }
                 },
                 {
-                    "class": "question",
-                    "event": "takeAction",
+                    "class": "question clickable",
                     "content": "Take Action",
                     "lastQuestion": false,
                     "start": 0,
@@ -484,13 +485,148 @@
             "brightcoveId": "5399011085001",
             "duration": 109,
             "endBehavior": "toDoList_wait",
-            "skipIntro": 103,
+            "skipIntro": 14,
             "onscreenElements": [
                 {
                     "class": "question",
-                    "content": "To do list sequence item",
+                    "content": "Remember deadline!",
                     "lastQuestion": false,
-                    "start": 1,
+                    "start": 16,
+                    "end": 42,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question",
+                    "content": "Plan ahead",
+                    "lastQuestion": false,
+                    "start": 42,
+                    "end": 52,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question",
+                    "content": "Include spouse/partner",
+                    "lastQuestion": false,
+                    "start": 52,
+                    "end": 66,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question",
+                    "content": "Educate yourself",
+                    "lastQuestion": false,
+                    "start": 66,
+                    "end": 79,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question",
+                    "content": "Ask the Experts",
+                    "lastQuestion": false,
+                    "start": 79,
+                    "end": 93,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Health Benefits",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "medical",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Insurance",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Education",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Money",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Paid Time Off",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "To-Do List",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "toDoList",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Frequently Asked Questions",
+                    "lastQuestion": false,
+                    "start": 99,
+                    "end": 109,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "topQuestions",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Take Action",
+                    "lastQuestion": false,
+                    "start": 99,
                     "end": 109,
                     "align": "top-left",
                     "defaultAction": {
@@ -507,10 +643,90 @@
             "endBehavior": "toDoList_wait",
             "onscreenElements": [
                 {
-                    "class": "question",
-                    "content": "To do list sequence item",
+                    "class": "question clickable",
+                    "content": "Health Benefits",
                     "lastQuestion": false,
-                    "start": 1,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "medical",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Insurance",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Education",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Money",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Paid Time Off",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "To-Do List",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "toDoList",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Frequently Asked Questions",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 32,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "topQuestions",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "question clickable",
+                    "content": "Take Action",
+                    "lastQuestion": false,
+                    "start": 0,
                     "end": 32,
                     "align": "top-left",
                     "defaultAction": {
@@ -525,14 +741,47 @@
             "brightcoveId": "5399011481001",
             "duration": 15,
             "endBehavior": "medical_wait",
-            "skipIntro": 100,
+            "skipIntro": 10,
             "onscreenElements": [
                 {
                     "class": "question",
-                    "content": "Medical Item",
+                    "content": "Medical",
                     "lastQuestion": false,
-                    "start": 5,
-                    "end": 15,
+                    "start": 10,
+                    "end": 16,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer",
+                    "content": "HSA Plan",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 16,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer",
+                    "content": "HRA Plan",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 16,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer",
+                    "content": "HRA High Plan",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 16,
                     "align": "top-left",
                     "defaultAction": {
                         "weightings": []
@@ -546,7 +795,52 @@
             "brightcoveId": "5398968015001",
             "duration": 40,
             "endBehavior": "medical_wait",
-            "onscreenElements": []
+            "onscreenElements": [
+                {
+                    "class": "question",
+                    "content": "Medical",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 40,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer",
+                    "content": "HSA Plan",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 40,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer",
+                    "content": "HRA Plan",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 40,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer",
+                    "content": "HRA High Plan",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 40,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                }
+            ]
         },
         {
             "name": "topQuestions",
@@ -554,8 +848,76 @@
             "brightcoveId": "5399011084001",
             "duration": 23,
             "endBehavior": "topQuestions_wait",
-            "skipIntro": 100,
-            "onscreenElements": []
+            "skipIntro": 10,
+            "onscreenElements": [
+                {
+                    "class": "question",
+                    "content": "Top Questions and Answers",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 24,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "When am I eligible?",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 24,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "HRA vs. HSA?",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 24,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "hraVsHsa",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "Which doctors are in my plan?",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 24,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "How do I add dependents?",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 24,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "What is the meaning of life?",
+                    "lastQuestion": false,
+                    "start": 10,
+                    "end": 16,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                }
+            ]
         },
         {
             "name": "topQuestions_wait",
@@ -563,24 +925,195 @@
             "brightcoveId": "5398968014001",
             "duration": 34,
             "endBehavior": "topQuestions_wait",
-            "onscreenElements": []
+            "onscreenElements": [
+                {
+                    "class": "question",
+                    "content": "Top Questions and Answers",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 34,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "When am I eligible?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 34,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "HRA vs. HSA?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 34,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "hraVsHsa",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "Which doctors are in my plan?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 34,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "How do I add dependents?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 34,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                }
+            ]
         },
         {
-            "name": "hravsHsa",
+            "name": "hraVsHsa",
             "waitSequence": false,
             "brightcoveId": "5399009043001",
             "duration": 96,
-            "endBehavior": "hravsHsa_wait",
-            "skipIntro": 100,
-            "onscreenElements": []
+            "endBehavior": "hraVsHsa_wait",
+            "skipIntro": 82,
+            "onscreenElements": [
+                {
+                    "class": "question",
+                    "content": "Top Questions and Answers",
+                    "lastQuestion": false,
+                    "start": 83,
+                    "end": 96,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "When am I eligible?",
+                    "lastQuestion": false,
+                    "start": 83,
+                    "end": 96,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "HRA vs. HSA?",
+                    "lastQuestion": false,
+                    "start": 83,
+                    "end": 96,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "hraVsHsa",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "Which doctors are in my plan?",
+                    "lastQuestion": false,
+                    "start": 83,
+                    "end": 96,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "How do I add dependents?",
+                    "lastQuestion": false,
+                    "start": 83,
+                    "end": 96,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                }
+            ]
         },
         {
-            "name": "hravsHsa_wait",
+            "name": "hraVsHsa_wait",
             "waitSequence": true,
             "brightcoveId": "5399011083001",
             "duration": 30,
-            "endBehavior": "hravsHsa_wait",
-            "onscreenElements": []
+            "endBehavior": "hraVsHsa_wait",
+            "onscreenElements": [
+                {
+                    "class": "question",
+                    "content": "Top Questions and Answers",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 30,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "When am I eligible?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 30,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "HRA vs. HSA?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 30,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "jumpToName": "hraVsHsa",
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "Which doctors are in my plan?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 30,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                },
+                {
+                    "class": "answer clickable",
+                    "content": "How do I add dependents?",
+                    "lastQuestion": false,
+                    "start": 0,
+                    "end": 30,
+                    "align": "top-left",
+                    "defaultAction": {
+                        "weightings": []
+                    }
+                }
+            ]
         }
     ],
     "recommendations": [
