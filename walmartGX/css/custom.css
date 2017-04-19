@@ -95,14 +95,14 @@
             color: #337ab7;
         }*/
         .answer:before {
-            content: url('../img/walmart star.png');
+            content: url('../image/walmart star.png');
             padding-right: 0.5em;
             /*font-family: FontAwesome;
             font-size: 18px;
             padding-right: 0.5em;
             color: #337ab7;*/
             /*display: block;
-            background-image: url('../img/walmart star.png');
+            background-image: url('../image/walmart star.png');
             background-size: 10px;*/
         }
 

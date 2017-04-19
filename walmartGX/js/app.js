@@ -9,7 +9,6 @@ var name1;
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
 var nodeId = "1f89a17e1845bc71d945"; // Walmart
-//$("#myPlayerID2").attr("data-video-id", "5397231147001");
 
 var config1 = {
     "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
@@ -20,71 +19,66 @@ var config1 = {
     "application": "4db40e414e0888fe688d"
 }
 
-Gitana.connect(config1, function (err) {
-    if (err) {
-        console.log(err);
-    }
-}).then(function () {
-    this.readRepository(repositoryId).then(function () {
-        this.readBranch(branchId).then(function () {
-            this.readNode(nodeId).then(function () {
-                config = JSON.parse(JSON.stringify(this));
-                loadNewVideo(config.startVideoName, false);
-
-            });
-        });
-    });
-});
-
-
-// Pulling data from local file
-//$.ajax({
-//    url: "data/walmart.json",
-//    type: "get",
-//    success: function (result) {
-//        //config = JSON.parse(result); hosting on iis does not require parsing
-//        config = result;
-//        loadNewVideo(config.startVideoName, false);
+//Gitana.connect(config1, function (err) {
+//    if (err) {
+//        console.log(err);
 //    }
+//}).then(function () {
+//    this.readRepository(repositoryId).then(function () {
+//        this.readBranch(branchId).then(function () {
+//            this.readNode(nodeId).then(function () {
+//                config = JSON.parse(JSON.stringify(this));
+//                loadNewVideo(config.startVideoName, false);
+//            });
+//        });
+//    });
 //});
 
+ //Pulling data from local file
+$.ajax({
+    url: "data/walmart.json",
+    type: "get",
+    success: function (result) {
+        //config = JSON.parse(result); hosting on iis does not require parsing
+        config = result;
+        loadNewVideo(config.startVideoName, false);
+    }
+});
 
 videojs("myPlayerID").ready(function () {
     myPlayer.on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
             $("#myPlayerID2Container").css("display", "block");
-
             myPlayer2.play();
             myPlayer.pause();
             waitSequenceShowing = true;
         } else {
-
-
             //myPlayer.pause(); //pause the player if no endbehavior is specified
-
-
         }
     })
-
     myPlayer.on("loadedmetadata", function () {
         loadWaitSequence(waitSequenceVideoId, name1, false);
         myPlayer.play();
         myPlayer2.pause();
-
         $("#myPlayerIDContainer").css("display", "block");//test these
         $("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
+        debugger;
 
 
-        $("#slideInfo").load("inc/" + config.startVideoName + ".html");
-
+        for (var i = 0; i < config.videos.length; i++) {
+            
+        }
+        
+        //$("#slideInfo").load("inc/" + config.startVideoName + ".html");
+        $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
+        $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
     });
 });
 
 videojs("myPlayerID2").ready(function () {
     myPlayer2.on("ended", function () {
-        //waitSequenceShowing = true;
         myPlayer2.currentTime(0);
         myPlayer2.play();
     })
@@ -92,8 +86,8 @@ videojs("myPlayerID2").ready(function () {
     myPlayer2.on("loadedmetadata", function () {
         myPlayer2.pause();
         //waitSequenceShowing = true;
-        $("#slideInfo2").load("inc/" + "intro_wait" + ".html");
-
+        //$("#slideInfo2").load("inc/" + "intro_wait" + ".html");
+        
     });
 });
 
@@ -109,14 +103,9 @@ function defaultEventHandler(onscreenElementIndex) {
         loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
         $("#myPlayerIDContainer").css("display", "block");
         $("#myPlayerID2Container").css("display", "none");
-
-
         //myPlayer2.pause();
         //myPlayer.play();
-
-
         waitSequenceShowing = false;
-        //loadWaitSequence(config.videos[1].brightcoveId, false);//the wait sequence to load along with the main video
         assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
         //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
         //}
@@ -124,11 +113,11 @@ function defaultEventHandler(onscreenElementIndex) {
 }
 
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.
-$.getScript("inc/eventHandlers.js", function (data, textStatus, jqxhr) {
+$.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
 
 //this external file will handle the showResults function
-$.getScript("inc/processResults.js", function (data, textStatus, jqxhr) {
+$.getScript("js/processResults.js", function (data, textStatus, jqxhr) {
 });
 
 function home() {
@@ -178,7 +167,6 @@ function loadNewVideo(videoId, saveThis) {
     }
     while (iterator < config.videos.length);
 
-
     //now do a similar process for obtaining the brightcove id of the wait sequence for this video. Use it to load the wait sequence player
     var iterator1 = 0
     do {
@@ -189,12 +177,10 @@ function loadNewVideo(videoId, saveThis) {
         iterator1++;
     }
     while (iterator1 < config.videos.length);
-
     myPlayer.catalog.getVideo(videoId, function (error, video) {
         //deal with error
         makeVideoOverlay(name);
         myPlayer.catalog.load(video);
-
     });
 }
 
@@ -202,13 +188,10 @@ function makeVideoOverlay(videoId) {
     //set global json properties
     var videoOverlayObject = {};
     videoOverlayObject.overlay = {};
-
     myPlayer.overlay(null);
     myPlayer2.overlay(null);//see if this clears out the overlay
-
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
-
     //now create the overlay properties
     for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
         if (config.videos[i].name == videoId) {
@@ -240,10 +223,9 @@ function makeVideoOverlay(videoId) {
 function loadWaitSequence(videoId, name) {
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
         //deal with error
-
         makeVideoOverlayWait(name);
         myPlayer2.catalog.load(video);
-        
+
     });
 }
 
@@ -257,7 +239,6 @@ function makeVideoOverlayWait(videoName) {
     //now create the overlay properties
     for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
         if (config.videos[i].name == videoName) {
-            //config.currentVideoIndex = i;
             for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
                 videoOverlayObject.overlay.overlays[j] = {};
                 videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
