@@ -4,7 +4,7 @@ var config = {};
 var configs = [];
 var waitSequenceShowing = false;
 var waitSequenceVideoId;
-var name1;
+var waitSequenceName;
 
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
@@ -58,20 +58,14 @@ videojs("myPlayerID").ready(function () {
         }
     })
     myPlayer.on("loadedmetadata", function () {
-        loadWaitSequence(waitSequenceVideoId, name1, false);
+        loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
         myPlayer.play();
         myPlayer2.pause();
         $("#myPlayerIDContainer").css("display", "block");//test these
         $("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
-        debugger;
-
-
-        for (var i = 0; i < config.videos.length; i++) {
-            
-        }
-        
-        //$("#slideInfo").load("inc/" + config.startVideoName + ".html");
+        for (var i = 0; i < config.videos.length; i++) {           
+        }        
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
     });
@@ -84,10 +78,7 @@ videojs("myPlayerID2").ready(function () {
     })
 
     myPlayer2.on("loadedmetadata", function () {
-        myPlayer2.pause();
-        //waitSequenceShowing = true;
-        //$("#slideInfo2").load("inc/" + "intro_wait" + ".html");
-        
+        myPlayer2.pause();       
     });
 });
 
@@ -103,8 +94,6 @@ function defaultEventHandler(onscreenElementIndex) {
         loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
         $("#myPlayerIDContainer").css("display", "block");
         $("#myPlayerID2Container").css("display", "none");
-        //myPlayer2.pause();
-        //myPlayer.play();
         waitSequenceShowing = false;
         assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
         //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
@@ -172,7 +161,7 @@ function loadNewVideo(videoId, saveThis) {
     do {
         if (config.videos[iterator1].name == name + "_wait") {
             waitSequenceVideoId = config.videos[iterator1].brightcoveId; //at this point videoID turns back into a number
-            name1 = config.videos[iterator1].name;
+            waitSequenceName = config.videos[iterator1].name;
         }
         iterator1++;
     }
