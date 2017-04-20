@@ -6,7 +6,7 @@
 
     .main-header {
         height: 75px;
-        background-color: #004c91;
+        background-color: #007dc6;
     }
 
     #logo {
@@ -76,7 +76,7 @@
     .question {
         font-family: Arial;
         font-size: 1.6em;
-        color: #004c91;
+        color: #007dc6;
         line-height: 1.1;
     }
 
@@ -87,7 +87,7 @@
     .answer {
         font-family: Arial;
         font-size: 1.5em;
-        color: #004c91;
+        color: #6d6e71;
         line-height: 1.2em;
     }
 
@@ -102,16 +102,25 @@
             padding-right: 0.5em;
             color: #337ab7;
         }*/
-        .answer:before {
-            /*content: url('../image/walmart star.png');*/
+
+        /*.answer:before {
+            content: "\f111";
+            font-family: FontAwesome;
+            font-size: 14px;
+            padding-right: 0.5em;
+            color: #337ab7;
+        }*/
+
+
+        /*.answer:before {
             content: url('../image/wmt_spark_18x20.png');
             padding-right: 0.5em;
-        }
+        }*/
 
         .answer.subanswer:before {
             content: "\f00c";
             font-family: FontAwesome;
-            font-size: 18px;
+            font-size: 14px;
             padding-right: 0.5em;
             color: #004c91;
         }
