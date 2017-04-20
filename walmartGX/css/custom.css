@@ -103,7 +103,8 @@
             color: #337ab7;
         }*/
         .answer:before {
-            content: url('../image/walmart star.png');
+            /*content: url('../image/walmart star.png');*/
+            content: url('../image/wmt_spark_18x20.png');
             padding-right: 0.5em;
         }
 
