@@ -5,13 +5,13 @@
     }
 
     .main-header {
-            height: 75px;
-            background-color: #004c91;
-        }
+        height: 75px;
+        background-color: #004c91;
+    }
 
-        #logo {
-            padding: 15px;
-        }
+    #logo {
+        padding: 15px;
+    }
 
     .video-js .vjs-overlay-top-left {
         position: relative;
@@ -107,6 +107,14 @@
             padding-right: 0.5em;
         }
 
+        .answer.subanswer:before {
+            content: "\f00c";
+            font-family: FontAwesome;
+            font-size: 18px;
+            padding-right: 0.5em;
+            color: #337ab7;
+        }
+
     .navDisabled {
         opacity: .5;
         cursor: not-allowed;
@@ -157,8 +165,9 @@
         background-color: rgba(0,0,0,0);
         color: white;
     }
+
     div#myPlayerID2Container {
-        display:none;
+        display: none;
     }
 }
 
@@ -167,18 +176,24 @@
 
     .video-js .vjs-overlay-bottom-left {
         width: auto;
-        bottom: 3.2em;
+        bottom: 2.8em;
     }
 
     .question {
-        font-size: 1.9em;
+        font-size: 1.7em;
         line-height: 1.3em;
+        font-weight: bold;
     }
 
     .answer {
-        font-size: 1.7em;
+        font-size: 1.6em;
         margin-left: 20px;
     }
+
+        .answer.subanswer {
+            margin-left: 40px;
+            font-size: 1.5em;
+        }
 
     .navDisabled {
         opacity: .5;
