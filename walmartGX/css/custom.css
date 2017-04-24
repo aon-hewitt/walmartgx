@@ -1,5 +1,7 @@
 ﻿
 @media only screen and (min-device-width : 360px) {
+
+
     .vjs-dock-text {
         display: none; /*This hides the text at the top of the window*/
     }
@@ -62,6 +64,8 @@
 }
 
 @media only screen and (min-device-width : 640px) {
+
+
     .fa-2x {
         margin-right: 20px;
         cursor: pointer;
@@ -74,7 +78,7 @@
     }
 
     .question {
-        font-family: Arial;
+        font-family: Myriad Pro Regular, Arial;
         font-size: 1.6em;
         color: #007dc6;
         line-height: 1.1;
@@ -85,7 +89,7 @@
         }
 
     .answer {
-        font-family: Arial;
+        font-family: Myriad Pro Regular, Arial;
         font-size: 1.5em;
         color: #6d6e71;
         line-height: 1.2em;
@@ -113,9 +117,10 @@
 
 
         /*.answer:before {
-            content: url('../image/wmt_spark_18x20.png');
+            content: url('../image/orangeDot.png');
             padding-right: 0.5em;
         }*/
+
 
         .answer.subanswer:before {
             content: "\f00c";

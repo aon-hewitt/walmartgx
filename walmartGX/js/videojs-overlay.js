@@ -179,7 +179,16 @@
                             });
 
                             if (typeof content === 'string') {
+
+
+                                //$(el).html(content);
+                                //$(el).slideDown(1000);
                                 el.innerHTML = content;
+
+
+
+
+
                             } else if (content instanceof _globalWindow2['default'].DocumentFragment) {
                                 el.appendChild(content);
                             } else {

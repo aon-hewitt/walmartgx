@@ -8,7 +8,7 @@ var waitSequenceName;
 
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
-var nodeId = "1f89a17e1845bc71d945"; // Walmart
+var nodeId = "1f89a17e1845bc71d945";
 
 var config1 = {
     "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
