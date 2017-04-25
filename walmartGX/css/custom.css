@@ -184,6 +184,10 @@
     div#myPlayerID2Container {
         display: none;
     }
+
+    .bc-player-Sk6lnYJFg_default .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+        left: -5em;
+    }
 }
 
 @media only screen and (min-device-width : 801px) {
