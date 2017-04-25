@@ -19,31 +19,31 @@ var config1 = {
     "application": "4db40e414e0888fe688d"
 }
 
-Gitana.connect(config1, function (err) {
-    if (err) {
-        console.log(err);
-    }
-}).then(function () {
-    this.readRepository(repositoryId).then(function () {
-        this.readBranch(branchId).then(function () {
-            this.readNode(nodeId).then(function () {
-                config = JSON.parse(JSON.stringify(this));
-                loadNewVideo(config.startVideoName, false);
-            });
-        });
-    });
-});
-
- //Pulling data from local file
-//$.ajax({
-//    url: "data/walmart.json",
-//    type: "get",
-//    success: function (result) {
-//        //config = JSON.parse(result); hosting on iis does not require parsing
-//        config = result;
-//        loadNewVideo(config.startVideoName, false);
+//Gitana.connect(config1, function (err) {
+//    if (err) {
+//        console.log(err);
 //    }
+//}).then(function () {
+//    this.readRepository(repositoryId).then(function () {
+//        this.readBranch(branchId).then(function () {
+//            this.readNode(nodeId).then(function () {
+//                config = JSON.parse(JSON.stringify(this));
+//                loadNewVideo(config.startVideoName, false);
+//            });
+//        });
+//    });
 //});
+
+// Pulling data from local file
+$.ajax({
+    url: "data/walmart.json",
+    type: "get",
+    success: function (result) {
+        //config = JSON.parse(result); hosting on iis does not require parsing
+        config = result;
+        loadNewVideo(config.startVideoName, false);
+    }
+});
 
 videojs("myPlayerID").ready(function () {
     myPlayer.on("ended", function () {
@@ -201,7 +201,8 @@ function makeVideoOverlay(videoId) {
             navBar.align = "bottom-left";
             navBar.content = "<span onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.infoVideoEvent + "(1)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
             navBar.start = 0;
-            navBar.end = config.videos[config.currentVideoIndex].duration;
+            navBar.end = "end";
+            //navBar.end = config.videos[config.currentVideoIndex].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
             myPlayer.overlay(videoOverlayObject.overlay);
             return;
