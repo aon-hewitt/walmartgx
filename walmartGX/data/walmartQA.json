@@ -699,7 +699,7 @@
         },
         {
           "class": "answer",
-          "content": "HSA Plan",
+          "content": "&#0149; HSA Plan",
           "lastQuestion": false,
           "start": 10,
           "end": 16,
@@ -710,7 +710,7 @@
         },
         {
           "class": "answer",
-          "content": "HRA Plan",
+          "content": "&#0149; HRA Plan",
           "lastQuestion": false,
           "start": 10,
           "end": 16,
@@ -721,7 +721,7 @@
         },
         {
           "class": "answer",
-          "content": "HRA High Plan",
+          "content": "&#0149; HRA High Plan",
           "lastQuestion": false,
           "start": 10,
           "end": 16,
@@ -752,7 +752,7 @@
         },
         {
           "class": "answer",
-          "content": "HSA Plan",
+          "content": "&#0149; HSA Plan",
           "lastQuestion": false,
           "start": 0,
           "end": 40,
@@ -763,7 +763,7 @@
         },
         {
           "class": "answer",
-          "content": "HRA Plan",
+          "content": "&#0149; HRA Plan",
           "lastQuestion": false,
           "start": 0,
           "end": 40,
@@ -774,7 +774,7 @@
         },
         {
           "class": "answer",
-          "content": "HRA High Plan",
+          "content": "&#0149; HRA High Plan",
           "lastQuestion": false,
           "start": 0,
           "end": 40,
