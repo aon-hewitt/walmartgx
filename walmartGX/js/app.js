@@ -34,16 +34,25 @@ var config1 = {
 //    });
 //});
 
+
+
 // Pulling data from local file
-$.ajax({
-    url: "data/walmartQA.json", //the QA version of the demo rather than the QC version
-    type: "get",
-    success: function (result) {
-        //config = JSON.parse(result); hosting on iis does not require parsing
-        config = result;
-        loadNewVideo(config.startVideoName, false);
-    }
+//$.ajax({
+//    url: "data/walmartQA.json", //the QA version of the demo rather than the QC version
+//    type: "get",
+//    success: function (result) {
+//        //config = JSON.parse(result); hosting on iis does not require parsing
+//        config = result;
+//        loadNewVideo(config.startVideoName, false);
+//    }
+//});
+
+$.getJSON("data/walmartQA.json", function (result) {
+    config = result; //use this line for local testing in Visual Studio
+    loadNewVideo(config.startVideoName, false);
 });
+
+
 
 videojs("myPlayerID").ready(function () {
     myPlayer.on("ended", function () {
@@ -59,6 +68,28 @@ videojs("myPlayerID").ready(function () {
     })
     myPlayer.on("loadedmetadata", function () {
         loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
+
+
+        ////////////////////////////////
+        var player = this;
+        var tt = player.textTracks()[0];
+        tt.oncuechange = function() {
+            if(tt.activeCues[0] !== undefined){
+                var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
+                dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
+                dynamicHTML += "name: " + tt.activeCues[0].Name + ", ";
+                dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
+                dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
+                alert(dynamicHTML);
+            }
+        }
+        ////////////////////////////////
+
+
+
+
+
+
         myPlayer.play();
         myPlayer2.pause();
         $("#myPlayerIDContainer").css("display", "block");//test these
