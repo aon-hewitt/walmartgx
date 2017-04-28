@@ -98,7 +98,7 @@ videojs("myPlayerID").ready(function () {
                 if (jsonData.description == "results1") {
                     console.log("success");
 
-                    $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
+                    //$(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
                 }
 
 
