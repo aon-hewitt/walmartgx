@@ -1,6 +1,9 @@
 ﻿//custom events section
 
-
+function backToMainMenuEvent() {
+    
+    homeEventHandler("returnIntro");
+}
 // This event is specified in the config file
 function showSlideInfo(slide) {
 

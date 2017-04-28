@@ -84,16 +84,30 @@
         line-height: 1.1;
     }
 
-    .question.deadline {
-        font-size: 1.9em;
+        .question.deadline {
+            font-size: 2.2em;
+            /* display: none; */
+            top: 3em;
+            position: absolute;
+            left: 2em;
+        }
+
+    .answer.backToMainMenu {
+        position: absolute;
+        top: 7em;
+        font-size: 18px;
+        font-style: italic;
+        cursor:pointer;
+
     }
+
     .question.walmartOne {
         font-size: 1.9em;
     }
 
-        .question.clickable {
-            cursor: pointer;
-        }
+    .question.clickable {
+        cursor: pointer;
+    }
 
     .answer {
         font-family: Myriad Pro Regular, Arial;

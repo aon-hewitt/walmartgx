@@ -11,13 +11,12 @@
   "skipVideoEvent": "skip",
   "backVideoIcon": "fa-step-backward",
   "backVideoEvent": "back",
-      "infoVideoIcon": "fa-question",
-    "infoVideoEvent": "showSlideInfo",
   "videos": [
     {
       "name": "intro",
       "waitSequence": false,
       "brightcoveId": "5396106284001",
+      "tracks": "intro",
       "duration": 111,
       "endBehavior": "intro_wait",
       "skipIntro": 40.5,
@@ -403,86 +402,131 @@
       ]
     },
     {
-      "name": "toDoList",
+      "name": "returnIntro",
       "waitSequence": false,
-      "brightcoveId": "5399011085001",
-      "tracks": "toDoList",
-      "duration": 109,
-      "endBehavior": "toDoList_wait",
-      "skipIntro": 14,
+      "brightcoveId": "5397231147001",
+      "duration": 38,
+      "endBehavior": "intro_wait",
       "onscreenElements": [
         {
-          "class": "question",
-          "content": "Remember deadline",
+          "class": "question clickable",
+          "content": "Health Benefits",
           "lastQuestion": false,
-          "start": 16,
-          "end": 42,
+          "start": 0,
+          "end": "end",
+          "align": "top-left",
+          "defaultAction": {
+            "jumpToName": "medical",
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "Insurance",
+          "lastQuestion": false,
+          "start": 0,
+          "end": "end",
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
           }
         },
+        {
+          "class": "question clickable",
+          "content": "Education & Career",
+          "lastQuestion": false,
+          "start": 0,
+          "end": "end",
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "Money",
+          "lastQuestion": false,
+          "start": 0,
+          "end": "end",
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "Paid Time Off",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "Well-being",
+          "lastQuestion": false,
+          "start": 0,
+          "end": "end",
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "To-do List",
+          "lastQuestion": false,
+          "start": 0,
+          "end": "end",
+          "align": "top-left",
+          "defaultAction": {
+            "jumpToName": "toDoList",
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "Top Questions & Answers",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 111,
+          "align": "top-left",
+          "defaultAction": {
+            "jumpToName": "topQuestions",
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "question clickable",
+          "content": "Take Action",
+          "lastQuestion": false,
+          "start": 0,
+          "end": "end",
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "toDoList",
+      "waitSequence": false,
+      "brightcoveId": "5412016439001 ",
+      "tracks": "toDoList",
+      "duration": 109,
+      "endBehavior": "toDoList_wait",
+      "skipIntro": 92,
+      "onscreenElements": [
         {
           "class": "question deadline",
           "content": "July 25, 2017",
           "lastQuestion": false,
-          "start": 16,
-          "end": 42,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": [ ]
-          }
-        },
-        {
-          "class": "question",
-          "content": "Plan ahead",
-          "lastQuestion": false,
-          "start": 42,
-          "end": 52,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": [ ]
-          }
-        },
-        {
-          "class": "question",
-          "content": "Include spouse/partner",
-          "lastQuestion": false,
-          "start": 52,
-          "end": 66,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": [ ]
-          }
-        },
-        {
-          "class": "question",
-          "content": "Educate yourself",
-          "lastQuestion": false,
-          "start": 66,
-          "end": 79,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": [ ]
-          }
-        },
-        {
-          "class": "question walmartOne",
-          "content": "WalmartOne.com",
-          "lastQuestion": false,
-          "start": 74,
-          "end": 79,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": [ ]
-          }
-        },
-        {
-          "class": "question",
-          "content": "Ask the Experts",
-          "lastQuestion": false,
-          "start": 79,
-          "end": 93,
+          "start": 20,
+          "end": 41,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -513,7 +557,7 @@
         },
         {
           "class": "question clickable",
-          "content": "Education",
+          "content": "Education & Career",
           "lastQuestion": false,
           "start": 99,
           "end": 110,
@@ -558,7 +602,7 @@
         },
         {
           "class": "question clickable",
-          "content": "Frequently Asked Questions",
+          "content": "Top Questions & Answers",
           "lastQuestion": false,
           "start": 99,
           "end": 110,
@@ -593,7 +637,7 @@
           "content": "Health Benefits",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "medical",
@@ -605,7 +649,7 @@
           "content": "Insurance",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -613,10 +657,10 @@
         },
         {
           "class": "question clickable",
-          "content": "Education",
+          "content": "Education & Career",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -627,7 +671,7 @@
           "content": "Money",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -638,7 +682,7 @@
           "content": "Paid Time Off",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -649,7 +693,7 @@
           "content": "To-Do List",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "toDoList",
@@ -658,10 +702,10 @@
         },
         {
           "class": "question clickable",
-          "content": "Frequently Asked Questions",
+          "content": "Top Questions & Answers",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "topQuestions",
@@ -673,7 +717,7 @@
           "content": "Take Action",
           "lastQuestion": false,
           "start": 0,
-          "end": 32,
+          "end": 33,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -732,6 +776,18 @@
           "defaultAction": {
             "weightings": [ ]
           }
+        },
+        {
+          "class": "answer backToMainMenu",
+          "content": "Back to Main Menu",
+          "event": "backToMainMenuEvent",
+          "lastQuestion": false,
+          "start": 10,
+          "end": 16,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
         }
       ]
     },
@@ -778,6 +834,18 @@
         {
           "class": "answer",
           "content": "&#0149; HRA High Plan",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 40,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer backToMainMenu",
+          "event": "backToMainMenuEvent",
+          "content": "Back to Main Menu",
           "lastQuestion": false,
           "start": 0,
           "end": 40,
@@ -862,6 +930,18 @@
           "defaultAction": {
             "weightings": [ ]
           }
+        },
+        {
+          "class": "answer backToMainMenu",
+          "content": "Back to Main Menu",
+          "event": "backToMainMenuEvent",
+          "lastQuestion": false,
+          "start": 16,
+          "end": 25,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
         }
       ]
     },
@@ -877,7 +957,7 @@
           "content": "Top Questions and Answers",
           "lastQuestion": false,
           "start": 0,
-          "end": 34,
+          "end": 35,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -888,7 +968,7 @@
           "content": "&#0149; When am I eligible?",
           "lastQuestion": false,
           "start": 0,
-          "end": 34,
+          "end": 35,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -899,7 +979,7 @@
           "content": "&#0149; HRA vs. HSA?",
           "lastQuestion": false,
           "start": 0,
-          "end": 34,
+          "end": 35,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "hraVsHsa",
@@ -911,7 +991,7 @@
           "content": "&#0149; Which doctors are in my plan?",
           "lastQuestion": false,
           "start": 0,
-          "end": 34,
+          "end": 35,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -922,7 +1002,19 @@
           "content": "&#0149; How do I add dependents?",
           "lastQuestion": false,
           "start": 0,
-          "end": 34,
+          "end": 35,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+                {
+          "class": "answer backToMainMenu",
+          "content": "Back to Main Menu",
+          "event": "backToMainMenuEvent",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 35,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -943,7 +1035,7 @@
           "content": "Top Questions and Answers",
           "lastQuestion": false,
           "start": 83,
-          "end": 96,
+          "end": 97,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -954,7 +1046,7 @@
           "content": "&#0149; When am I eligible?",
           "lastQuestion": false,
           "start": 83,
-          "end": 96,
+          "end": 97,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -965,7 +1057,7 @@
           "content": "&#0149; HRA vs. HSA?",
           "lastQuestion": false,
           "start": 83,
-          "end": 96,
+          "end": 97,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "hraVsHsa",
@@ -977,7 +1069,7 @@
           "content": "&#0149; Which doctors are in my plan?",
           "lastQuestion": false,
           "start": 83,
-          "end": 96,
+          "end": 97,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -988,7 +1080,7 @@
           "content": "&#0149; How do I add dependents?",
           "lastQuestion": false,
           "start": 83,
-          "end": 96,
+          "end": 97,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -1008,7 +1100,7 @@
           "content": "Top Questions and Answers",
           "lastQuestion": false,
           "start": 0,
-          "end": 30,
+          "end": 31,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -1019,7 +1111,7 @@
           "content": "&#0149; When am I eligible?",
           "lastQuestion": false,
           "start": 0,
-          "end": 30,
+          "end": 31,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -1030,7 +1122,7 @@
           "content": "&#0149; HRA vs. HSA?",
           "lastQuestion": false,
           "start": 0,
-          "end": 30,
+          "end": 31,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "hraVsHsa",
@@ -1042,7 +1134,7 @@
           "content": "&#0149; Which doctors are in my plan?",
           "lastQuestion": false,
           "start": 0,
-          "end": 30,
+          "end": 31,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -1053,7 +1145,7 @@
           "content": "&#0149; How do I add dependents?",
           "lastQuestion": false,
           "start": 0,
-          "end": 30,
+          "end": 31,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]

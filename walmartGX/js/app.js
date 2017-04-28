@@ -47,7 +47,7 @@ var config1 = {
 //    }
 //});
 
-$.getJSON("data/walmartQA.json", function (result) {
+$.getJSON("data/walmart3.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
 });
@@ -67,20 +67,62 @@ videojs("myPlayerID").ready(function () {
         }
     })
     myPlayer.on("loadedmetadata", function () {
+        console.log("myPlayer loadedmetadata");
         loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
 
 
         ////////////////////////////////
-        var player = this;
-        var tt = player.textTracks()[0];
-        tt.oncuechange = function() {
-            if(tt.activeCues[0] !== undefined){
+
+
+        console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
+        if (config.videos[config.currentVideoIndex].tracks != undefined) {
+            myPlayer.addRemoteTextTrack({
+                kind: 'metadata',
+                src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
+            }, false);
+        } else {
+            console.log("Tracks is undefined");
+        }
+        var trackIndex = myPlayer.textTracks().length - 1;
+        var tt = myPlayer.textTracks()[trackIndex];
+        console.log("This is TT: " + tt);
+        tt.oncuechange = function () {
+            if (tt.activeCues[0] !== undefined) {
+                console.log("Cue point begins");
                 var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
                 dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
-                dynamicHTML += "name: " + tt.activeCues[0].Name + ", ";
                 dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
                 dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
-                alert(dynamicHTML);
+                console.log(dynamicHTML);
+                jsonData = JSON.parse(tt.activeCues[0].text);
+                if (jsonData.description == "results1") {
+                    console.log("success");
+
+                    $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
+                }
+
+
+                //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
+                //    console.log("show Deadline now");
+
+
+                //    var tt = document.getElementById('txtDate').value;
+                //    var date = new Date(tt);
+                //    var newdate = new Date(date);
+                //    newdate.setDate(newdate.getDate() + 60);
+                //    var dd = newdate.getDate();
+                //    var mm = newdate.getMonth() + 1;
+                //    var y = newdate.getFullYear();
+                //    var someFormattedDate = mm + '/' + dd + '/' + y;
+                //    document.getElementById('follow_Date').value = someFormattedDate;
+                   
+
+                //    $(".question.deadline").html(newDate);
+                //    $(".question.deadline").css("display", "block");
+                //}
+            } else {
+                console.log("Cue point duration over");
+                $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
             }
         }
         ////////////////////////////////
@@ -95,8 +137,8 @@ videojs("myPlayerID").ready(function () {
         $("#myPlayerIDContainer").css("display", "block");//test these
         $("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
-        for (var i = 0; i < config.videos.length; i++) {           
-        }        
+        for (var i = 0; i < config.videos.length; i++) {
+        }
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
     });
@@ -109,7 +151,8 @@ videojs("myPlayerID2").ready(function () {
     })
 
     myPlayer2.on("loadedmetadata", function () {
-        myPlayer2.pause();       
+        console.log("myPlayer2 loadedmetadata");
+        myPlayer2.pause();
     });
 });
 
@@ -132,6 +175,20 @@ function defaultEventHandler(onscreenElementIndex) {
     }
 }
 
+function homeEventHandler(videoName) {
+    if (waitSequenceShowing) {
+        var adjuster = 1;
+    } else {
+        adjuster = 0;
+    }
+        loadNewVideo(videoName, true);
+        $("#myPlayerIDContainer").css("display", "block");
+        $("#myPlayerID2Container").css("display", "none");
+        waitSequenceShowing = false;  
+}
+
+
+
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.
 $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
@@ -141,12 +198,16 @@ $.getScript("js/processResults.js", function (data, textStatus, jqxhr) {
 });
 
 function home() {
-    location.reload();
+    //location.reload(); Comment this out to test new return to wait sequence function
+    //should home lead to a reload and 'back to main menu lead to the wait sequence?
+    //take them to the wait sequence for now
+    homeEventHandler("returnIntro");
 }
 
 function skip() {
     if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
-        myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro)
+        myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro);
+        $("#skipIcon").css("display","none");
     }
 }
 
@@ -200,6 +261,12 @@ function loadNewVideo(videoId, saveThis) {
     myPlayer.catalog.getVideo(videoId, function (error, video) {
         //deal with error
         makeVideoOverlay(name);
+
+        if (name == config.startVideoName) {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
+            $("#backIcon").css("display", "none");
+        }
+
+
         myPlayer.catalog.load(video);
     });
 }
@@ -230,7 +297,7 @@ function makeVideoOverlay(videoId) {
             //now add the menubar overlay to every page
             var navBar = {};
             navBar.align = "bottom-left";
-            navBar.content = "<span onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.infoVideoEvent + "(1)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
+            navBar.content = "<span id='homeIcon' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='skipIcon' onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon' onclick='" + config.infoVideoEvent + "(1)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
             navBar.start = 0;
             navBar.end = "end";
             //navBar.end = config.videos[config.currentVideoIndex].duration;
@@ -242,9 +309,17 @@ function makeVideoOverlay(videoId) {
 }
 
 function loadWaitSequence(videoId, name) {
+
+    console.log("loadWaitSequence started");
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
-        //deal with error
+        console.log("This is the video object: " + video);
         makeVideoOverlayWait(name);
+
+        if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
+            $("#backIcon2").css("display", "none");
+        }
+
+
         myPlayer2.catalog.load(video);
 
     });
@@ -274,7 +349,7 @@ function makeVideoOverlayWait(videoName) {
             //now add the menubar overlay to every page
             var navBar = {};
             navBar.align = "bottom-left";
-            navBar.content = "<span onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span onclick='" + config.infoVideoEvent + "(2)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
+            navBar.content = "<span id='homeIcon2' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon2' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon2' onclick='" + config.infoVideoEvent + "(2)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
             navBar.start = 0;
             navBar.end = config.videos[config.currentVideoIndex + 1].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
