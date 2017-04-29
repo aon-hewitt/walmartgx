@@ -66,65 +66,67 @@ videojs("myPlayerID").ready(function () {
             //myPlayer.pause(); //pause the player if no endbehavior is specified
         }
     })
+
     myPlayer.on("loadedmetadata", function () {
         console.log("myPlayer loadedmetadata");
-        loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
+        //loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
+        loadWaitSequence(waitSequenceVideoId, waitSequenceName);
 
 
         ////////////////////////////////
 
 
-        console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
-        if (config.videos[config.currentVideoIndex].tracks != undefined) {
-            myPlayer.addRemoteTextTrack({
-                kind: 'metadata',
-                src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
-            }, false);
-        } else {
-            console.log("Tracks is undefined");
-        }
-        var trackIndex = myPlayer.textTracks().length - 1;
-        var tt = myPlayer.textTracks()[trackIndex];
-        console.log("This is TT: " + tt);
-        tt.oncuechange = function () {
-            if (tt.activeCues[0] !== undefined) {
-                console.log("Cue point begins");
-                var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
-                dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
-                dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
-                dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
-                console.log(dynamicHTML);
-                jsonData = JSON.parse(tt.activeCues[0].text);
-                if (jsonData.description == "results1") {
-                    console.log("success");
+        //console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
+        //if (config.videos[config.currentVideoIndex].tracks != undefined) {
+        //    myPlayer.addRemoteTextTrack({
+        //        kind: 'metadata',
+        //        src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
+        //    }, false);
+        //} else {
+        //    console.log("Tracks is undefined");
+        //}
+        //var trackIndex = myPlayer.textTracks().length - 1;
+        //var tt = myPlayer.textTracks()[trackIndex];
+        //console.log("This is TT: " + tt);
+        //tt.oncuechange = function () {
+        //    if (tt.activeCues[0] !== undefined) {
+        //        console.log("Cue point begins");
+        //        var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
+        //        dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
+        //        dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
+        //        dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
+        //        console.log(dynamicHTML);
+        //        jsonData = JSON.parse(tt.activeCues[0].text);
+        //        if (jsonData.description == "results1") {
+        //            console.log("success");
 
-                    //$(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
-                }
-
-
-                //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
-                //    console.log("show Deadline now");
+        //            //$(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
+        //        }
 
 
-                //    var tt = document.getElementById('txtDate').value;
-                //    var date = new Date(tt);
-                //    var newdate = new Date(date);
-                //    newdate.setDate(newdate.getDate() + 60);
-                //    var dd = newdate.getDate();
-                //    var mm = newdate.getMonth() + 1;
-                //    var y = newdate.getFullYear();
-                //    var someFormattedDate = mm + '/' + dd + '/' + y;
-                //    document.getElementById('follow_Date').value = someFormattedDate;
+        //        //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
+        //        //    console.log("show Deadline now");
+
+
+        //        //    var tt = document.getElementById('txtDate').value;
+        //        //    var date = new Date(tt);
+        //        //    var newdate = new Date(date);
+        //        //    newdate.setDate(newdate.getDate() + 60);
+        //        //    var dd = newdate.getDate();
+        //        //    var mm = newdate.getMonth() + 1;
+        //        //    var y = newdate.getFullYear();
+        //        //    var someFormattedDate = mm + '/' + dd + '/' + y;
+        //        //    document.getElementById('follow_Date').value = someFormattedDate;
                    
 
-                //    $(".question.deadline").html(newDate);
-                //    $(".question.deadline").css("display", "block");
-                //}
-            } else {
-                console.log("Cue point duration over");
-                $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
-            }
-        }
+        //        //    $(".question.deadline").html(newDate);
+        //        //    $(".question.deadline").css("display", "block");
+        //        //}
+        //    } else {
+        //        console.log("Cue point duration over");
+        //        $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
+        //    }
+        //}
         ////////////////////////////////
 
 
@@ -133,12 +135,14 @@ videojs("myPlayerID").ready(function () {
 
 
         myPlayer.play();
+
+
         myPlayer2.pause();
         $("#myPlayerIDContainer").css("display", "block");//test these
         $("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
-        for (var i = 0; i < config.videos.length; i++) {
-        }
+        //for (var i = 0; i < config.videos.length; i++) {
+        //}
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
     });
@@ -152,6 +156,8 @@ videojs("myPlayerID2").ready(function () {
 
     myPlayer2.on("loadedmetadata", function () {
         console.log("myPlayer2 loadedmetadata");
+
+
         myPlayer2.pause();
     });
 });
