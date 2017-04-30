@@ -842,7 +842,7 @@
       "brightcoveId": "5399011481001",
       "duration": 15,
       "endBehavior": "medical_wait",
-      "skipIntro": 10,
+      "skipIntro": 8,
       "onscreenElements": [
         {
           "class": "question",
