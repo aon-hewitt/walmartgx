@@ -83,57 +83,59 @@ videojs("myPlayerID").ready(function () {
         ////////////////////////////////
 
 
-        //console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
-        //if (config.videos[config.currentVideoIndex].tracks != undefined) {
-        //    myPlayer.addRemoteTextTrack({
-        //        kind: 'metadata',
-        //        src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
-        //    }, false);
-        //} else {
-        //    console.log("Tracks is undefined");
-        //}
-        //var trackIndex = myPlayer.textTracks().length - 1;
-        //var tt = myPlayer.textTracks()[trackIndex];
-        //console.log("This is TT: " + tt);
-        //tt.oncuechange = function () {
-        //    if (tt.activeCues[0] !== undefined) {
-        //        console.log("Cue point begins");
-        //        var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
-        //        dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
-        //        dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
-        //        dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
-        //        console.log(dynamicHTML);
-        //        jsonData = JSON.parse(tt.activeCues[0].text);
-        //        if (jsonData.description == "results1") {
-        //            console.log("success");
-
-        //            //$(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
-        //        }
-
-
-        //        //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
-        //        //    console.log("show Deadline now");
+        console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
+        if (config.videos[config.currentVideoIndex].tracks != undefined) {
+            myPlayer.addRemoteTextTrack({
+                kind: 'metadata',
+                src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
+            }, false);
+        } else {
+            console.log("Tracks is undefined");
+        }
+        var trackIndex = myPlayer.textTracks().length - 1;
+        var tt = myPlayer.textTracks()[trackIndex];
+        console.log("This is TT: " + tt);
+        tt.oncuechange = function () {
+            if (tt.activeCues[0] !== undefined) {
+                console.log("Cue point begins");
+                var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
+                dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
+                dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
+                dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
+                console.log(dynamicHTML);
+                jsonData = JSON.parse(tt.activeCues[0].text);
+                if ((jsonData.description == "results1") && (config.currentVideoIndex == 10)) {
+                    //alert(config.videos[config.currentVideoIndex]);
+                    
+                        $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
+                    
+                    
+                }
 
 
-        //        //    var tt = document.getElementById('txtDate').value;
-        //        //    var date = new Date(tt);
-        //        //    var newdate = new Date(date);
-        //        //    newdate.setDate(newdate.getDate() + 60);
-        //        //    var dd = newdate.getDate();
-        //        //    var mm = newdate.getMonth() + 1;
-        //        //    var y = newdate.getFullYear();
-        //        //    var someFormattedDate = mm + '/' + dd + '/' + y;
-        //        //    document.getElementById('follow_Date').value = someFormattedDate;
+                //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
+                //    console.log("show Deadline now");
 
 
-        //        //    $(".question.deadline").html(newDate);
-        //        //    $(".question.deadline").css("display", "block");
-        //        //}
-        //    } else {
-        //        console.log("Cue point duration over");
-        //        $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
-        //    }
-        //}
+                //    var tt = document.getElementById('txtDate').value;
+                //    var date = new Date(tt);
+                //    var newdate = new Date(date);
+                //    newdate.setDate(newdate.getDate() + 60);
+                //    var dd = newdate.getDate();
+                //    var mm = newdate.getMonth() + 1;
+                //    var y = newdate.getFullYear();
+                //    var someFormattedDate = mm + '/' + dd + '/' + y;
+                //    document.getElementById('follow_Date').value = someFormattedDate;
+
+
+                //    $(".question.deadline").html(newDate);
+                //    $(".question.deadline").css("display", "block");
+                //}
+            } else {
+                console.log("Cue point duration over");
+                $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
+            }
+        }
         ////////////////////////////////
 
 
@@ -145,7 +147,7 @@ videojs("myPlayerID").ready(function () {
 
 
         myPlayer2.pause();
-        $("#myPlayerIDContainer").css("display", "block");//test these
+        //$("#myPlayerIDContainer").css("display", "block");//test these
         //$("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
         //for (var i = 0; i < config.videos.length; i++) {
@@ -153,6 +155,10 @@ videojs("myPlayerID").ready(function () {
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
     });
+
+
+
+
 });
 
 videojs("myPlayerID2").ready(function () {
@@ -333,6 +339,8 @@ function loadWaitSequence(videoId, name) {
     console.log("loadWaitSequence started");
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
         console.log("This is the video object: " + video);
+
+
         makeVideoOverlayWait(name);
 
         if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
