@@ -59,6 +59,7 @@ videojs("myPlayerID").ready(function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
             $("#myPlayerID2Container").css("display", "block");
+            $("#myPlayerID2Container").css("opacity", 1);
             myPlayer2.play();
             myPlayer.pause();
             waitSequenceShowing = true;
@@ -117,7 +118,7 @@ videojs("myPlayerID").ready(function () {
         //        //    var y = newdate.getFullYear();
         //        //    var someFormattedDate = mm + '/' + dd + '/' + y;
         //        //    document.getElementById('follow_Date').value = someFormattedDate;
-                   
+
 
         //        //    $(".question.deadline").html(newDate);
         //        //    $(".question.deadline").css("display", "block");
@@ -139,7 +140,7 @@ videojs("myPlayerID").ready(function () {
 
         myPlayer2.pause();
         $("#myPlayerIDContainer").css("display", "block");//test these
-        $("#myPlayerID2Container").css("display", "none");//test these
+        //$("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
         //for (var i = 0; i < config.videos.length; i++) {
         //}
@@ -156,6 +157,9 @@ videojs("myPlayerID2").ready(function () {
 
     myPlayer2.on("loadedmetadata", function () {
         console.log("myPlayer2 loadedmetadata");
+
+        // now its safe to display none the second player
+        $("#myPlayerID2Container").css("display", "none");
 
 
         myPlayer2.pause();
@@ -187,10 +191,10 @@ function homeEventHandler(videoName) {
     } else {
         adjuster = 0;
     }
-        loadNewVideo(videoName, true);
-        $("#myPlayerIDContainer").css("display", "block");
-        $("#myPlayerID2Container").css("display", "none");
-        waitSequenceShowing = false;  
+    loadNewVideo(videoName, true);
+    $("#myPlayerIDContainer").css("display", "block");
+    $("#myPlayerID2Container").css("display", "none");
+    waitSequenceShowing = false;
 }
 
 
@@ -211,10 +215,12 @@ function home() {
 }
 
 function skip() {
+
     if (config.videos[config.currentVideoIndex].skipIntro && (myPlayer.currentTime() < config.videos[config.currentVideoIndex].skipIntro)) {
         myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro);
-        $("#skipIcon").css("display","none");
+        $("#skipIcon").css("display", "none");
     }
+
 }
 
 function back() {
@@ -223,6 +229,8 @@ function back() {
     }
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
+        $("#myPlayerID2Container").css("opacity", 0);
+
     } catch (err) {
         console.log("Error loading video");
     }
