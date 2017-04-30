@@ -242,6 +242,7 @@ function back() {
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
         $("#myPlayerID2Container").css("opacity", 0);
+        $("#myPlayerIDContainer").css("display", "block");
 
     } catch (err) {
         console.log("Error loading video");
