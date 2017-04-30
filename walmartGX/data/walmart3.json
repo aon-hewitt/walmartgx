@@ -1119,7 +1119,7 @@
             "weightings": [ ]
           }
         },
-                {
+        {
           "class": "answer backToMainMenu",
           "content": "Back to Main Menu",
           "event": "backToMainMenuEvent",
@@ -1196,6 +1196,18 @@
           "defaultAction": {
             "weightings": [ ]
           }
+        },
+                {
+          "class": "answer backToMainMenu",
+          "content": "Back to Main Menu",
+          "event": "backToMainMenuEvent",
+          "lastQuestion": false,
+          "start": 83,
+          "end": 97,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
         }
       ]
     },
@@ -1254,6 +1266,18 @@
         {
           "class": "answer clickable",
           "content": "&#0149; How do I add dependents?",
+          "lastQuestion": false,
+          "start": 0,
+          "end": 31,
+          "align": "top-left",
+          "defaultAction": {
+            "weightings": [ ]
+          }
+        },
+        {
+          "class": "answer backToMainMenu",
+          "content": "Back to Main Menu",
+          "event": "backToMainMenuEvent",
           "lastQuestion": false,
           "start": 0,
           "end": 31,

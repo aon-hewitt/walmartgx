@@ -68,6 +68,12 @@ videojs("myPlayerID").ready(function () {
         }
     })
 
+    //myPlayer.on("playing", function () {
+    //    $("#container").css("display", "block");
+    //});
+
+
+
     myPlayer.on("loadedmetadata", function () {
         console.log("myPlayer loadedmetadata");
         //loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
