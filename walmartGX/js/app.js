@@ -112,12 +112,21 @@ videojs("myPlayerID").ready(function () {
                     
                 } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
 
-                    var tomorrow = new Date();
-                    tomorrow.setDate(tomorrow.getDate() + 30);
+                    var d = new Date();
+                    d.setDate(d.getDate() + 30);
 
-                    //var d = new Date();
-                    var n = tomorrow.toDateString();
-                    $(".question.deadline").html(n);
+                    var days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+                    var weekdayName = days[d.getDay()];
+
+                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var monthName = months[d.getMonth()];
+
+                    var datestring = weekdayName + ", " + monthName + " " + d.getDate() + ", " + d.getFullYear();
+
+
+
+                    var n = d.toDateString();
+                    $(".question.deadline").html(datestring);
                 }
 
 

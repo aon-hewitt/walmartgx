@@ -630,7 +630,6 @@
       "tracks": "toDoList",
       "duration": 109,
       "endBehavior": "toDoList_wait",
-      "skipIntro": 92,
       "onscreenElements": [
         {
           "class": "question deadline",
@@ -842,7 +841,6 @@
       "brightcoveId": "5399011481001",
       "duration": 15,
       "endBehavior": "medical_wait",
-      "skipIntro": 8,
       "onscreenElements": [
         {
           "class": "question",
@@ -973,7 +971,6 @@
       "brightcoveId": "5399011084001",
       "duration": 23,
       "endBehavior": "topQuestions_wait",
-      "skipIntro": 8,
       "onscreenElements": [
         {
           "class": "question",
@@ -1139,7 +1136,6 @@
       "brightcoveId": "5399009043001",
       "duration": 96,
       "endBehavior": "hraVsHsa_wait",
-      "skipIntro": 82,
       "onscreenElements": [
         {
           "class": "question",
