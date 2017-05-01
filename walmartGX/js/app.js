@@ -110,7 +110,16 @@ videojs("myPlayerID").ready(function () {
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
                     
                     
+                } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
+
+                    var tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 30);
+
+                    //var d = new Date();
+                    var n = tomorrow.toDateString();
+                    $(".question.deadline").html(n);
                 }
+
 
 
                 //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
@@ -325,11 +334,22 @@ function makeVideoOverlay(videoId) {
             var navBar = {};
             navBar.align = "bottom-left";
             navBar.content = "<span id='homeIcon' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='skipIcon' onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon' onclick='" + config.infoVideoEvent + "(1)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
+
+            
+
             navBar.start = 0;
             navBar.end = "end";
             //navBar.end = config.videos[config.currentVideoIndex].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
             myPlayer.overlay(videoOverlayObject.overlay);
+
+
+            //hide certain menu icons depending on video requirments
+            if (!config.videos[i].skipIntro) {
+                //hide the skip button if there is no skip intro property set
+                $("#skipIcon").css("display","none");
+            }
+
             return;
         }
     }

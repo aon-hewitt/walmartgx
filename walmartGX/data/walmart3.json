@@ -647,7 +647,7 @@
           "class": "question clickable",
           "content": "Health Benefits",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -659,7 +659,7 @@
           "class": "question clickable",
           "content": "Insurance",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -670,7 +670,7 @@
           "class": "question clickable",
           "content": "Education & Career",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -681,7 +681,7 @@
           "class": "question clickable",
           "content": "Money",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -692,7 +692,7 @@
           "class": "question clickable",
           "content": "Paid Time Off",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -703,7 +703,7 @@
           "class": "question clickable",
           "content": "To-Do List",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -715,7 +715,7 @@
           "class": "question clickable",
           "content": "Top Questions & Answers",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -727,7 +727,7 @@
           "class": "question clickable",
           "content": "Take Action",
           "lastQuestion": false,
-          "start": 99,
+          "start": 98,
           "end": 110,
           "align": "top-left",
           "defaultAction": {
@@ -973,7 +973,7 @@
       "brightcoveId": "5399011084001",
       "duration": 23,
       "endBehavior": "topQuestions_wait",
-      "skipIntro": 10,
+      "skipIntro": 8,
       "onscreenElements": [
         {
           "class": "question",
