@@ -5,12 +5,9 @@ var configs = [];
 var waitSequenceShowing = false;
 var waitSequenceVideoId;
 var waitSequenceName;
-
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
 var nodeId = "1f89a17e1845bc71d945";
-
-
 var config1 = {
     "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
     "clientSecret": "wn7qJcPQVucXl3IrtJpPfmX7sfJORbAdA9DL/0wEjvcYU5g3Qzu4lKSTZKjHrI+iMOqUSC5aPoSkazluD+i95vuLVSjBtzYm3y2296ESC6Y=",
@@ -53,8 +50,6 @@ $.getJSON("data/walmart3.json", function (result) {
     loadNewVideo(config.startVideoName, false);
 });
 
-
-
 videojs("myPlayerID").ready(function () {
 
     //this is a fix recommended by Brightcove to overcome black screen on IE11
@@ -62,7 +57,6 @@ videojs("myPlayerID").ready(function () {
         // IE will use MP4/HTML5 before HLS/Flash
         videojs("myPlayerID").options_.sourceOrder = false;
     }
-
 
     myPlayer.on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
@@ -77,20 +71,12 @@ videojs("myPlayerID").ready(function () {
         }
     })
 
-    //myPlayer.on("playing", function () {
-    //    $("#container").css("display", "block");
-    //});
-
-
-
     myPlayer.on("loadedmetadata", function () {
         console.log("myPlayer loadedmetadata");
         //loadWaitSequence(waitSequenceVideoId, waitSequenceName, false);
         loadWaitSequence(waitSequenceVideoId, waitSequenceName);
 
-
         ////////////////////////////////
-
 
         console.log("Text Track to load: " + config.videos[config.currentVideoIndex].tracks);
         if (config.videos[config.currentVideoIndex].tracks != undefined) {
@@ -113,83 +99,34 @@ videojs("myPlayerID").ready(function () {
                 dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
                 console.log(dynamicHTML);
                 jsonData = JSON.parse(tt.activeCues[0].text);
-
-
                 if ((jsonData.description == "results1") && (config.currentVideoIndex == 10)) {
-                    //alert(config.videos[config.currentVideoIndex]);
-                    
-                        $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
-                        
-                    
+                    $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "none");
                 } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
-
                     var d = new Date();
                     d.setDate(d.getDate() + 30);
-
                     var days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
                     var weekdayName = days[d.getDay()];
-
                     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     var monthName = months[d.getMonth()];
-
                     var datestring = weekdayName + ", " + monthName + " " + d.getDate() + ", " + d.getFullYear();
-
-
-
                     var n = d.toDateString();
                     $(".question.deadline").html(datestring);
                 } else if ((jsonData.description == "results2") && (config.currentVideoIndex == 10)) {
                     $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
                 }
-
-
-
-                //if (JSON.parse(tt.activeCues[0].text).newEventName == "showDeadline") {
-                //    console.log("show Deadline now");
-
-
-                //    var tt = document.getElementById('txtDate').value;
-                //    var date = new Date(tt);
-                //    var newdate = new Date(date);
-                //    newdate.setDate(newdate.getDate() + 60);
-                //    var dd = newdate.getDate();
-                //    var mm = newdate.getMonth() + 1;
-                //    var y = newdate.getFullYear();
-                //    var someFormattedDate = mm + '/' + dd + '/' + y;
-                //    document.getElementById('follow_Date').value = someFormattedDate;
-
-
-                //    $(".question.deadline").html(newDate);
-                //    $(".question.deadline").css("display", "block");
-                //}
             } else {
                 console.log("Cue point duration over");
-
             }
         }
+
         ////////////////////////////////
 
-
-
-
-
-
         myPlayer.play();
-
-
         myPlayer2.pause();
-        //$("#myPlayerIDContainer").css("display", "block");//test these
-        //$("#myPlayerID2Container").css("display", "none");//test these
         waitSequenceShowing = false;//tst this
-        //for (var i = 0; i < config.videos.length; i++) {
-        //}
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
     });
-
-
-
-
 });
 
 videojs("myPlayerID2").ready(function () {
@@ -200,11 +137,8 @@ videojs("myPlayerID2").ready(function () {
 
     myPlayer2.on("loadedmetadata", function () {
         console.log("myPlayer2 loadedmetadata");
-
         // now its safe to display none the second player
         $("#myPlayerID2Container").css("display", "none");
-
-
         myPlayer2.pause();
     });
 });
@@ -240,8 +174,6 @@ function homeEventHandler(videoName) {
     waitSequenceShowing = false;
 }
 
-
-
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.
 $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
@@ -263,7 +195,6 @@ function skip() {
         myPlayer.currentTime(config.videos[config.currentVideoIndex].skipIntro);
         $("#skipIcon").css("display", "none");
     }
-
 }
 
 function back() {
@@ -305,7 +236,6 @@ function loadNewVideo(videoId, saveThis) {
         iterator++;
     }
     while (iterator < config.videos.length);
-
     //now do a similar process for obtaining the brightcove id of the wait sequence for this video. Use it to load the wait sequence player
     var iterator1 = 0
     do {
@@ -323,8 +253,6 @@ function loadNewVideo(videoId, saveThis) {
         if (name == config.startVideoName) {
             $("#backIcon").css("display", "none");
         }
-
-
         myPlayer.catalog.load(video);
     });
 }
@@ -356,43 +284,30 @@ function makeVideoOverlay(videoId) {
             var navBar = {};
             navBar.align = "bottom-left";
             navBar.content = "<span id='homeIcon' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='skipIcon' onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon' onclick='" + config.infoVideoEvent + "(1)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
-
-            
-
             navBar.start = 0;
             navBar.end = "end";
             //navBar.end = config.videos[config.currentVideoIndex].duration;
             videoOverlayObject.overlay.overlays.push(navBar);
             myPlayer.overlay(videoOverlayObject.overlay);
-
-
             //hide certain menu icons depending on video requirments
             if (!config.videos[i].skipIntro) {
                 //hide the skip button if there is no skip intro property set
-                $("#skipIcon").css("display","none");
+                $("#skipIcon").css("display", "none");
             }
-
             return;
         }
     }
 }
 
 function loadWaitSequence(videoId, name) {
-
     console.log("loadWaitSequence started");
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
         console.log("This is the video object: " + video);
-
-
         makeVideoOverlayWait(name);
-
         if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
             $("#backIcon2").css("display", "none");
         }
-
-
         myPlayer2.catalog.load(video);
-
     });
 }
 
@@ -402,7 +317,6 @@ function makeVideoOverlayWait(videoName) {
     myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
-
     //now create the overlay properties
     for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
         if (config.videos[i].name == videoName) {
