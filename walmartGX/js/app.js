@@ -56,6 +56,14 @@ $.getJSON("data/walmart3.json", function (result) {
 
 
 videojs("myPlayerID").ready(function () {
+
+    //this is a fix recommended by Brightcove to overcome black screen on IE11
+    if (videojs.IE_VERSION === 11) {
+        // IE will use MP4/HTML5 before HLS/Flash
+        videojs("myPlayerID").options_.sourceOrder = false;
+    }
+
+
     myPlayer.on("ended", function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
@@ -312,7 +320,7 @@ function loadNewVideo(videoId, saveThis) {
         //deal with error
         makeVideoOverlay(name);
 
-        if (name == config.startVideoName) {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
+        if (name == config.startVideoName) {
             $("#backIcon").css("display", "none");
         }
 
