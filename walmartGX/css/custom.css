@@ -97,8 +97,7 @@
         top: 7em;
         font-size: 18px;
         font-style: italic;
-        cursor:pointer;
-
+        cursor: pointer;
     }
 
     .question.walmartOne {
@@ -115,6 +114,12 @@
         color: #6d6e71;
         line-height: 1.2em;
     }
+
+        .answer.bulleted {
+            display: list-item; /* This has to be "list-item"                                               */
+            list-style-type: disc; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+            /*list-style-position: inside; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */*/
+        }
 
         .answer.clickable {
             cursor: pointer;
