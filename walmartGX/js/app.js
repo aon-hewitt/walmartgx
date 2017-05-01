@@ -10,6 +10,7 @@ var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
 var nodeId = "1f89a17e1845bc71d945";
 
+
 var config1 = {
     "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
     "clientSecret": "wn7qJcPQVucXl3IrtJpPfmX7sfJORbAdA9DL/0wEjvcYU5g3Qzu4lKSTZKjHrI+iMOqUSC5aPoSkazluD+i95vuLVSjBtzYm3y2296ESC6Y=",
@@ -104,11 +105,13 @@ videojs("myPlayerID").ready(function () {
                 dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
                 console.log(dynamicHTML);
                 jsonData = JSON.parse(tt.activeCues[0].text);
+
+
                 if ((jsonData.description == "results1") && (config.currentVideoIndex == 10)) {
                     //alert(config.videos[config.currentVideoIndex]);
                     
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display","none");
-                    
+                        
                     
                 } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
 
@@ -127,6 +130,8 @@ videojs("myPlayerID").ready(function () {
 
                     var n = d.toDateString();
                     $(".question.deadline").html(datestring);
+                } else if ((jsonData.description == "results2") && (config.currentVideoIndex == 10)) {
+                    $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
                 }
 
 
@@ -151,7 +156,7 @@ videojs("myPlayerID").ready(function () {
                 //}
             } else {
                 console.log("Cue point duration over");
-                $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
+
             }
         }
         ////////////////////////////////
