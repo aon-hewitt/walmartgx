@@ -129,7 +129,7 @@ videojs("myPlayerID").ready(function () {
                 } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
                     var d = new Date();
                     d.setDate(d.getDate() + 30);
-                    var days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+                    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
                     var weekdayName = days[d.getDay()];
                     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     var monthName = months[d.getMonth()];
