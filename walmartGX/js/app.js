@@ -68,6 +68,8 @@ videojs("myPlayerID").ready(function () {
             console.log("Showing text track 2");
             myPlayer.textTracks()[2].mode = "showing";
         } else {
+            myPlayer.textTracks()[1].mode = "disabled";
+            myPlayer.textTracks()[2].mode = "disabled";
         }
     });
 
@@ -121,7 +123,6 @@ videojs("myPlayerID").ready(function () {
                 dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
                 dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
                 console.log(dynamicHTML);
-                debugger;
                 jsonData = JSON.parse(tt.activeCues[0].text);
                 if ((jsonData.description == "results1") && (config.currentVideoIndex == 10)) {
                     $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "none");
@@ -244,20 +245,14 @@ function assignWeights(array) {
 function loadNewVideo(videoId, saveThis) {
 
 
+    textTrackToShow = 0;
     for (var i = 0; i < myPlayer.textTracks().length; i++) {
         console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
 
         if ((myPlayer.textTracks()[i].mode) == "showing") {
-
             textTrackToShow = i;
         }
-
     }
-
-
-
-
-
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
@@ -299,8 +294,10 @@ function loadNewVideo(videoId, saveThis) {
 
 function makeVideoOverlay(videoId) {
     //set global json properties
-    var videoOverlayObject = {};
-    videoOverlayObject.overlay = {};
+    var videoOverlayObject = {
+    };
+    videoOverlayObject.overlay = {
+    };
     myPlayer.overlay(null);
     myPlayer2.overlay(null);//see if this clears out the overlay
     videoOverlayObject.overlay.content = "";
@@ -310,7 +307,8 @@ function makeVideoOverlay(videoId) {
         if (config.videos[i].name == videoId) {
             config.currentVideoIndex = i;
             for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
-                videoOverlayObject.overlay.overlays[j] = {};
+                videoOverlayObject.overlay.overlays[j] = {
+                };
                 videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
                 if (config.videos[i].onscreenElements[j].event != undefined) {
                     videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
@@ -321,7 +319,8 @@ function makeVideoOverlay(videoId) {
                 videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
             }
             //now add the menubar overlay to every page
-            var navBar = {};
+            var navBar = {
+            };
             navBar.align = "bottom-left";
             navBar.content = "<span id='homeIcon' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='skipIcon' onclick='" + config.skipVideoEvent + "()'><i class='fa fa-2x " + config.skipVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon' onclick='" + config.infoVideoEvent + "(1)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
             navBar.start = 0;
@@ -352,8 +351,10 @@ function loadWaitSequence(videoId, name) {
 }
 
 function makeVideoOverlayWait(videoName) {
-    var videoOverlayObject = {};
-    videoOverlayObject.overlay = {};
+    var videoOverlayObject = {
+    };
+    videoOverlayObject.overlay = {
+    };
     myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
@@ -361,7 +362,8 @@ function makeVideoOverlayWait(videoName) {
     for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
         if (config.videos[i].name == videoName) {
             for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
-                videoOverlayObject.overlay.overlays[j] = {};
+                videoOverlayObject.overlay.overlays[j] = {
+                };
                 videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
                 if (config.videos[i].onscreenElements[j].event != undefined) {
                     videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
@@ -372,7 +374,8 @@ function makeVideoOverlayWait(videoName) {
                 videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
             }
             //now add the menubar overlay to every page
-            var navBar = {};
+            var navBar = {
+            };
             navBar.align = "bottom-left";
             navBar.content = "<span id='homeIcon2' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon2' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon2' onclick='" + config.infoVideoEvent + "(2)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
             navBar.start = 0;
