@@ -5,7 +5,6 @@ var configs = [];
 var waitSequenceShowing = false;
 var waitSequenceVideoId;
 var waitSequenceName;
-var textTrackToShow = 0;
 var repositoryId = "a657fd8fced304aeb5cc";
 var branchId = "e107b525b507b9d33a23";
 var nodeId = "1f89a17e1845bc71d945";
@@ -60,19 +59,9 @@ videojs("myPlayerID").ready(function () {
     }
 
 
-    //myPlayer.on("play", function () {
-    //    //myPlayer.textTracks()[0].mode = "showing";
-    //    if (textTrackToShow == 1) {
-    //        myPlayer.textTracks()[1].mode = "showing";
-    //    } else if (textTrackToShow == 2) {
-    //        myPlayer.textTracks()[2].mode = "showing";
-    //    } else {
-    //        //alert("textTrackToShow = " +textTrackToShow);
-    //}
-
-
-
-    //});
+    myPlayer.on("play", function () {
+        myPlayer.textTracks()[2].mode = "showing";
+    });
 
 
 
@@ -107,50 +96,50 @@ videojs("myPlayerID").ready(function () {
 
         console.log("This video has " + myPlayer.textTracks().length + " text tracks.");
         for (var i = 0; i < myPlayer.textTracks().length; i++) {
-            console.log(myPlayer.textTracks()[i]);
-        }
+        console.log(myPlayer.textTracks()[i]);
+    }
 
 
 
-        var trackIndex = myPlayer.textTracks().length - 1;
+        var trackIndex = myPlayer.textTracks().length -1;
         var tt = myPlayer.textTracks()[trackIndex];
-        console.log("This is TT: " + tt);
+        console.log("This is TT: " +tt);
         tt.oncuechange = function () {
             if (tt.activeCues[0] !== undefined) {
                 console.log("Cue point begins");
-                var dynamicHTML = "id: " + tt.activeCues[0].id + ", ";
-                dynamicHTML += "text: " + tt.activeCues[0].text + ", ";
-                dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
-                dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
+                var dynamicHTML = "id: " +tt.activeCues[0].id + ", ";
+                dynamicHTML += "text: " +tt.activeCues[0].text + ", ";
+                dynamicHTML += "startTime: " +tt.activeCues[0].startTime + ",  ";
+                dynamicHTML += "endTime: " +tt.activeCues[0].endTime;
                 console.log(dynamicHTML);
                 jsonData = JSON.parse(tt.activeCues[0].text);
                 if ((jsonData.description == "results1") && (config.currentVideoIndex == 10)) {
                     $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "none");
                 } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
                     var d = new Date();
-                    d.setDate(d.getDate() + 30);
-                    var days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+                    d.setDate(d.getDate() +30);
+                    var days =["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
                     var weekdayName = days[d.getDay()];
-                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var months =["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     var monthName = months[d.getMonth()];
-                    var datestring = weekdayName + ", " + monthName + " " + d.getDate() + ", " + d.getFullYear();
+                    var datestring = weekdayName + ", " + monthName + " " +d.getDate() + ", " +d.getFullYear();
                     var n = d.toDateString();
                     $(".question.deadline").html(datestring);
                 } else if ((jsonData.description == "results2") && (config.currentVideoIndex == 10)) {
                     $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
-                }
+            }
             } else {
                 console.log("Cue point duration over");
-            }
         }
+    }
 
         ////////////////////////////////
 
         myPlayer.play();
         myPlayer2.pause();
         waitSequenceShowing = false;//tst this
-        $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
-        $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
+        $("#slideInfo").load("inc/" +config.videos[config.currentVideoIndex].name + ".html");
+        $("#slideInfo2").load("inc/" +config.videos[config.currentVideoIndex +1].name + ".html");
     });
 });
 
@@ -243,22 +232,6 @@ function assignWeights(array) {
 }
 
 function loadNewVideo(videoId, saveThis) {
-
-    //myPlayer.textTracks()[0].mode
-    //for (var i = 0; i < myPlayer.textTracks().length; i++) {
-    //    console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
-
-    //    if ((myPlayer.textTracks()[i].mode) == "showing") {
-    //        alert(i);
-    //        textTrackToShow = i;
-    //    }
-
-    //}
-
-
-
-
-
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
