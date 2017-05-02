@@ -616,7 +616,6 @@
       "name": "toDoList",
       "waitSequence": false,
       "brightcoveId": "5412016439001 ",
-      "tracks": "toDoList",
       "duration": 109,
       "endBehavior": "toDoList_wait",
       "onscreenElements": [

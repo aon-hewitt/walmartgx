@@ -60,19 +60,16 @@ videojs("myPlayerID").ready(function () {
     }
 
 
-    //myPlayer.on("play", function () {
-    //    //myPlayer.textTracks()[0].mode = "showing";
-    //    if (textTrackToShow == 1) {
-    //        myPlayer.textTracks()[1].mode = "showing";
-    //    } else if (textTrackToShow == 2) {
-    //        myPlayer.textTracks()[2].mode = "showing";
-    //    } else {
-    //        //alert("textTrackToShow = " +textTrackToShow);
-    //}
-
-
-
-    //});
+    myPlayer.on("play", function () {
+        if (textTrackToShow == 1) {
+            console.log("Showing text track 1");
+            myPlayer.textTracks()[1].mode = "showing";
+        } else if (textTrackToShow == 2) {
+            console.log("Showing text track 2");
+            myPlayer.textTracks()[2].mode = "showing";
+        } else {
+        }
+    });
 
 
 
@@ -110,10 +107,11 @@ videojs("myPlayerID").ready(function () {
             console.log(myPlayer.textTracks()[i]);
         }
 
-
-
-        var trackIndex = myPlayer.textTracks().length - 1;
-        var tt = myPlayer.textTracks()[trackIndex];
+        for (var i = 1; i < myPlayer.textTracks().length; i++) {
+            if (myPlayer.textTracks()[i].src == "vtt/intro.vtt") {
+                var tt = myPlayer.textTracks()[i];
+            }
+        }
         console.log("This is TT: " + tt);
         tt.oncuechange = function () {
             if (tt.activeCues[0] !== undefined) {
@@ -123,6 +121,7 @@ videojs("myPlayerID").ready(function () {
                 dynamicHTML += "startTime: " + tt.activeCues[0].startTime + ",  ";
                 dynamicHTML += "endTime: " + tt.activeCues[0].endTime;
                 console.log(dynamicHTML);
+                debugger;
                 jsonData = JSON.parse(tt.activeCues[0].text);
                 if ((jsonData.description == "results1") && (config.currentVideoIndex == 10)) {
                     $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "none");
@@ -244,16 +243,16 @@ function assignWeights(array) {
 
 function loadNewVideo(videoId, saveThis) {
 
-    //myPlayer.textTracks()[0].mode
-    //for (var i = 0; i < myPlayer.textTracks().length; i++) {
-    //    console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
 
-    //    if ((myPlayer.textTracks()[i].mode) == "showing") {
-    //        alert(i);
-    //        textTrackToShow = i;
-    //    }
+    for (var i = 0; i < myPlayer.textTracks().length; i++) {
+        console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
 
-    //}
+        if ((myPlayer.textTracks()[i].mode) == "showing") {
+
+            textTrackToShow = i;
+        }
+
+    }
 
 
 

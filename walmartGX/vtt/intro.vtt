@@ -1,17 +1,25 @@
 ﻿WEBVTT
 
 displayResults
-00:00:05.000 --> 00:00:06.000
+00:00:05.000 --> 00:00:05.000
 {
   "title": "Event title",
   "description": "results1"
 }
 
 hideResults
-00:01:16.000 --> 00:01:17.000
+00:01:16.000 --> 00:01:16.000
 {
   "title": "Event title",
   "description": "results2"
+}
+
+toDoList
+00:00:20.000 --> 00:00:20.000
+{
+  "title": "To Do List",
+  "description": "showDate",
+  "newEventName" : "showDateName"
 }
 
 
