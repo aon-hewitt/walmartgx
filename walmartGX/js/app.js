@@ -60,7 +60,7 @@ videojs("myPlayerID").ready(function () {
         videojs("myPlayerID").options_.sourceOrder = false;
     }
 
-    //This script manages closed captioning persistance across videos
+    //This script manages closed captioning persistance across videos. Somewhat hard hoded here for 2 cc text tracks. First tt is hidden metadata.
     myPlayer.on("play", function () {
         if (textTrackToShow == 1) {
             console.log("Showing text track 1");
@@ -77,6 +77,16 @@ videojs("myPlayerID").ready(function () {
 
     //Transition from player1 to player2
     myPlayer.on("ended", function () {
+
+        //show the correct text track
+        textTrackToShow = 0;
+        for (var i = 0; i < myPlayer.textTracks().length; i++) {
+            //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
+            if ((myPlayer.textTracks()[i].mode) == "showing") {
+                textTrackToShow = i;
+            }
+        }
+
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
             $("#myPlayerID2Container").css("display", "block");
@@ -86,7 +96,7 @@ videojs("myPlayerID").ready(function () {
             waitSequenceShowing = true;
         } else {
             //myPlayer.pause(); //pause the player if no endbehavior is specified
-        }
+        };
     })
 
     myPlayer.on("loadedmetadata", function () {
@@ -115,8 +125,8 @@ videojs("myPlayerID").ready(function () {
         }
 
         //process cue points, logging general info to the console
-        
-        try{
+
+        try {
             tt.oncuechange = function () {
                 if (tt.activeCues[0] !== undefined) {
                     //console.log("Cue point begins");
@@ -149,9 +159,9 @@ videojs("myPlayerID").ready(function () {
                 }
             }
         }
-        catch(err){
+        catch (err) {
             console.log("oncuechange error (Probably no tt defined): " + err);
-    }
+        }
 
         myPlayer.play();
         myPlayer2.pause();
@@ -163,9 +173,33 @@ videojs("myPlayerID").ready(function () {
 
 videojs("myPlayerID2").ready(function () {
     myPlayer2.on("ended", function () {
+        //show the correct text track
+        textTrackToShow = 0;
+        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
+            if ((myPlayer2.textTracks()[i].mode) == "showing") {
+                textTrackToShow = i;
+            }
+        }
         myPlayer2.currentTime(0);
         myPlayer2.play();
-    })
+    });
+
+
+    myPlayer2.on("play", function () {
+        if (textTrackToShow == 1) {
+            //console.log("Showing text track 1");
+            myPlayer2.textTracks()[1].mode = "showing";
+        } else if (textTrackToShow == 2) {
+            //console.log("Showing text track 2");
+            myPlayer2.textTracks()[2].mode = "showing";
+        } else {
+            myPlayer2.textTracks()[1].mode = "disabled";
+            myPlayer2.textTracks()[2].mode = "disabled";
+        }
+    });
+
+
+
 
     myPlayer2.on("loadedmetadata", function () {
         //console.log("myPlayer2 loadedmetadata");
@@ -247,11 +281,23 @@ function assignWeights(array) {
 }
 
 function loadNewVideo(videoId, saveThis) {
-    textTrackToShow = 0; //required for closed captioning persistance
-    for (var i = 0; i < myPlayer.textTracks().length; i++) {
-        //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
-        if ((myPlayer.textTracks()[i].mode) == "showing") {
-            textTrackToShow = i;
+
+    //test which player is currently playing, use text track values from that player to set the textTrackToShow
+    if ($("#myPlayerIDContainer").css("display") == "block") {
+        textTrackToShow = 0; //required for closed captioning persistance
+        for (var i = 0; i < myPlayer.textTracks().length; i++) {
+            //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
+            if ((myPlayer.textTracks()[i].mode) == "showing") {
+                textTrackToShow = i;
+            }
+        }
+    } else if ($("#myPlayerID2Container").css("display") == "block") {
+        textTrackToShow = 0; //required for closed captioning persistance
+        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
+            //console.log("Texttrack " + i + " showing? " + myPlayer2.textTracks()[i].mode);
+            if ((myPlayer2.textTracks()[i].mode) == "showing") {
+                textTrackToShow = i;
+            }
         }
     }
 
@@ -351,8 +397,10 @@ function loadWaitSequence(videoId, name) {
 }
 
 function makeVideoOverlayWait(videoName) {
-    var videoOverlayObject = {};
-    videoOverlayObject.overlay = {};
+    var videoOverlayObject = {
+    };
+    videoOverlayObject.overlay = {
+    };
     myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
