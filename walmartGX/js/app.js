@@ -75,23 +75,8 @@ videojs("myPlayerID").ready(function () {
         }
     });
 
-    myPlayer.on("seeking", function () {
-        //alert("seeking");
-        for (var i = 0; i < myPlayer.textTracks().length; i++) {
-            //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
-            if ((myPlayer.textTracks()[i].mode) == "showing") {
-                textTrackToShow = i;
-            }
-        }
-    });
-
-
-
-    //Transition from player1 to player2
-    myPlayer.on("ended", function () {
-
-        //show the correct text track
-        //this should also be run when the user scrubs the timeline: TODO
+    //For first video only - when user skips in the timeline, or triggers the slideover, or reaches the end - this functions saves the cc state.
+    function saveCCStatePlayer1() {
         textTrackToShow = 0;
         for (var i = 0; i < myPlayer.textTracks().length; i++) {
             //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
@@ -99,6 +84,17 @@ videojs("myPlayerID").ready(function () {
                 textTrackToShow = i;
             }
         }
+    }
+
+    myPlayer.on("seeking", function () {
+        saveCCStatePlayer1();
+    });
+
+
+
+    //Transition from player1 to player2
+    myPlayer.on("ended", function () {
+        saveCCStatePlayer1();
 
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
@@ -187,14 +183,8 @@ videojs("myPlayerID").ready(function () {
 videojs("myPlayerID2").ready(function () {
     myPlayer2.on("ended", function () {
 
-        //show the correct text track
-        //this should also be run when the user scrubs the timeline: TODO
-        textTrackToShow = 0;
-        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
-            if ((myPlayer2.textTracks()[i].mode) == "showing") {
-                textTrackToShow = i;
-            }
-        }
+        saveCCStatePlayer2();
+
         myPlayer2.currentTime(0);
         myPlayer2.play();
     });
@@ -212,6 +202,19 @@ videojs("myPlayerID2").ready(function () {
             myPlayer2.textTracks()[1].mode = "disabled";
             myPlayer2.textTracks()[2].mode = "disabled";
         }
+    });
+
+    function saveCCStatePlayer2() {
+        textTrackToShow = 0;
+        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
+            if ((myPlayer2.textTracks()[i].mode) == "showing") {
+                textTrackToShow = i;
+            }
+        }
+    }
+
+    myPlayer2.on("seeking", function () {
+        saveCCStatePlayer2();
     });
 
 

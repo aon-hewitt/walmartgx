@@ -11,6 +11,8 @@
   "skipVideoEvent": "skip",
   "backVideoIcon": "fa-step-backward",
   "backVideoEvent": "back",
+  "infoVideoIcon": "fa-question",
+  "infoVideoEvent": "showSlideInfo",
   "videos": [
     {
       "name": "intro",
@@ -1181,7 +1183,7 @@
             "weightings": [ ]
           }
         },
-                {
+        {
           "class": "answer backToMainMenu",
           "content": "Back to Main Menu",
           "event": "backToMainMenuEvent",
