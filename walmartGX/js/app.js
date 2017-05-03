@@ -61,7 +61,8 @@ videojs("myPlayerID").ready(function () {
     }
 
     //This script manages closed captioning persistance across videos. Somewhat hard hoded here for 2 cc text tracks. First tt is hidden metadata.
-        myPlayer.on("play", function () {
+    myPlayer.on("play", function () {
+        //alert("myPlayer playing:" + textTrackToShow);
         if (textTrackToShow == 1) {
             console.log("Showing text track 1");
             myPlayer.textTracks()[1].mode = "showing";
@@ -73,6 +74,17 @@ videojs("myPlayerID").ready(function () {
             myPlayer.textTracks()[2].mode = "disabled";
         }
     });
+
+    myPlayer.on("seeking", function () {
+        //alert("seeking");
+        for (var i = 0; i < myPlayer.textTracks().length; i++) {
+            //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
+            if ((myPlayer.textTracks()[i].mode) == "showing") {
+                textTrackToShow = i;
+            }
+        }
+    });
+
 
 
     //Transition from player1 to player2
@@ -189,6 +201,7 @@ videojs("myPlayerID2").ready(function () {
 
 
     myPlayer2.on("play", function () {
+        //alert("myPlayer2 playing");
         if (textTrackToShow == 1) {
             //console.log("Showing text track 1");
             myPlayer2.textTracks()[1].mode = "showing";
