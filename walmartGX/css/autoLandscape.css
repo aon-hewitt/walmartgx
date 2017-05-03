@@ -1,10 +1,4 @@
-﻿#container {
-    display: block;
-}
-
-.vjs-seeking .vjs-loading-spinner, .vjs-waiting .vjs-loading-spinner {
-    display: none;
-}
+﻿
 
 @media only screen and (orientation:portrait) {
 

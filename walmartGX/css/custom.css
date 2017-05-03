@@ -61,6 +61,25 @@
     .video-js .vjs-fullscreen-control {
         display: none;
     }
+
+    /*This GX will not display thead scrubber*/
+    .vjs-progress-control {
+        /*display: none !important;*/
+    }
+
+    /*This GX will not display the back button*/
+    #backIcon, #backIcon2 {
+        display: none;
+    }
+
+    #container {
+        display: block;
+    }
+
+    /*Hide thead preloading spinner*/
+    .vjs-seeking .vjs-loading-spinner, .vjs-waiting .vjs-loading-spinner {
+        display: none;
+    }
 }
 
 @media only screen and (min-device-width : 640px) {
@@ -118,7 +137,7 @@
         .answer.bulleted {
             display: list-item; /* This has to be "list-item"                                               */
             list-style-type: disc; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
-            /*list-style-position: inside; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */*/
+            /*list-style-position: inside; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */ */;
         }
 
         .answer.clickable {

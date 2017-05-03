@@ -291,7 +291,7 @@
           "content": "Health Benefits",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "medical",
@@ -303,7 +303,7 @@
           "content": "Insurance",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -314,7 +314,7 @@
           "content": "Education & Career",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -325,7 +325,7 @@
           "content": "Money",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -336,7 +336,7 @@
           "content": "Paid Time Off",
           "lastQuestion": false,
           "start": 0,
-          "end": 111,
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -347,7 +347,7 @@
           "content": "Well-being",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]
@@ -358,7 +358,7 @@
           "content": "To-do List",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "toDoList",
@@ -370,7 +370,7 @@
           "content": "Top Questions & Answers",
           "lastQuestion": false,
           "start": 0,
-          "end": 111,
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "topQuestions",
@@ -382,7 +382,7 @@
           "content": "Take Action",
           "lastQuestion": false,
           "start": 0,
-          "end": "end",
+          "end": 39,
           "align": "top-left",
           "defaultAction": {
             "weightings": [ ]

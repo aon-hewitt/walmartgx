@@ -1,0 +1,9 @@
+﻿/*This GX will not display thead scrubber*/
+.vjs-progress-control {
+    display:none !important;
+}
+
+/*This GX will not display the back button*/
+#backIcon, #backIcon2 {
+    display:none;
+}

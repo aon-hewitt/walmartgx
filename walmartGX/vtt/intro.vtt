@@ -3,23 +3,22 @@
 displayResults
 00:00:05.000 --> 00:00:05.000
 {
-  "title": "Event title",
-  "description": "results1"
+  "title": "hideNavBar",
+  "description": "hideNavBar"
 }
 
 hideResults
 00:01:16.000 --> 00:01:16.000
 {
-  "title": "Event title",
-  "description": "results2"
+  "title": "showNavBar",
+  "description": "showNavBar"
 }
 
-toDoList
+showDate
 00:00:20.000 --> 00:00:20.000
 {
-  "title": "To Do List",
-  "description": "showDate",
-  "newEventName" : "showDateName"
+  "title": "showDate",
+  "description": "showDate"
 }
 
 
