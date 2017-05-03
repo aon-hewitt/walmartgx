@@ -249,8 +249,9 @@ $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
 
 //this external file will handle the showResults function
-$.getScript("js/processResults.js", function (data, textStatus, jqxhr) {
-});
+//not used in Walmart
+//$.getScript("js/processResults.js", function (data, textStatus, jqxhr) {
+//});
 
 function home() {
     homeEventHandler("returnIntro");
