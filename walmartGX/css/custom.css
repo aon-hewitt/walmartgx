@@ -1,6 +1,4 @@
-﻿
-@media only screen and (min-device-width : 360px) {
-
+﻿@media only screen and (min-device-width : 360px) {
 
     .vjs-dock-text {
         display: none; /*This hides the text at the top of the window*/
@@ -27,82 +25,17 @@
     .fa-2x {
         margin-right: 20px;
         cursor: pointer;
-        font-size: 1em;
-    }
-
-    .video-js .vjs-overlay-bottom-left {
-        width: auto;
-        bottom: 1em;
-    }
-
-    .video-js .vjs-overlay-background {
-        background-color: rgba(0, 0, 0, 0.0);
-        padding: 4px;
-    }
-
-    .question {
-        font-family: 'Adobe Arabic';
-        font-size: .9em;
-        cursor: default;
-    }
-
-    .answer {
-        font-family: 'Adobe Arabic';
-        font-size: .7em;
-        margin-left: 20px;
-        cursor: default;
-    }
-
-    .navDisabled {
-        opacity: .5;
-        cursor: not-allowed;
-    }
-
-    .video-js .vjs-fullscreen-control {
-        display: none;
-    }
-
-    /*This GX will not display thead scrubber*/
-    .vjs-progress-control {
-        display: none !important;
-    }
-
-    /*This GX will not display the back button*/
-    #backIcon, #backIcon2 {
-        display: none;
-    }
-
-    #container {
-        display: block;
-    }
-
-    /*Hide the preloading spinner*/
-    .vjs-seeking .vjs-loading-spinner, .vjs-waiting .vjs-loading-spinner {
-        display: none;
-    }
-
-    /*Walmart does not use thead slideover feature*/
-    #infoIcon, #infoIcon2 {
-        display: none;
-    }
-
-    #landscapeMessage {
-        display: none;
-    }
-}
-
-@media only screen and (min-device-width : 640px) {
-
-
-    .fa-2x {
-        margin-right: 20px;
-        cursor: pointer;
         font-size: 1.4em;
     }
 
     .video-js .vjs-overlay-bottom-left {
         width: auto;
         bottom: 3.4em;
+    }
+
+    .video-js .vjs-overlay-background {
+        background-color: rgba(0, 0, 0, 0.0);
+        padding: 4px;
     }
 
     .question {
@@ -117,16 +50,22 @@
             /* display: none; */
             top: 3em;
             position: absolute;
-            left: .8em;
         }
 
-    .answer.backToMainMenu {
-        position: absolute;
-        top: 7em;
-        font-size: 18px;
-        font-style: italic;
-        cursor: pointer;
+    .answer {
+        font-family: 'Adobe Arabic';
+        font-size: .7em;
+        margin-left: 20px;
+        cursor: default;
     }
+
+        .answer.backToMainMenu {
+            position: absolute;
+            top: 7em;
+            font-size: 18px;
+            font-style: italic;
+            cursor: pointer;
+        }
 
     .question.walmartOne {
         font-size: 1.9em;
@@ -144,37 +83,14 @@
     }
 
         .answer.bulleted {
-            display: list-item; /* This has to be "list-item"                                               */
-            list-style-type: disc; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
-            /*list-style-position: inside; /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */ */;
+            display: list-item;
+            list-style-type: disc;
+            /*list-style-position: inside;*/
         }
 
         .answer.clickable {
             cursor: pointer;
         }
-
-        /*.answer:before {
-            content: "\f00c";
-            font-family: FontAwesome;
-            font-size: 18px;
-            padding-right: 0.5em;
-            color: #337ab7;
-        }*/
-
-        /*.answer:before {
-            content: "\f111";
-            font-family: FontAwesome;
-            font-size: 14px;
-            padding-right: 0.5em;
-            color: #337ab7;
-        }*/
-
-
-        /*.answer:before {
-            content: url('../image/orangeDot.png');
-            padding-right: 0.5em;
-        }*/
-
 
         .answer.subanswer:before {
             content: "\f00c";
@@ -190,6 +106,51 @@
     }
 
     .video-js .vjs-fullscreen-control {
+        display: none;
+    }
+
+    /*This GX will not display the scrubber*/
+    .vjs-progress-control {
+        display: none !important;
+    }
+
+    #backIcon, #backIcon2 {
+        /*display: none;*/
+    }
+
+    .container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .slideInfoContent {
+        color: white;
+    }
+
+    .well {
+        margin: 10px;
+        background-color: rgba(0,0,0,0);
+        color: white;
+    }
+
+    div#myPlayerID2Container {
+        display: none;
+    }
+
+    .bc-player-Sk6lnYJFg_default .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+        left: -6em;
+    }
+
+    /*Hide the preloading spinner*/
+    .vjs-seeking .vjs-loading-spinner, .vjs-waiting .vjs-loading-spinner {
+        display: none;
+    }
+
+    #infoIcon, #infoIcon2 {
+        /*display: none;*/
+    }
+
+    #landscapeMessage {
         display: none;
     }
 
@@ -218,34 +179,19 @@
         display: none;
         overflow: auto;
     }
+}
 
+@media only screen and (min-device-width : 641px) {
 
-    .container {
-        padding-right: 0px;
-        padding-left: 0px;
-    }
-
-    .slideInfoContent {
-        color: white;
-    }
-
-    .well {
-        margin: 10px;
-        background-color: rgba(0,0,0,0);
-        color: white;
-    }
-
-    div#myPlayerID2Container {
-        display: none;
-    }
-
-    .bc-player-Sk6lnYJFg_default .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
-        left: -6em;
+    .question.deadline {
+        font-size: 2.2em;
+        top: 3em;
+        position: absolute;
+        left: .8em;
     }
 }
 
 @media only screen and (min-device-width : 801px) {
-
 
     .video-js .vjs-overlay-bottom-left {
         width: auto;

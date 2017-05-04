@@ -34,8 +34,6 @@ var credential = {
 //    });
 //});
 
-
-
 // Pulling data from local file
 //$.ajax({
 //    url: "data/walmartQA.json", //the QA version of the demo rather than the QC version
@@ -62,7 +60,6 @@ videojs("myPlayerID").ready(function () {
 
     //This script manages closed captioning persistance across videos. Somewhat hard hoded here for 2 cc text tracks. First tt is hidden metadata.
     myPlayer.on("play", function () {
-        //alert("myPlayer playing:" + textTrackToShow);
         if (textTrackToShow == 1) {
             console.log("Showing text track 1");
             myPlayer.textTracks()[1].mode = "showing";
@@ -75,7 +72,6 @@ videojs("myPlayerID").ready(function () {
         }
     });
 
-
     //For first video only - when user skips in the timeline, or triggers the slideover, or reaches the end - this functions saves the cc state.
     function saveCCStatePlayer1() {
         textTrackToShow = 0;
@@ -87,17 +83,13 @@ videojs("myPlayerID").ready(function () {
         }
     }
 
-
-
-
-
-
+    myPlayer.on("pause", function () {
+        saveCCStatePlayer1();
+    });
 
     myPlayer.on("seeking", function () {
         saveCCStatePlayer1();
     });
-
-
 
     //Transition from player1 to player2
     myPlayer.on("ended", function () {
@@ -141,7 +133,6 @@ videojs("myPlayerID").ready(function () {
         }
 
         //process cue points, logging general info to the console
-
         try {
             tt.oncuechange = function () {
                 if (tt.activeCues[0] !== undefined) {
@@ -189,13 +180,10 @@ videojs("myPlayerID").ready(function () {
 
 videojs("myPlayerID2").ready(function () {
     myPlayer2.on("ended", function () {
-
         saveCCStatePlayer2();
-
         myPlayer2.currentTime(0);
         myPlayer2.play();
     });
-
 
     myPlayer2.on("play", function () {
         //alert("myPlayer2 playing");
@@ -220,12 +208,13 @@ videojs("myPlayerID2").ready(function () {
         }
     }
 
-    myPlayer2.on("seeking", function () {
+    myPlayer2.on("pause", function () {
         saveCCStatePlayer2();
     });
 
-
-
+    myPlayer2.on("seeking", function () {
+        saveCCStatePlayer2();
+    });
 
     myPlayer2.on("loadedmetadata", function () {
         //console.log("myPlayer2 loadedmetadata");
@@ -254,7 +243,6 @@ function defaultEventHandler(onscreenElementIndex) {
     }
 }
 
-
 function homeEventHandler(videoName) {
     if (waitSequenceShowing) {
         var adjuster = 1;
@@ -270,11 +258,6 @@ function homeEventHandler(videoName) {
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.
 $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
-
-//this external file will handle the showResults function
-//not used in Walmart
-//$.getScript("js/processResults.js", function (data, textStatus, jqxhr) {
-//});
 
 function home() {
     homeEventHandler("returnIntro");
@@ -458,6 +441,8 @@ function makeVideoOverlayWait(videoName) {
         }
     }
 }
+
+
 
 
 
