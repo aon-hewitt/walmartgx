@@ -76,7 +76,7 @@
         display: block;
     }
 
-    /*Hide thead preloading spinner*/
+    /*Hide the preloading spinner*/
     .vjs-seeking .vjs-loading-spinner, .vjs-waiting .vjs-loading-spinner {
         display: none;
     }

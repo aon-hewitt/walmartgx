@@ -75,6 +75,7 @@ videojs("myPlayerID").ready(function () {
         }
     });
 
+
     //For first video only - when user skips in the timeline, or triggers the slideover, or reaches the end - this functions saves the cc state.
     function saveCCStatePlayer1() {
         textTrackToShow = 0;
@@ -85,6 +86,12 @@ videojs("myPlayerID").ready(function () {
             }
         }
     }
+
+
+
+
+
+
 
     myPlayer.on("seeking", function () {
         saveCCStatePlayer1();
@@ -302,7 +309,7 @@ function assignWeights(array) {
 
 function loadNewVideo(videoId, saveThis) {
 
-    //test which player is currently playing, use text track values from that player to set the textTrackToShow
+    //test which player is currently playing, use text track values from that player to set the textTrackToShow. This should more appropriately be set when user makes a cc choice.
     if ($("#myPlayerIDContainer").css("display") == "block") {
         textTrackToShow = 0; //required for closed captioning persistance
         for (var i = 0; i < myPlayer.textTracks().length; i++) {
