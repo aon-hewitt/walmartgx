@@ -10,6 +10,21 @@
         -ms-transform: rotate(90deg);
         transform: rotate(90deg);
     }
+
+    .container {
+        /*display:none;*/
+    }
+
+    #landscapeMessage {
+        display: block;
+        background-color: yellow;
+        padding: 10px 10px;
+        margin: 10px;
+    }
+
+    #slideInfo, slideInfo2 {
+        display:none !important;
+    }
 }
 
 @media only screen and (orientation:landscape) {

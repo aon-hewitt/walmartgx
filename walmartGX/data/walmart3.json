@@ -966,7 +966,7 @@
           "class": "question",
           "content": "Top Questions and Answers",
           "lastQuestion": false,
-          "start": 10,
+          "start": 9,
           "end": 24,
           "align": "top-left",
           "defaultAction": {
@@ -977,7 +977,7 @@
           "class": "answer bulleted clickable",
           "content": "When am I eligible?",
           "lastQuestion": false,
-          "start": 10,
+          "start": 9,
           "end": 24,
           "align": "top-left",
           "defaultAction": {
@@ -988,7 +988,7 @@
           "class": "answer bulleted clickable",
           "content": "HRA vs. HSA?",
           "lastQuestion": false,
-          "start": 10,
+          "start": 9,
           "end": 24,
           "align": "top-left",
           "defaultAction": {
@@ -1000,7 +1000,7 @@
           "class": "answer bulleted clickable",
           "content": "Which doctors are in my plan?",
           "lastQuestion": false,
-          "start": 10,
+          "start": 9,
           "end": 24,
           "align": "top-left",
           "defaultAction": {
@@ -1011,7 +1011,7 @@
           "class": "answer bulleted clickable",
           "content": "How do I add dependents?",
           "lastQuestion": false,
-          "start": 10,
+          "start": 9,
           "end": 24,
           "align": "top-left",
           "defaultAction": {
@@ -1022,7 +1022,7 @@
           "class": "answer bulleted clickable",
           "content": "What is the meaning of life?",
           "lastQuestion": false,
-          "start": 10,
+          "start": 9,
           "end": 16,
           "align": "top-left",
           "defaultAction": {

@@ -64,7 +64,7 @@
 
     /*This GX will not display thead scrubber*/
     .vjs-progress-control {
-        /*display: none !important;*/
+        display: none !important;
     }
 
     /*This GX will not display the back button*/
@@ -83,7 +83,11 @@
 
     /*Walmart does not use thead slideover feature*/
     #infoIcon, #infoIcon2 {
-        display:none;
+        display: none;
+    }
+
+    #landscapeMessage {
+        display: none;
     }
 }
 
