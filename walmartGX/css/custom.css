@@ -43,6 +43,7 @@
         font-size: 1.6em;
         color: #007dc6;
         line-height: 1.1;
+        position:relative;
     }
 
         .question.deadline {
@@ -52,20 +53,13 @@
             position: absolute;
         }
 
-    .answer {
-        font-family: 'Adobe Arabic';
-        font-size: .7em;
-        margin-left: 20px;
-        cursor: default;
+    .answer.backToMainMenu {
+        position: absolute;
+        top: 7em;
+        font-size: 18px;
+        font-style: italic;
+        cursor: pointer;
     }
-
-        .answer.backToMainMenu {
-            position: absolute;
-            top: 7em;
-            font-size: 18px;
-            font-style: italic;
-            cursor: pointer;
-        }
 
     .question.walmartOne {
         font-size: 1.9em;
@@ -80,6 +74,8 @@
         font-size: 1.5em;
         color: #6d6e71;
         line-height: 1.2em;
+        cursor: default;
+        position:relative;
     }
 
         .answer.bulleted {

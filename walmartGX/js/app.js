@@ -160,7 +160,7 @@ videojs("myPlayerID").ready(function () {
                         $(".question.deadline").html(datestring);
                     } else if ((jsonData.description == "showNavBar") && (config.currentVideoIndex == 10)) {
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
-                    }
+                    } 
                 } else {
                     //console.log("Cue point duration over");
                 }
