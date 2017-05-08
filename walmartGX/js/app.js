@@ -60,16 +60,25 @@ videojs("myPlayerID").ready(function () {
 
     //This script manages closed captioning persistance across videos. Somewhat hard hoded here for 2 cc text tracks. First tt is hidden metadata.
     myPlayer.on("play", function () {
-        if (textTrackToShow == 1) {
-            console.log("Showing text track 1");
-            myPlayer.textTracks()[1].mode = "showing";
-        } else if (textTrackToShow == 2) {
-            console.log("Showing text track 2");
-            myPlayer.textTracks()[2].mode = "showing";
-        } else {
-            myPlayer.textTracks()[1].mode = "disabled";
-            myPlayer.textTracks()[2].mode = "disabled";
+
+        try {
+            if (textTrackToShow == 1) {
+                console.log("Showing text track 1");
+                myPlayer.textTracks()[1].mode = "showing";
+            } else if (textTrackToShow == 2) {
+                console.log("Showing text track 2");
+                myPlayer.textTracks()[2].mode = "showing";
+            } else {
+                myPlayer.textTracks()[1].mode = "disabled";
+                myPlayer.textTracks()[2].mode = "disabled";
+            }
         }
+        catch (err) {
+            console.log("VTT ERROR in player 1");
+
+        }
+
+
     });
 
     //For first video only - when user skips in the timeline, or triggers the slideover, or reaches the end - this functions saves the cc state.
@@ -160,7 +169,7 @@ videojs("myPlayerID").ready(function () {
                         $(".question.deadline").html(datestring);
                     } else if ((jsonData.description == "showNavBar") && (config.currentVideoIndex == 10)) {
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
-                    } 
+                    }
                 } else {
                     //console.log("Cue point duration over");
                 }
@@ -187,16 +196,23 @@ videojs("myPlayerID2").ready(function () {
 
     myPlayer2.on("play", function () {
         //alert("myPlayer2 playing");
-        if (textTrackToShow == 1) {
-            //console.log("Showing text track 1");
-            myPlayer2.textTracks()[1].mode = "showing";
-        } else if (textTrackToShow == 2) {
-            //console.log("Showing text track 2");
-            myPlayer2.textTracks()[2].mode = "showing";
-        } else {
-            myPlayer2.textTracks()[1].mode = "disabled";
-            myPlayer2.textTracks()[2].mode = "disabled";
+
+        try {
+            if (textTrackToShow == 1) {
+                //console.log("Showing text track 1");
+                myPlayer2.textTracks()[1].mode = "showing";
+            } else if (textTrackToShow == 2) {
+                //console.log("Showing text track 2");
+                myPlayer2.textTracks()[2].mode = "showing";
+            } else {
+                myPlayer2.textTracks()[1].mode = "disabled";
+                myPlayer2.textTracks()[2].mode = "disabled";
+            }
         }
+        catch (err) {
+            console.log("VTT ERROR in player 2");
+        }
+
     });
 
     function saveCCStatePlayer2() {
@@ -260,7 +276,7 @@ $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
 
 function home() {
-    homeEventHandler("returnIntro");
+    homeEventHandler("returnIntro"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
 }
 
 function skip() {
