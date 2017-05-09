@@ -46,17 +46,10 @@ var credential = {
 //});
 
 // Pulling data from local file
-//$.getJSON("data/walmart3.json", function (result) {
-//    config = result; //use this line for local testing in Visual Studio
-//    loadNewVideo(config.startVideoName, false);
-//});
-
-$.getJSON("data/hii.json", function (result) {
+$.getJSON("data/walmart3.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
 });
-
-
 
 videojs("myPlayerID").ready(function () {
     //This is a fix recommended by Brightcove to overcome black screen on IE11
@@ -293,9 +286,7 @@ $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
 
 function home() {
-    //homeEventHandler("returnIntro"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
-    homeEventHandler("q1"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
-
+    homeEventHandler("returnIntro"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
 }
 
 function skip() {
@@ -374,15 +365,18 @@ function loadNewVideo(videoId, saveThis) {
         iterator1++;
     }
     while (iterator1 < config.videos.length);
-    myPlayer.catalog.getVideo(videoId, function (error, video) {
-        //deal with error
-        makeVideoOverlay(name);
-
-        if (name == config.startVideoName) {
-            $("#backIcon").css("display", "none");
-        }
-        myPlayer.catalog.load(video);
-    });
+        myPlayer.catalog.getVideo(videoId, function (error, video) {
+            //deal with error
+            if (error){
+                alert("Error loading Player 1 video");
+                return;
+            }
+            makeVideoOverlay(name);
+            if (name == config.startVideoName) {
+                $("#backIcon").css("display", "none");
+            }
+            myPlayer.catalog.load(video);
+        });
 }
 
 function makeVideoOverlay(videoId) {
@@ -432,7 +426,6 @@ function makeVideoOverlay(videoId) {
 function loadWaitSequence(videoId, name) {
     //console.log("loadWaitSequence started");
     myPlayer2.catalog.getVideo(videoId, function (error, video) {
-        //console.log("This is the video object: " + video);
         makeVideoOverlayWait(name);
         if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
             $("#backIcon2").css("display", "none");
