@@ -49,9 +49,13 @@ var credential = {
 $.getJSON("data/walmart3.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
+    if (config.showScrubber == false) {
+        $(".vjs-progress-control").css("display", "none");
+    } 
 });
 
 videojs("myPlayerID").ready(function () {
+
     //This is a fix recommended by Brightcove to overcome black screen on IE11
     if (videojs.IE_VERSION === 11) {
         // IE will use MP4/HTML5 before HLS/Flash
@@ -270,11 +274,11 @@ function defaultEventHandler(onscreenElementIndex) {
 }
 
 function homeEventHandler(videoName) {
-    if (waitSequenceShowing) {
-        var adjuster = 1;
-    } else {
-        adjuster = 0;
-    }
+    //if (waitSequenceShowing) {
+    //    var adjuster = 1;
+    //} else {
+    //    adjuster = 0;
+    //}
     loadNewVideo(videoName, true);
     $("#myPlayerIDContainer").css("display", "block");
     $("#myPlayerID2Container").css("display", "none");

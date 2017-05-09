@@ -13,6 +13,7 @@
   "backVideoEvent": "back",
   "infoVideoIcon": "fa-question",
   "infoVideoEvent": "showSlideInfo",
+  "showScrubber": false,
   "videos": [
     {
       "name": "q1",

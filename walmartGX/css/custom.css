@@ -105,9 +105,9 @@
         display: none;
     }
 
-    /*This GX will not display the scrubber*/
+    /*Hiding the scrubber has been removed to the config file*/
     .vjs-progress-control {
-        display: none !important;
+        /*display: none !important;*/
     }
 
     #backIcon, #backIcon2 {
