@@ -46,10 +46,17 @@ var credential = {
 //});
 
 // Pulling data from local file
-$.getJSON("data/walmart3.json", function (result) {
+//$.getJSON("data/walmart3.json", function (result) {
+//    config = result; //use this line for local testing in Visual Studio
+//    loadNewVideo(config.startVideoName, false);
+//});
+
+$.getJSON("data/hii.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
 });
+
+
 
 videojs("myPlayerID").ready(function () {
     //This is a fix recommended by Brightcove to overcome black screen on IE11
@@ -74,7 +81,7 @@ videojs("myPlayerID").ready(function () {
             }
         }
         catch (err) {
-            console.log("VTT ERROR in player 1");
+            console.log("cc ERROR in player 1");
 
         }
 
@@ -182,8 +189,18 @@ videojs("myPlayerID").ready(function () {
         myPlayer.play();
         myPlayer2.pause();
         waitSequenceShowing = false;
-        $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html");
-        $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html");
+
+        $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {
+            if (status == "error") {
+                $("#slideInfo").load("inc/default_empty.html");
+            }
+        });
+
+        $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html", function (response, status, xhr) {
+            if (status == "error") {
+                $("#slideInfo2").load("inc/default_empty2.html");
+            }
+        });
     });
 });
 
@@ -210,7 +227,7 @@ videojs("myPlayerID2").ready(function () {
             }
         }
         catch (err) {
-            console.log("VTT ERROR in player 2");
+            console.log("cc ERROR in player 2");
         }
 
     });
@@ -276,7 +293,9 @@ $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 });
 
 function home() {
-    homeEventHandler("returnIntro"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
+    //homeEventHandler("returnIntro"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
+    homeEventHandler("q1"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
+
 }
 
 function skip() {
