@@ -36,7 +36,7 @@ var credential = {
 
 // Pulling data from local file
 //$.ajax({
-//    url: "data/walmartQA.json", //the QA version of the demo rather than the QC version
+//    url: "data/walmart.json", //the QA version of the demo rather than the QC version
 //    type: "get",
 //    success: function (result) {
 //        //config = JSON.parse(result); hosting on iis does not require parsing
