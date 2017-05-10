@@ -46,7 +46,7 @@ var credential = {
 //});
 
 // Pulling data from local file
-$.getJSON("data/walmart.json", function (result) {
+$.getJSON("data/learningDemo.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
     if (config.showScrubber == false) {
