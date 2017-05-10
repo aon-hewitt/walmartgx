@@ -1,0 +1,223 @@
+﻿/*These are the base styles common to all Guided Experiences. CSS particular stop a single Guided Experience should be placed in its own css file and referenced accordingly.*/
+
+@media only screen and (min-device-width : 360px) {
+
+    .vjs-dock-text {
+        display: none; /*This hides the text at the top of the window*/
+    }
+
+    .main-header {
+        height: 75px;
+        background-color: #007dc6;
+    }
+
+    #logo {
+        padding: 15px;
+    }
+
+    .video-js .vjs-overlay-top-left {
+        position: relative;
+        width: 60%;
+        text-align: left;
+        color: black;
+        top: 25px;
+        left: 80px;
+    }
+
+    .fa-2x {
+        margin-right: 20px;
+        cursor: pointer;
+        font-size: 1.4em;
+    }
+
+    .video-js .vjs-overlay-bottom-left {
+        width: auto;
+        bottom: 3.4em;
+    }
+
+    .video-js .vjs-overlay-background {
+        background-color: rgba(0, 0, 0, 0.0);
+        padding: 4px;
+    }
+
+    .question {
+        font-family: Myriad Pro Regular, Arial;
+        font-size: 1.6em;
+        color: #007dc6;
+        line-height: 1.1;
+        position: relative;
+    }
+
+        .question.deadline {
+            font-size: 2.2em;
+            /* display: none; */
+            top: 3em;
+            position: absolute;
+        }
+
+    .answer.backToMainMenu {
+        position: absolute;
+        top: 7em;
+        font-size: 18px;
+        font-style: italic;
+        cursor: pointer;
+    }
+
+    .question.walmartOne {
+        font-size: 1.9em;
+    }
+
+    .question.clickable {
+        cursor: pointer;
+    }
+
+    .answer {
+        font-family: Myriad Pro Regular, Arial;
+        font-size: 1.5em;
+        color: #6d6e71;
+        line-height: 1.2em;
+        cursor: default;
+        position: relative;
+    }
+
+        .answer.bulleted {
+            display: list-item;
+            list-style-type: disc;
+            /*list-style-position: inside;*/
+        }
+
+        .answer.clickable {
+            cursor: pointer;
+        }
+
+        .answer.subanswer:before {
+            content: "\f00c";
+            font-family: FontAwesome;
+            font-size: 14px;
+            padding-right: 0.5em;
+            color: #004c91;
+        }
+
+    .navDisabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .video-js .vjs-fullscreen-control {
+        display: none;
+    }
+
+    /*Hiding the scrubber has been removed to the config file*/
+    .vjs-progress-control {
+        /*display: none !important;*/
+    }
+
+    #backIcon, #backIcon2 {
+        /*display: none;*/
+    }
+
+    .container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .slideInfoContent {
+        color: white;
+    }
+
+    .well {
+        margin: 10px;
+        background-color: rgba(0,0,0,0);
+        color: white;
+    }
+
+    div#myPlayerID2Container {
+        display: none;
+    }
+
+    .bc-player-Sk6lnYJFg_default .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+        left: -6em;
+    }
+
+    /*Hide the preloading spinner*/
+    .vjs-seeking .vjs-loading-spinner, .vjs-waiting .vjs-loading-spinner {
+        display: none;
+    }
+
+    #infoIcon, #infoIcon2 {
+        /*display: none;*/
+    }
+
+    #landscapeMessage {
+        display: none;
+    }
+
+    #slideInfo {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 1;
+        top: 0px;
+        bottom: 20px;
+        right: 0px;
+        background-color: #007dc6;
+        display: none;
+        overflow: auto;
+    }
+
+    #slideInfo2 {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 1;
+        top: 0px;
+        bottom: 20px;
+        right: 0px;
+        background-color: #007dc6;
+        display: none;
+        overflow: auto;
+    }
+}
+
+@media only screen and (min-device-width : 641px) {
+
+    .question.deadline {
+        font-size: 2.2em;
+        top: 3em;
+        position: absolute;
+        left: .8em;
+    }
+}
+
+@media only screen and (min-device-width : 801px) {
+
+    .video-js .vjs-overlay-bottom-left {
+        width: auto;
+        bottom: 2.8em;
+    }
+
+    .question {
+        font-size: 1.7em;
+        line-height: 1.2em;
+        font-weight: bold;
+    }
+
+    .answer {
+        font-size: 1.6em;
+        margin-left: 20px;
+    }
+
+        .answer.subanswer {
+            margin-left: 40px;
+            font-size: 1.5em;
+        }
+
+    .navDisabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+}

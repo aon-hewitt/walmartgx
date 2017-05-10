@@ -46,7 +46,7 @@ var credential = {
 //});
 
 // Pulling data from local file
-$.getJSON("data/walmart3.json", function (result) {
+$.getJSON("data/walmart.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
     if (config.showScrubber == false) {
@@ -189,13 +189,13 @@ videojs("myPlayerID").ready(function () {
 
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {
             if (status == "error") {
-                $("#slideInfo").load("inc/default_empty.html");
+                $("#slideInfo").load("inc_default/default_empty.html");
             }
         });
 
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html", function (response, status, xhr) {
             if (status == "error") {
-                $("#slideInfo2").load("inc/default_empty2.html");
+                $("#slideInfo2").load("inc_default/default_empty2.html");
             }
         });
     });
@@ -291,6 +291,8 @@ $.getScript("js/eventHandlers.js", function (data, textStatus, jqxhr) {
 
 function home() {
     homeEventHandler("returnIntro"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
+    //homeEventHandler("q1"); // This should always direct you back to a main video, not a wait sequence. Convert a wait sequence to a main video if necessary.
+
 }
 
 function skip() {
@@ -313,6 +315,31 @@ function back() {
         console.log("Error loading video");
     }
 }
+
+// This event is specified in the config file
+function showSlideInfo(slide) {
+    if (slide == 1) {
+        $('#slideInfo').toggle("slide", { direction: "right" }, 400);
+        myPlayer.pause(); //no call to save cc state is needed here since we save it on pause event
+
+
+    } else if (slide == 2) {
+        $('#slideInfo2').toggle("slide", { direction: "right" }, 400);
+        myPlayer2.pause(); //no call to save cc state is needed here since we save it on pause event
+
+    }
+}
+
+//This function is called from slide over content files
+function dismissSlideInfo() {
+    $('#slideInfo').toggle("slide", { direction: "right" }, 400);
+    myPlayer.play();
+}
+function dismissSlideInfo2() {
+    $('#slideInfo2').toggle("slide", { direction: "right" }, 400);
+    myPlayer2.play();
+}
+
 
 function assignWeights(array) {
     for (var i = 0; i < config.recommendations.length; i++) {
@@ -372,7 +399,7 @@ function loadNewVideo(videoId, saveThis) {
         myPlayer.catalog.getVideo(videoId, function (error, video) {
             //deal with error
             if (error){
-                alert("Error loading Player 1 video");
+                alert("Error loading Player 1 video. Check home() for valid video");
                 return;
             }
             makeVideoOverlay(name);
