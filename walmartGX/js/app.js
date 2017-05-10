@@ -51,7 +51,7 @@ $.getJSON("data/walmart.json", function (result) {
     loadNewVideo(config.startVideoName, false);
     if (config.showScrubber == false) {
         $(".vjs-progress-control").css("display", "none");
-    } 
+    }
 });
 
 videojs("myPlayerID").ready(function () {
@@ -189,12 +189,13 @@ videojs("myPlayerID").ready(function () {
 
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {
             if (status == "error") {
+                console.log("No slide content found, loading default content.");
                 $("#slideInfo").load("inc_default/default_empty.html");
             }
         });
-
         $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html", function (response, status, xhr) {
             if (status == "error") {
+                console.log("No slide2 content found, loading default content.");
                 $("#slideInfo2").load("inc_default/default_empty2.html");
             }
         });
@@ -396,18 +397,18 @@ function loadNewVideo(videoId, saveThis) {
         iterator1++;
     }
     while (iterator1 < config.videos.length);
-        myPlayer.catalog.getVideo(videoId, function (error, video) {
-            //deal with error
-            if (error){
-                alert("Error loading Player 1 video. Check home() for valid video");
-                return;
-            }
-            makeVideoOverlay(name);
-            if (name == config.startVideoName) {
-                $("#backIcon").css("display", "none");
-            }
-            myPlayer.catalog.load(video);
-        });
+    myPlayer.catalog.getVideo(videoId, function (error, video) {
+        //deal with error
+        if (error) {
+            alert("Error loading Player 1 video. Check home() for valid video");
+            return;
+        }
+        makeVideoOverlay(name);
+        if (name == config.startVideoName) {
+            $("#backIcon").css("display", "none");
+        }
+        myPlayer.catalog.load(video);
+    });
 }
 
 function makeVideoOverlay(videoId) {
