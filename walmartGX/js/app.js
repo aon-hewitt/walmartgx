@@ -430,7 +430,7 @@ function makeVideoOverlay(videoId) {
                 };
                 videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
                 if (config.videos[i].onscreenElements[j].event != undefined) {
-                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
+                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
                 } else {
                     videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='defaultEventHandler(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
                 }
