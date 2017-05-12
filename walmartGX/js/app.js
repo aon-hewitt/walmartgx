@@ -111,7 +111,7 @@ videojs("myPlayerID").ready(function () {
         if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
             $("#myPlayerIDContainer").css("display", "none");
             $("#myPlayerID2Container").css("display", "block");
-            $("#myPlayerID2Container").css("opacity", 1);
+            //$("#myPlayerID2Container").css("opacity", 1);
             myPlayer2.play();
             myPlayer.pause();
             waitSequenceShowing = true;
@@ -245,12 +245,12 @@ videojs("myPlayerID2").ready(function () {
 
     myPlayer2.on("seeking", function () {
         saveCCStatePlayer2();
-    });
+    });http://localhost:53817/../css/base.css
 
     myPlayer2.on("loadedmetadata", function () {
         //console.log("myPlayer2 loadedmetadata");
         // now its safe to display none the second player
-        $("#myPlayerID2Container").css("display", "none");
+        //$("#myPlayerID2Container").css("display", "none");
         myPlayer2.pause();
     });
 });
