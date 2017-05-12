@@ -9,6 +9,7 @@
     .main-header {
         height: 75px;
         background-color: #007dc6;
+        display:none;
     }
 
     #logo {
@@ -180,6 +181,12 @@
 }
 
 @media only screen and (min-device-width : 641px) {
+
+    .main-header {
+        height: 75px;
+        background-color: #007dc6;
+        display:block;
+    }
 
     .question.deadline {
         font-size: 2.2em;
