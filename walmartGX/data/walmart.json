@@ -621,7 +621,6 @@
       "brightcoveId": "5412016439001 ",
       "duration": 109,
       "endBehavior": "toDoList_wait",
-      "skipIntro": 50,
       "onscreenElements": [
         {
           "class": "question deadline",

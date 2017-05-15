@@ -110,11 +110,11 @@
 
     /*Hiding the scrubber has been removed to the config file*/
     .vjs-progress-control {
-        /*display: none !important;*/
+        display: none !important;
     }
 
     #backIcon, #backIcon2 {
-        /*display: none;*/
+        display: none;
     }
 
     .container {
@@ -146,7 +146,7 @@
     }
 
     #infoIcon, #infoIcon2 {
-        /*display: none;*/
+        display: none;
     }
 
     #landscapeMessage {
