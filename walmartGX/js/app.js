@@ -112,17 +112,26 @@ videojs("myPlayerID").ready(function () {
 
 
         saveCCStatePlayer1();
+        
 
-        //if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
-        //    $("#myPlayerIDContainer").css("display", "none");
-        //    $("#myPlayerID2Container").css("display", "block");
-        //    $("#myPlayerID2Container").css("opacity", 1);
-        //    myPlayer2.play();
-        //    myPlayer.pause();
-        //    waitSequenceShowing = true;
-        //} else {
-          
-        //};
+
+
+        if ((config.videos[config.currentVideoIndex].endBehavior != undefined) && (config.videos[config.currentVideoIndex].endBehavior != "")) {
+            var videoId = config.videos[config.currentVideoIndex].endBehavior;
+            loadNewVideo(videoId, true);
+
+            //$("#myPlayerIDContainer").css("display", "none");
+            //$("#myPlayerID2Container").css("display", "block");
+            //$("#myPlayerID2Container").css("opacity", 1);
+            //myPlayer2.play();
+            //myPlayer.pause();
+            //waitSequenceShowing = true;
+        } else if (config.videos[config.currentVideoIndex].waitSegmentStart != undefined) {
+            myPlayer.currentTime(config.videos[config.currentVideoIndex].waitSegmentStart);
+            myPlayer.play();
+        } else {
+            alert("No video specified");
+        };
 
 
 

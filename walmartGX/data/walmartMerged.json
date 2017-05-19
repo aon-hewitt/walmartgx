@@ -2,7 +2,7 @@
   "gxName": "walmartDemo",
   "title": "walmartDemo",
   "startVideoName": "intro",
-  "startVideoWaitSequenceName": "intro_wait",
+  "startVideoWaitSequenceName": "",
   "currentVideoIndex": -1,
   "homeVideoId": "intro",
   "homeVideoIcon": "fa-home",
@@ -21,7 +21,8 @@
       "brightcoveId": "5440502195001",
       "tracks": "intro",
       "duration": 150,
-      "endBehavior": "intro_wait",
+      "endBehavior": "",
+      "waitSegmentStart": 114,
       "skipIntro": 40.5,
       "onscreenElements": [
         {
@@ -29,7 +30,7 @@
           "content": "Health Benefits",
           "lastQuestion": false,
           "start": 41,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "medical",
@@ -118,7 +119,7 @@
           "content": "Insurance",
           "lastQuestion": false,
           "start": 58,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "weightings": []
@@ -206,7 +207,7 @@
           "content": "Education & Career",
           "lastQuestion": false,
           "start": 67,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "weightings": []
@@ -217,7 +218,7 @@
           "content": "Money",
           "lastQuestion": false,
           "start": 71,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "weightings": []
@@ -228,7 +229,7 @@
           "content": "Paid Time Off",
           "lastQuestion": false,
           "start": 74,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "weightings": []
@@ -239,7 +240,7 @@
           "content": "Well-being",
           "lastQuestion": false,
           "start": 77,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "weightings": []
@@ -250,7 +251,7 @@
           "content": "To-do List",
           "lastQuestion": false,
           "start": 86,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "toDoList",
@@ -262,7 +263,7 @@
           "content": "Top Questions & Answers",
           "lastQuestion": false,
           "start": 91,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "jumpToName": "topQuestions",
@@ -274,7 +275,7 @@
           "content": "Take Action",
           "lastQuestion": false,
           "start": 97,
-          "end": 150,
+          "end": 151,
           "align": "top-left",
           "defaultAction": {
             "weightings": []
@@ -287,7 +288,8 @@
       "waitSequence": false,
       "brightcoveId": "5397231147001",
       "duration": 38,
-      "endBehavior": "returnIntro_wait",
+      "endBehavior": "",
+      "waitSegmentStart": 1,
       "onscreenElements": [
         {
           "class": "question clickable",
@@ -398,7 +400,8 @@
       "waitSequence": false,
       "brightcoveId": "5440494363001",
       "duration": 142,
-      "endBehavior": "toDoList_wait",
+      "endBehavior": "",
+      "waitSegmentStart": 103,
       "onscreenElements": [
         {
           "class": "question deadline",
@@ -509,7 +512,8 @@
       "waitSequence": false,
       "brightcoveId": "5440502203001",
       "duration": 56,
-      "endBehavior": "medical_wait",
+      "endBehavior": "",
+      "waitSegmentStart": 15,
       "onscreenElements": [
         {
           "class": "question",
@@ -574,7 +578,8 @@
       "waitSequence": false,
       "brightcoveId": "5440494343001",
       "duration": 57,
-      "endBehavior": "topQuestions_wait",
+      "endBehavior": "",
+      "waitSegmentStart": 23,
       "onscreenElements": [
         {
           "class": "question",
@@ -662,7 +667,8 @@
       "waitSequence": false,
       "brightcoveId": "5440508732001",
       "duration": 127,
-      "endBehavior": "hraVsHsa_wait",
+      "endBehavior": "",
+      "waitSegmentStart": 94,
       "onscreenElements": [
         {
           "class": "question",
