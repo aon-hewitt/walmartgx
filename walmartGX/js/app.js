@@ -1,5 +1,5 @@
 ﻿var myPlayer = videojs("myPlayerID");
-var myPlayer2 = videojs("myPlayerID2");
+//var myPlayer2 = videojs("myPlayerID2");
 var config = {};
 var configs = [];
 var waitSequenceShowing = false;
@@ -46,11 +46,13 @@ var credential = {
 //});
 
 // Pulling data from local file
-$.getJSON("data/walmart.json", function (result) {
+$.getJSON("data/walmartMerged.json", function (result) {
     config = result; //use this line for local testing in Visual Studio
     loadNewVideo(config.startVideoName, false);
     if (config.showScrubber == false) {
         $(".vjs-progress-control").css("display", "none");
+    } else {
+        $(".vjs-progress-control").css("display", "block");
     }
 });
 
@@ -106,22 +108,28 @@ videojs("myPlayerID").ready(function () {
 
     //Transition from player1 to player2
     myPlayer.on("ended", function () {
+
+
+
         saveCCStatePlayer1();
 
-        if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
-            $("#myPlayerIDContainer").css("display", "none");
-            $("#myPlayerID2Container").css("display", "block");
-            $("#myPlayerID2Container").css("opacity", 1);
-            myPlayer2.play();
-            myPlayer.pause();
-            waitSequenceShowing = true;
-        } else {
-            //myPlayer.pause(); //pause the player if no endbehavior is specified
-        };
+        //if (config.videos[config.currentVideoIndex].endBehavior != undefined) {
+        //    $("#myPlayerIDContainer").css("display", "none");
+        //    $("#myPlayerID2Container").css("display", "block");
+        //    $("#myPlayerID2Container").css("opacity", 1);
+        //    myPlayer2.play();
+        //    myPlayer.pause();
+        //    waitSequenceShowing = true;
+        //} else {
+          
+        //};
+
+
+
     })
 
     myPlayer.on("loadedmetadata", function () {
-        loadWaitSequence(waitSequenceVideoId, waitSequenceName);
+        //loadWaitSequence(waitSequenceVideoId, waitSequenceName);
 
         //Add the vtt file pertaining to the current video. Currently all vtt events are defined in the intro.vtt file because of issues unloading remote text tracks. Events defined in the intro.vtt persist in the player indefinitley.
         if (config.videos[config.currentVideoIndex].tracks != undefined) {
@@ -184,7 +192,7 @@ videojs("myPlayerID").ready(function () {
         }
 
         myPlayer.play();
-        myPlayer2.pause();
+        //myPlayer2.pause();
         waitSequenceShowing = false;
 
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {
@@ -193,67 +201,75 @@ videojs("myPlayerID").ready(function () {
                 $("#slideInfo").load("inc_default/default_empty.html");
             }
         });
-        $("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html", function (response, status, xhr) {
-            if (status == "error") {
-                console.log("No slide2 content found, loading default content.");
-                $("#slideInfo2").load("inc_default/default_empty2.html");
-            }
-        });
+        //$("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html", function (response, status, xhr) {
+        //    if (status == "error") {
+        //        console.log("No slide2 content found, loading default content.");
+        //        $("#slideInfo2").load("inc_default/default_empty2.html");
+        //    }
+        //});
     });
 });
 
-videojs("myPlayerID2").ready(function () {
-    myPlayer2.on("ended", function () {
-        saveCCStatePlayer2();
-        myPlayer2.currentTime(0);
-        myPlayer2.play();
-    });
 
-    myPlayer2.on("play", function () {
-        //alert("myPlayer2 playing");
 
-        try {
-            if (textTrackToShow == 1) {
-                //console.log("Showing text track 1");
-                myPlayer2.textTracks()[1].mode = "showing";
-            } else if (textTrackToShow == 2) {
-                //console.log("Showing text track 2");
-                myPlayer2.textTracks()[2].mode = "showing";
-            } else {
-                myPlayer2.textTracks()[1].mode = "disabled";
-                myPlayer2.textTracks()[2].mode = "disabled";
-            }
-        }
-        catch (err) {
-            console.log("cc ERROR in player 2");
-        }
 
-    });
 
-    function saveCCStatePlayer2() {
-        textTrackToShow = 0;
-        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
-            if ((myPlayer2.textTracks()[i].mode) == "showing") {
-                textTrackToShow = i;
-            }
-        }
-    }
+//videojs("myPlayerID2").ready(function () {
+//    myPlayer2.on("ended", function () {
+//        saveCCStatePlayer2();
+//        myPlayer2.currentTime(0);
+//        myPlayer2.play();
+//    });
 
-    myPlayer2.on("pause", function () {
-        saveCCStatePlayer2();
-    });
+//    myPlayer2.on("play", function () {
+//        //alert("myPlayer2 playing");
 
-    myPlayer2.on("seeking", function () {
-        saveCCStatePlayer2();
-    });
+//        try {
+//            if (textTrackToShow == 1) {
+//                //console.log("Showing text track 1");
+//                myPlayer2.textTracks()[1].mode = "showing";
+//            } else if (textTrackToShow == 2) {
+//                //console.log("Showing text track 2");
+//                myPlayer2.textTracks()[2].mode = "showing";
+//            } else {
+//                myPlayer2.textTracks()[1].mode = "disabled";
+//                myPlayer2.textTracks()[2].mode = "disabled";
+//            }
+//        }
+//        catch (err) {
+//            console.log("cc ERROR in player 2");
+//        }
 
-    myPlayer2.on("loadedmetadata", function () {
-        //console.log("myPlayer2 loadedmetadata");
-        // now its safe to display none the second player
-        $("#myPlayerID2Container").css("display", "none");
-        myPlayer2.pause();
-    });
-});
+//    });
+
+//    function saveCCStatePlayer2() {
+//        textTrackToShow = 0;
+//        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
+//            if ((myPlayer2.textTracks()[i].mode) == "showing") {
+//                textTrackToShow = i;
+//            }
+//        }
+//    }
+
+//    myPlayer2.on("pause", function () {
+//        saveCCStatePlayer2();
+//    });
+
+//    myPlayer2.on("seeking", function () {
+//        saveCCStatePlayer2();
+//    });
+
+//    myPlayer2.on("loadedmetadata", function () {
+//        //console.log("myPlayer2 loadedmetadata");
+//        // now its safe to display none the second player
+//        $("#myPlayerID2Container").css("display", "none");
+//        myPlayer2.pause();
+//    });
+//});
+
+
+
+
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
@@ -266,7 +282,7 @@ function defaultEventHandler(onscreenElementIndex) {
     if (config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName != undefined) {
         loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
         $("#myPlayerIDContainer").css("display", "block");
-        $("#myPlayerID2Container").css("display", "none");
+        //$("#myPlayerID2Container").css("display", "none");
         waitSequenceShowing = false;
         assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
         //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
@@ -282,7 +298,7 @@ function homeEventHandler(videoName) {
     //}
     loadNewVideo(videoName, true);
     $("#myPlayerIDContainer").css("display", "block");
-    $("#myPlayerID2Container").css("display", "none");
+    //$("#myPlayerID2Container").css("display", "none");
     waitSequenceShowing = false;
 }
 
@@ -309,7 +325,7 @@ function back() {
     }
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
-        $("#myPlayerID2Container").css("opacity", 0);
+        //$("#myPlayerID2Container").css("opacity", 0);
         $("#myPlayerIDContainer").css("display", "block");
 
     } catch (err) {
@@ -325,8 +341,8 @@ function showSlideInfo(slide) {
 
 
     } else if (slide == 2) {
-        $('#slideInfo2').toggle("slide", { direction: "right" }, 400);
-        myPlayer2.pause(); //no call to save cc state is needed here since we save it on pause event
+        //$('#slideInfo2').toggle("slide", { direction: "right" }, 400);
+        //myPlayer2.pause(); //no call to save cc state is needed here since we save it on pause event
 
     }
 }
@@ -336,10 +352,10 @@ function dismissSlideInfo() {
     $('#slideInfo').toggle("slide", { direction: "right" }, 400);
     myPlayer.play();
 }
-function dismissSlideInfo2() {
-    $('#slideInfo2').toggle("slide", { direction: "right" }, 400);
-    myPlayer2.play();
-}
+//function dismissSlideInfo2() {
+//    $('#slideInfo2').toggle("slide", { direction: "right" }, 400);
+//    myPlayer2.play();
+//}
 
 
 function assignWeights(array) {
@@ -359,16 +375,7 @@ function loadNewVideo(videoId, saveThis) {
                 textTrackToShow = i;
             }
         }
-    } else if ($("#myPlayerID2Container").css("display") == "block") {
-        textTrackToShow = 0; //required for closed captioning persistance
-        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
-            //console.log("Texttrack " + i + " showing? " + myPlayer2.textTracks()[i].mode);
-            if ((myPlayer2.textTracks()[i].mode) == "showing") {
-                textTrackToShow = i;
-            }
-        }
-    }
-
+    } 
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
@@ -418,7 +425,7 @@ function makeVideoOverlay(videoId) {
     videoOverlayObject.overlay = {
     };
     myPlayer.overlay(null);
-    myPlayer2.overlay(null);//see if this clears out the overlay
+    
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
     //now create the overlay properties
@@ -455,52 +462,52 @@ function makeVideoOverlay(videoId) {
     }
 }
 
-function loadWaitSequence(videoId, name) {
-    //console.log("loadWaitSequence started");
-    myPlayer2.catalog.getVideo(videoId, function (error, video) {
-        makeVideoOverlayWait(name);
-        if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
-            $("#backIcon2").css("display", "none");
-        }
-        myPlayer2.catalog.load(video);
-    });
-}
+//function loadWaitSequence(videoId, name) {
+//    //console.log("loadWaitSequence started");
+//    myPlayer2.catalog.getVideo(videoId, function (error, video) {
+//        makeVideoOverlayWait(name);
+//        if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
+//            $("#backIcon2").css("display", "none");
+//        }
+//        myPlayer2.catalog.load(video);
+//    });
+//}
 
-function makeVideoOverlayWait(videoName) {
-    var videoOverlayObject = {
-    };
-    videoOverlayObject.overlay = {
-    };
-    myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
-    videoOverlayObject.overlay.content = "";
-    videoOverlayObject.overlay.overlays = [];
-    //now create the overlay properties
-    for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
-        if (config.videos[i].name == videoName) {
-            for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
-                videoOverlayObject.overlay.overlays[j] = {
-                };
-                videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
-                if (config.videos[i].onscreenElements[j].event != undefined) {
-                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
-                } else {
-                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='defaultEventHandler(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
-                }
-                videoOverlayObject.overlay.overlays[j].start = config.videos[i].onscreenElements[j].start;
-                videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
-            }
-            //now add the menubar overlay to every page
-            var navBar = {};
-            navBar.align = "bottom-left";
-            navBar.content = "<span id='homeIcon2' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon2' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon2' onclick='" + config.infoVideoEvent + "(2)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
-            navBar.start = 0;
-            navBar.end = config.videos[config.currentVideoIndex + 1].duration;
-            videoOverlayObject.overlay.overlays.push(navBar);
-            myPlayer2.overlay(videoOverlayObject.overlay);
-            return;
-        }
-    }
-}
+//function makeVideoOverlayWait(videoName) {
+//    var videoOverlayObject = {
+//    };
+//    videoOverlayObject.overlay = {
+//    };
+//    myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
+//    videoOverlayObject.overlay.content = "";
+//    videoOverlayObject.overlay.overlays = [];
+//    //now create the overlay properties
+//    for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
+//        if (config.videos[i].name == videoName) {
+//            for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
+//                videoOverlayObject.overlay.overlays[j] = {
+//                };
+//                videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
+//                if (config.videos[i].onscreenElements[j].event != undefined) {
+//                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
+//                } else {
+//                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='defaultEventHandler(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
+//                }
+//                videoOverlayObject.overlay.overlays[j].start = config.videos[i].onscreenElements[j].start;
+//                videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
+//            }
+//            //now add the menubar overlay to every page
+//            var navBar = {};
+//            navBar.align = "bottom-left";
+//            navBar.content = "<span id='homeIcon2' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon2' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon2' onclick='" + config.infoVideoEvent + "(2)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
+//            navBar.start = 0;
+//            navBar.end = config.videos[config.currentVideoIndex + 1].duration;
+//            videoOverlayObject.overlay.overlays.push(navBar);
+//            myPlayer2.overlay(videoOverlayObject.overlay);
+//            return;
+//        }
+//    }
+//}
 
 
 
