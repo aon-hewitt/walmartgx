@@ -1,23 +1,22 @@
 ﻿var myPlayer = videojs("myPlayerID");
-//var myPlayer2 = videojs("myPlayerID2");
 var config = {};
 var configs = [];
 var waitSequenceShowing = false;
 var waitSequenceVideoId;
 var waitSequenceName;
 var textTrackToShow = 0;
-var repositoryId = "a657fd8fced304aeb5cc"; //Brightcove repository
-var branchId = "e107b525b507b9d33a23"; //Master branch on the repository
-var nodeId = "1f89a17e1845bc71d945"; //Walmart 
-var credential = {
-    "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
-    "clientSecret": "wn7qJcPQVucXl3IrtJpPfmX7sfJORbAdA9DL/0wEjvcYU5g3Qzu4lKSTZKjHrI+iMOqUSC5aPoSkazluD+i95vuLVSjBtzYm3y2296ESC6Y=",
-    "username": "0e2b89b9-115d-4dd8-be07-7fd662b94ba7",
-    "password": "sY12fxj9bpSD+aUuDnIJHZ90E4F8fDrRXUXBwFN5CMNo48L3K5oJxTDPEKX9jlqQXTHWWkf6GZWPMdEBYF81ETVmUEVwfC+4n4XXuARfKyM=",
-    "baseURL": "https://api.cloudcms.com",
-    "application": "4db40e414e0888fe688d"
-}
 
+//var repositoryId = "a657fd8fced304aeb5cc"; //Brightcove repository
+//var branchId = "e107b525b507b9d33a23"; //Master branch on the repository
+//var nodeId = "1f89a17e1845bc71d945"; //Walmart 
+//var credential = {
+//    "clientKey": "ac8a94d2-05d0-4d03-919d-52408a8f9c06",
+//    "clientSecret": "wn7qJcPQVucXl3IrtJpPfmX7sfJORbAdA9DL/0wEjvcYU5g3Qzu4lKSTZKjHrI+iMOqUSC5aPoSkazluD+i95vuLVSjBtzYm3y2296ESC6Y=",
+//    "username": "0e2b89b9-115d-4dd8-be07-7fd662b94ba7",
+//    "password": "sY12fxj9bpSD+aUuDnIJHZ90E4F8fDrRXUXBwFN5CMNo48L3K5oJxTDPEKX9jlqQXTHWWkf6GZWPMdEBYF81ETVmUEVwfC+4n4XXuARfKyM=",
+//    "baseURL": "https://api.cloudcms.com",
+//    "application": "4db40e414e0888fe688d"
+//}
 //Connection script for pulling data from CloudCMS
 //Gitana.connect(credential, function (err) {
 //    if (err) {
@@ -34,7 +33,7 @@ var credential = {
 //    });
 //});
 
-// Pulling data from local file
+// Pulling data from local file using jQuery Ajax
 //$.ajax({
 //    url: "data/walmart.json", //the QA version of the demo rather than the QC version
 //    type: "get",
@@ -47,7 +46,7 @@ var credential = {
 
 // Pulling data from local file
 $.getJSON("data/walmartMerged.json", function (result) {
-    config = result; //use this line for local testing in Visual Studio
+    config = result;
     loadNewVideo(config.startVideoName, false);
     if (config.showScrubber == false) {
         $(".vjs-progress-control").css("display", "none");
@@ -64,7 +63,7 @@ videojs("myPlayerID").ready(function () {
         videojs("myPlayerID").options_.sourceOrder = false;
     }
 
-    //This script manages closed captioning persistance across videos. Somewhat hard hoded here for 2 cc text tracks. First tt is hidden metadata.
+    //This script manages closed captioning persistance across videos. Somewhat hard coded here for 2 cc text tracks. First tt is hidden metadata.
     myPlayer.on("play", function () {
 
         try {
@@ -81,10 +80,7 @@ videojs("myPlayerID").ready(function () {
         }
         catch (err) {
             console.log("cc ERROR in player 1");
-
         }
-
-
     });
 
     //For first video only - when user skips in the timeline, or triggers the slideover, or reaches the end - this functions saves the cc state.
@@ -108,24 +104,11 @@ videojs("myPlayerID").ready(function () {
 
     //Transition from player1 to player2
     myPlayer.on("ended", function () {
-
-
-
         saveCCStatePlayer1();
         
-
-
-
         if ((config.videos[config.currentVideoIndex].endBehavior != undefined) && (config.videos[config.currentVideoIndex].endBehavior != "")) {
             var videoId = config.videos[config.currentVideoIndex].endBehavior;
             loadNewVideo(videoId, true);
-
-            //$("#myPlayerIDContainer").css("display", "none");
-            //$("#myPlayerID2Container").css("display", "block");
-            //$("#myPlayerID2Container").css("opacity", 1);
-            //myPlayer2.play();
-            //myPlayer.pause();
-            //waitSequenceShowing = true;
         } else if (config.videos[config.currentVideoIndex].waitSegmentStart != undefined) {
             myPlayer.currentTime(config.videos[config.currentVideoIndex].waitSegmentStart);
             myPlayer.play();
@@ -138,9 +121,8 @@ videojs("myPlayerID").ready(function () {
     })
 
     myPlayer.on("loadedmetadata", function () {
-        //loadWaitSequence(waitSequenceVideoId, waitSequenceName);
 
-        //Add the vtt file pertaining to the current video. Currently all vtt events are defined in the intro.vtt file because of issues unloading remote text tracks. Events defined in the intro.vtt persist in the player indefinitley.
+        //Add the vtt file pertaining to the current video. Currently all vtt events are defined in the intro.vtt file because of BC bugs unloading remote text tracks. Events defined in the intro.vtt persist in the player indefinitley.
         if (config.videos[config.currentVideoIndex].tracks != undefined) {
             myPlayer.addRemoteTextTrack({
                 kind: 'metadata',
@@ -151,9 +133,9 @@ videojs("myPlayerID").ready(function () {
         }
 
         //Survey Text tracks for debugging
-        for (var i = 0; i < myPlayer.textTracks().length; i++) {
-            //console.log(myPlayer.textTracks()[i]);
-        }
+        //for (var i = 0; i < myPlayer.textTracks().length; i++) {
+        //    console.log(myPlayer.textTracks()[i]);
+        //}
 
         //Get the text track pertaining to custom events, not closed captions
         for (var i = 1; i < myPlayer.textTracks().length; i++) {
@@ -176,9 +158,9 @@ videojs("myPlayerID").ready(function () {
 
                     //Now handle the cue point processing.
                     //The first test triggers the hiding of the menu on video 10, Then fill in the date on video 4, then redisplay the menu at the appropriate time in video 10
-                    if ((jsonData.description == "hideNavBar") && (config.currentVideoIndex == 10)) {
+                    if ((jsonData.description == "hideNavBar") && (config.videos[config.currentVideoIndex].name == 'hraVsHsa')) {
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "none");
-                    } else if ((jsonData.description == "showDate") && (config.currentVideoIndex == 4)) {
+                    } else if ((jsonData.description == "showDate") && (config.videos[config.currentVideoIndex].name == 'toDoList')) {
                         var d = new Date();
                         d.setDate(d.getDate() + 30);
                         var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -188,7 +170,7 @@ videojs("myPlayerID").ready(function () {
                         var datestring = weekdayName + ", " + monthName + " " + d.getDate() + ", " + d.getFullYear();
                         var n = d.toDateString();
                         $(".question.deadline").html(datestring);
-                    } else if ((jsonData.description == "showNavBar") && (config.currentVideoIndex == 10)) {
+                    } else if ((jsonData.description == "showNavBar") && (config.videos[config.currentVideoIndex].name == 'hraVsHsa')) {
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "block");
                     }
                 } else {
@@ -201,7 +183,6 @@ videojs("myPlayerID").ready(function () {
         }
 
         myPlayer.play();
-        //myPlayer2.pause();
         waitSequenceShowing = false;
 
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {

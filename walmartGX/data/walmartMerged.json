@@ -405,7 +405,7 @@
       "onscreenElements": [
         {
           "class": "question deadline",
-          "content": "July 30, 2017",
+          "content": "",
           "lastQuestion": false,
           "start": 20,
           "end": 41,
