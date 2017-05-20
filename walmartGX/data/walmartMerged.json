@@ -2,7 +2,6 @@
   "gxName": "walmartDemo",
   "title": "walmartDemo",
   "startVideoName": "intro",
-  "startVideoWaitSequenceName": "",
   "currentVideoIndex": -1,
   "homeVideoId": "intro",
   "homeVideoIcon": "fa-home",
@@ -17,7 +16,6 @@
   "videos": [
     {
       "name": "intro",
-      "waitSequence": false,
       "brightcoveId": "5440502195001",
       "tracks": "intro",
       "duration": 150,
@@ -285,7 +283,6 @@
     },
     {
       "name": "returnIntro",
-      "waitSequence": false,
       "brightcoveId": "5441353048001",
       "duration": 38,
       "endBehavior": "",
@@ -397,7 +394,6 @@
     },
     {
       "name": "toDoList",
-      "waitSequence": false,
       "brightcoveId": "5440494363001",
       "duration": 142,
       "endBehavior": "",
@@ -509,7 +505,6 @@
     },
     {
       "name": "medical",
-      "waitSequence": false,
       "brightcoveId": "5440502203001",
       "duration": 56,
       "endBehavior": "",
@@ -575,7 +570,6 @@
     },
     {
       "name": "topQuestions",
-      "waitSequence": false,
       "brightcoveId": "5440494343001",
       "duration": 57,
       "endBehavior": "",
@@ -664,7 +658,6 @@
     },
     {
       "name": "hraVsHsa",
-      "waitSequence": false,
       "brightcoveId": "5440508732001",
       "duration": 127,
       "endBehavior": "",

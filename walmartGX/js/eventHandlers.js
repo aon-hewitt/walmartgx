@@ -5,6 +5,7 @@ function backToMainMenuEvent() {
     homeEventHandler("returnIntro");
 }
 
+//This function is anexample of a custom event handler. It can replace a default behavior and sends the user to topQuestions every thursday.
 function myEvent(onscreenElementIndex) {
     var video;
     var date = new Date().getDay();
@@ -16,6 +17,5 @@ function myEvent(onscreenElementIndex) {
     }
     loadNewVideo(video, true);
     $("#myPlayerIDContainer").css("display", "block");
-    $("#myPlayerID2Container").css("display", "none");
     waitSequenceShowing = false;
 }
