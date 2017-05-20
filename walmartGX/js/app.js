@@ -115,9 +115,6 @@ videojs("myPlayerID").ready(function () {
         } else {
             alert("No video specified");
         };
-
-
-
     })
 
     myPlayer.on("loadedmetadata", function () {
@@ -191,75 +188,8 @@ videojs("myPlayerID").ready(function () {
                 $("#slideInfo").load("inc_default/default_empty.html");
             }
         });
-        //$("#slideInfo2").load("inc/" + config.videos[config.currentVideoIndex + 1].name + ".html", function (response, status, xhr) {
-        //    if (status == "error") {
-        //        console.log("No slide2 content found, loading default content.");
-        //        $("#slideInfo2").load("inc_default/default_empty2.html");
-        //    }
-        //});
     });
 });
-
-
-
-
-
-//videojs("myPlayerID2").ready(function () {
-//    myPlayer2.on("ended", function () {
-//        saveCCStatePlayer2();
-//        myPlayer2.currentTime(0);
-//        myPlayer2.play();
-//    });
-
-//    myPlayer2.on("play", function () {
-//        //alert("myPlayer2 playing");
-
-//        try {
-//            if (textTrackToShow == 1) {
-//                //console.log("Showing text track 1");
-//                myPlayer2.textTracks()[1].mode = "showing";
-//            } else if (textTrackToShow == 2) {
-//                //console.log("Showing text track 2");
-//                myPlayer2.textTracks()[2].mode = "showing";
-//            } else {
-//                myPlayer2.textTracks()[1].mode = "disabled";
-//                myPlayer2.textTracks()[2].mode = "disabled";
-//            }
-//        }
-//        catch (err) {
-//            console.log("cc ERROR in player 2");
-//        }
-
-//    });
-
-//    function saveCCStatePlayer2() {
-//        textTrackToShow = 0;
-//        for (var i = 0; i < myPlayer2.textTracks().length; i++) {
-//            if ((myPlayer2.textTracks()[i].mode) == "showing") {
-//                textTrackToShow = i;
-//            }
-//        }
-//    }
-
-//    myPlayer2.on("pause", function () {
-//        saveCCStatePlayer2();
-//    });
-
-//    myPlayer2.on("seeking", function () {
-//        saveCCStatePlayer2();
-//    });
-
-//    myPlayer2.on("loadedmetadata", function () {
-//        //console.log("myPlayer2 loadedmetadata");
-//        // now its safe to display none the second player
-//        $("#myPlayerID2Container").css("display", "none");
-//        myPlayer2.pause();
-//    });
-//});
-
-
-
-
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
@@ -272,7 +202,6 @@ function defaultEventHandler(onscreenElementIndex) {
     if (config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName != undefined) {
         loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
         $("#myPlayerIDContainer").css("display", "block");
-        //$("#myPlayerID2Container").css("display", "none");
         waitSequenceShowing = false;
         assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
         //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
@@ -281,14 +210,9 @@ function defaultEventHandler(onscreenElementIndex) {
 }
 
 function homeEventHandler(videoName) {
-    //if (waitSequenceShowing) {
-    //    var adjuster = 1;
-    //} else {
-    //    adjuster = 0;
-    //}
+
     loadNewVideo(videoName, true);
     $("#myPlayerIDContainer").css("display", "block");
-    //$("#myPlayerID2Container").css("display", "none");
     waitSequenceShowing = false;
 }
 
@@ -315,7 +239,6 @@ function back() {
     }
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
-        //$("#myPlayerID2Container").css("opacity", 0);
         $("#myPlayerIDContainer").css("display", "block");
 
     } catch (err) {
@@ -327,6 +250,9 @@ function back() {
 function showSlideInfo(slide) {
     if (slide == 1) {
         $('#slideInfo').toggle("slide", { direction: "right" }, 400);
+        $('.main-header').addClass("hideBannerOnMobileSlide");
+        
+        
         myPlayer.pause(); //no call to save cc state is needed here since we save it on pause event
 
 
@@ -340,13 +266,9 @@ function showSlideInfo(slide) {
 //This function is called from slide over content files
 function dismissSlideInfo() {
     $('#slideInfo').toggle("slide", { direction: "right" }, 400);
+    $('.main-header').removeClass("hideBannerOnMobileSlide");
     myPlayer.play();
 }
-//function dismissSlideInfo2() {
-//    $('#slideInfo2').toggle("slide", { direction: "right" }, 400);
-//    myPlayer2.play();
-//}
-
 
 function assignWeights(array) {
     for (var i = 0; i < config.recommendations.length; i++) {
@@ -356,16 +278,14 @@ function assignWeights(array) {
 
 function loadNewVideo(videoId, saveThis) {
 
-    //test which player is currently playing, use text track values from that player to set the textTrackToShow. This should more appropriately be set when user makes a cc choice.
-    if ($("#myPlayerIDContainer").css("display") == "block") {
+
         textTrackToShow = 0; //required for closed captioning persistance
         for (var i = 0; i < myPlayer.textTracks().length; i++) {
             //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
             if ((myPlayer.textTracks()[i].mode) == "showing") {
                 textTrackToShow = i;
             }
-        }
-    } 
+        } 
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {

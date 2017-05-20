@@ -13,7 +13,7 @@
   "backVideoEvent": "back",
   "infoVideoIcon": "fa-question",
   "infoVideoEvent": "showSlideInfo",
-  "showScrubber": true,
+  "showScrubber": false,
   "videos": [
     {
       "name": "intro",
@@ -286,7 +286,7 @@
     {
       "name": "returnIntro",
       "waitSequence": false,
-      "brightcoveId": "5397231147001",
+      "brightcoveId": "5441353048001",
       "duration": 38,
       "endBehavior": "",
       "waitSegmentStart": 1,

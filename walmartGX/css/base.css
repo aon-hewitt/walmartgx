@@ -1,6 +1,9 @@
 ﻿/*These are the base styles common to all Guided Experiences. CSS particular stop a single Guided Experience should be placed in its own css file and referenced accordingly.*/
 
 @media only screen and (min-device-width : 360px) {
+    body {
+        /*overflow:hidden;*/
+    }
 
     .vjs-dock-text {
         display: none; /*This hides the text at the top of the window*/
@@ -181,6 +184,8 @@
 }
 
 @media only screen and (min-device-width : 641px) {
+
+
 
     .main-header {
         height: 75px;
