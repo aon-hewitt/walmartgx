@@ -1,7 +1,6 @@
 ﻿var myPlayer = videojs("myPlayerID");
 var config = {};
 var configs = [];
-var waitSequenceShowing = false;
 var waitSequenceVideoId;
 var waitSequenceName;
 var textTrackToShow = 0;
@@ -79,7 +78,7 @@ videojs("myPlayerID").ready(function () {
             }
         }
         catch (err) {
-            console.log("cc ERROR in player 1");
+            //console.log("cc in player 1");
         }
     });
 
@@ -176,11 +175,10 @@ videojs("myPlayerID").ready(function () {
             }
         }
         catch (err) {
-            console.log("oncuechange error (Probably no tt defined): " + err);
+            //console.log("oncuechange error (Probably no tt defined): " + err);
         }
 
         myPlayer.play();
-        waitSequenceShowing = false;
 
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {
             if (status == "error") {
@@ -193,17 +191,11 @@ videojs("myPlayerID").ready(function () {
 
 //Any element without an event specified will be handled here using properties specified in config.
 function defaultEventHandler(onscreenElementIndex) {
-    if (waitSequenceShowing) {
-        var adjuster = 1;
-    } else {
-        adjuster = 0;
-    }
 
-    if (config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName != undefined) {
-        loadNewVideo(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
+    if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].defaultAction.jumpToName != undefined) {
+        loadNewVideo(config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].defaultAction.jumpToName, true);
         $("#myPlayerIDContainer").css("display", "block");
-        waitSequenceShowing = false;
-        assignWeights(config.videos[config.currentVideoIndex + adjuster].onscreenElements[onscreenElementIndex].defaultAction.weightings);
+        assignWeights(config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].defaultAction.weightings);
         //if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].lastQuestion) {
         //}
     }
@@ -213,7 +205,6 @@ function homeEventHandler(videoName) {
 
     loadNewVideo(videoName, true);
     $("#myPlayerIDContainer").css("display", "block");
-    waitSequenceShowing = false;
 }
 
 //this external file will handle the custom eventHandlers functions for questions with an event handler specified in config.
@@ -372,52 +363,7 @@ function makeVideoOverlay(videoId) {
     }
 }
 
-//function loadWaitSequence(videoId, name) {
-//    //console.log("loadWaitSequence started");
-//    myPlayer2.catalog.getVideo(videoId, function (error, video) {
-//        makeVideoOverlayWait(name);
-//        if (name == config.startVideoName + "_wait") {//test to see if the back icon should be displayed. Do not show on intro video or wait sequence
-//            $("#backIcon2").css("display", "none");
-//        }
-//        myPlayer2.catalog.load(video);
-//    });
-//}
 
-//function makeVideoOverlayWait(videoName) {
-//    var videoOverlayObject = {
-//    };
-//    videoOverlayObject.overlay = {
-//    };
-//    myPlayer2.overlay(videoOverlayObject.overlay);//see if this clears out the overlay
-//    videoOverlayObject.overlay.content = "";
-//    videoOverlayObject.overlay.overlays = [];
-//    //now create the overlay properties
-//    for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
-//        if (config.videos[i].name == videoName) {
-//            for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
-//                videoOverlayObject.overlay.overlays[j] = {
-//                };
-//                videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
-//                if (config.videos[i].onscreenElements[j].event != undefined) {
-//                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "()'>" + config.videos[i].onscreenElements[j].content + "</span>";
-//                } else {
-//                    videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='defaultEventHandler(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
-//                }
-//                videoOverlayObject.overlay.overlays[j].start = config.videos[i].onscreenElements[j].start;
-//                videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
-//            }
-//            //now add the menubar overlay to every page
-//            var navBar = {};
-//            navBar.align = "bottom-left";
-//            navBar.content = "<span id='homeIcon2' onclick='" + config.homeVideoEvent + "()'><i class='fa fa-2x " + config.homeVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='backIcon2' onclick='" + config.backVideoEvent + "()'><i class='fa fa-2x " + config.backVideoIcon + " text-primary sr-icons'></i></span>" + "<span id='infoIcon2' onclick='" + config.infoVideoEvent + "(2)'><i class='fa fa-2x " + config.infoVideoIcon + " text-primary sr-icons'></i></span>";
-//            navBar.start = 0;
-//            navBar.end = config.videos[config.currentVideoIndex + 1].duration;
-//            videoOverlayObject.overlay.overlays.push(navBar);
-//            myPlayer2.overlay(videoOverlayObject.overlay);
-//            return;
-//        }
-//    }
-//}
 
 
 
