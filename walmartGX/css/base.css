@@ -149,7 +149,7 @@
     }
 
     #infoIcon, #infoIcon2 {
-        display: none;
+        /*display: none;*/
     }
 
     #landscapeMessage {
