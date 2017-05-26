@@ -122,7 +122,7 @@ videojs("myPlayerID").ready(function () {
         if (config.videos[config.currentVideoIndex].tracks != undefined) {
             myPlayer.addRemoteTextTrack({
                 kind: 'metadata',
-                src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"
+                src: "vtt/" + config.videos[config.currentVideoIndex].tracks + ".vtt"// each video should be able to specify is own cuepoints however bugs in unloading external text tracks force all cuepoints to be specified in a single file. Load it with the first video using the tracks property.
             }, false);
         } else {
             //console.log("Tracks is undefined");
@@ -135,7 +135,7 @@ videojs("myPlayerID").ready(function () {
 
         //Get the text track pertaining to custom events, not closed captions
         for (var i = 1; i < myPlayer.textTracks().length; i++) {
-            if (myPlayer.textTracks()[i].src == "vtt/intro.vtt") {
+            if (myPlayer.textTracks()[i].src == "vtt/intro.vtt") {//make sure this is the same vtt file used to hold all cuepoints
                 var tt = myPlayer.textTracks()[i];
             }
         }
