@@ -44,7 +44,7 @@ var textTrackToShow = 0;
 //});
 
 // Pulling data from local file
-$.getJSON("data/walmartMerged.json", function (result) {
+$.getJSON("data/walmartMergedLowRes.json", function (result) {
     config = result;
     loadNewVideo(config.startVideoName, false);
     if (config.showScrubber == false) {
