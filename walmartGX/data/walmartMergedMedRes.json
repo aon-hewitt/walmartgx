@@ -393,115 +393,115 @@
       ]
     },
     {
-      "name": "toDoList",
-      "brightcoveId": "5456130368001",
-      "duration": 142,
-      "endBehavior": "",
-      "waitSegmentStart": 103,
-      "onscreenElements": [
-        {
-          "class": "question deadline",
-          "content": "",
-          "lastQuestion": false,
-          "start": 20,
-          "end": 41,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Health Benefits",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "jumpToName": "medical",
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Insurance",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Education & Career",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Money",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Paid Time Off",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "To-Do List",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "jumpToName": "toDoList",
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Top Questions & Answers",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "jumpToName": "topQuestions",
-            "weightings": []
-          }
-        },
-        {
-          "class": "question clickable",
-          "content": "Take Action",
-          "lastQuestion": false,
-          "start": 98,
-          "end": 143,
-          "align": "top-left",
-          "defaultAction": {
-            "weightings": []
-          }
-        }
-      ]
+        "name": "toDoList",
+        "brightcoveId": "5456152514001",
+        "duration": 142,
+        "endBehavior": "",
+        "waitSegmentStart": 103,
+        "onscreenElements": [
+            {
+                "class": "question deadline",
+                "content": "",
+                "lastQuestion": false,
+                "start": 20,
+                "end": 41,
+                "align": "top-left",
+                "defaultAction": {
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Health Benefits",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "jumpToName": "medical",
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Insurance",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Education & Career",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Money",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Paid Time Off",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "To-Do List",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "jumpToName": "toDoList",
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Top Questions & Answers",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "jumpToName": "topQuestions",
+                    "weightings": []
+                }
+            },
+            {
+                "class": "question clickable",
+                "content": "Take Action",
+                "lastQuestion": false,
+                "start": 98,
+                "end": 143,
+                "align": "top-left",
+                "defaultAction": {
+                    "weightings": []
+                }
+            }
+        ]
     },
     {
       "name": "medical",
