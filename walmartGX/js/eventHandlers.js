@@ -1,11 +1,11 @@
 ﻿//custom events section
 
-//This function is specified in the walmart config file and is needed only for walmart
+//This function is specified in the walmart config file and is needed only for walmart to handle 'back to main menu' hotspot
 function backToMainMenuEvent() {
     homeEventHandler("returnIntro");
 }
 
-//This function is anexample of a custom event handler. It can replace a default behavior and sends the user to topQuestions every thursday.
+//This function is an example of a custom event handler. It can replace a default behavior and sends the user to topQuestions every thursday.
 function myEvent(onscreenElementIndex) {
     var video;
     var date = new Date().getDay();
