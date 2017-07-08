@@ -64,7 +64,6 @@ videojs("myPlayerID").ready(function () {
 
     //This script manages closed captioning persistance across videos. Somewhat hard coded here for 2 cc text tracks. First tt is hidden metadata.
     myPlayer.on("play", function () {
-
         try {
             if (textTrackToShow == 1) {
                 console.log("Showing text track 1");
@@ -101,10 +100,10 @@ videojs("myPlayerID").ready(function () {
         saveCCStatePlayer1();
     });
 
-    //Transition from player1 to player2
+    //Transition tonext video or loop back to wait segment start
     myPlayer.on("ended", function () {
         saveCCStatePlayer1();
-        
+
         if ((config.videos[config.currentVideoIndex].endBehavior != undefined) && (config.videos[config.currentVideoIndex].endBehavior != "")) {
             var videoId = config.videos[config.currentVideoIndex].endBehavior;
             loadNewVideo(videoId, true);
@@ -154,6 +153,8 @@ videojs("myPlayerID").ready(function () {
 
                     //Now handle the cue point processing.
                     //The first test triggers the hiding of the menu on video 10, Then fill in the date on video 4, then redisplay the menu at the appropriate time in video 10
+                    //the else statement handles the display of the auto generated date on the Walmart to-do-list video
+                    //Other Custom timed events (from the vtt file) should have their handler code specified here
                     if ((jsonData.description == "hideNavBar") && (config.videos[config.currentVideoIndex].name == 'hraVsHsa')) {
                         $(".vjs-overlay.vjs-overlay-bottom-left.vjs-overlay-background").css("display", "none");
                     } else if ((jsonData.description == "showDate") && (config.videos[config.currentVideoIndex].name == 'toDoList')) {
@@ -180,6 +181,8 @@ videojs("myPlayerID").ready(function () {
 
         myPlayer.play();
 
+
+        //Slide info is loaded here but is only showable if the slideInfo icon is specified in the config file
         $("#slideInfo").load("inc/" + config.videos[config.currentVideoIndex].name + ".html", function (response, status, xhr) {
             if (status == "error") {
                 console.log("No slide content found, loading default content.");
@@ -189,7 +192,7 @@ videojs("myPlayerID").ready(function () {
     });
 });
 
-//Any element without an event specified will be handled here using properties specified in config.
+//Any element without an 'event' specified in the config file will be handled here using properties specified in config file - 'defaultAction'.
 function defaultEventHandler(onscreenElementIndex) {
 
     if (config.videos[config.currentVideoIndex].onscreenElements[onscreenElementIndex].defaultAction.jumpToName != undefined) {
@@ -226,7 +229,7 @@ function skip() {
 
 function back() {
     config = JSON.parse(configs.pop());
-    if (config.videos[config.currentVideoIndex].name == config.startVideoName) { //First video starting - reset voteBucket values to 0
+    if (config.videos[config.currentVideoIndex].name == config.startVideoName) {
     }
     try {
         loadNewVideo(config.videos[config.currentVideoIndex].name, false);
@@ -242,8 +245,8 @@ function showSlideInfo(slide) {
     if (slide == 1) {
         $('#slideInfo').toggle("slide", { direction: "right" }, 400);
         $('.main-header').addClass("hideBannerOnMobileSlide");
-        
-        
+
+
         myPlayer.pause(); //no call to save cc state is needed here since we save it on pause event
 
 
@@ -268,15 +271,13 @@ function assignWeights(array) {
 }
 
 function loadNewVideo(videoId, saveThis) {
-
-
-        textTrackToShow = 0; //required for closed captioning persistance
-        for (var i = 0; i < myPlayer.textTracks().length; i++) {
-            //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
-            if ((myPlayer.textTracks()[i].mode) == "showing") {
-                textTrackToShow = i;
-            }
-        } 
+    textTrackToShow = 0; //required for closed captioning persistance
+    for (var i = 0; i < myPlayer.textTracks().length; i++) {
+        //console.log("Texttrack " + i + " showing? " + myPlayer.textTracks()[i].mode);
+        if ((myPlayer.textTracks()[i].mode) == "showing") {
+            textTrackToShow = i;
+        }
+    }
     if (saveThis) { // first determine if this is a valid 'historical' config state
         //now determine if this is a wait sequence video. If it is set the currentVideoIndex to the base video. Only base video indices should be stored in the history, not wait sequence videos
         if (config.videos[config.currentVideoIndex].waitSequence) {
@@ -297,6 +298,8 @@ function loadNewVideo(videoId, saveThis) {
     while (iterator < config.videos.length);
     //now do a similar process for obtaining the brightcove id of the wait sequence for this video. Use it to load the wait sequence player
     var iterator1 = 0
+
+    //Not needed any more since there is only one player on the page
     do {
         if (config.videos[iterator1].name == name + "_wait") {
             waitSequenceVideoId = config.videos[iterator1].brightcoveId; //at this point videoID turns back into a number
@@ -305,6 +308,7 @@ function loadNewVideo(videoId, saveThis) {
         iterator1++;
     }
     while (iterator1 < config.videos.length);
+
     myPlayer.catalog.getVideo(videoId, function (error, video) {
         //deal with error
         if (error) {
@@ -321,22 +325,21 @@ function loadNewVideo(videoId, saveThis) {
 
 function makeVideoOverlay(videoId) {
     //set global json properties
-    var videoOverlayObject = {
-    };
-    videoOverlayObject.overlay = {
-    };
+    var videoOverlayObject = {};
+    videoOverlayObject.overlay = {};
     myPlayer.overlay(null);
-    
+
     videoOverlayObject.overlay.content = "";
     videoOverlayObject.overlay.overlays = [];
     //now create the overlay properties
     for (var i = 0; i < config.videos.length; i++) { //find the current video object in the config object
         if (config.videos[i].name == videoId) {
             config.currentVideoIndex = i;
-            for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly for each
-                videoOverlayObject.overlay.overlays[j] = {
-                };
+            for (var j = 0; j < config.videos[i].onscreenElements.length; j++) { // cycle through the onscreenElements array and build an overly item for each
+                videoOverlayObject.overlay.overlays[j] = {};
                 videoOverlayObject.overlay.overlays[j].align = config.videos[i].onscreenElements[j].align;
+
+                //for thos onscreenElements with a custom 'event' specified, use it otherwise use a defaultHandler
                 if (config.videos[i].onscreenElements[j].event != undefined) {
                     videoOverlayObject.overlay.overlays[j].content = "<span class='" + config.videos[i].onscreenElements[j].class + "' onclick='" + config.videos[i].onscreenElements[j].event + "(" + j + ")'>" + config.videos[i].onscreenElements[j].content + "</span>";
                 } else {
@@ -345,7 +348,7 @@ function makeVideoOverlay(videoId) {
                 videoOverlayObject.overlay.overlays[j].start = config.videos[i].onscreenElements[j].start;
                 videoOverlayObject.overlay.overlays[j].end = config.videos[i].onscreenElements[j].end;
             }
-            //now add the menubar overlay to every page
+            //now build and add the menubar overlay - lower left- to every page
             var navBar = {
             };
             navBar.align = "bottom-left";
